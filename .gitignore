@@ -1,0 +1,5 @@
+santa-barbara-images/
+*.jpg
+*.png
+*.jpeg
+.DS_Store

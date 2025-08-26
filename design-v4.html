@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Santa Barbara Weekend Escape</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #000000;
+            --accent-color: #FF6B5A;
+            --text-light: #6B7280;
+            --text-dark: #111827;
+            --background: #FFFFFF;
+            --surface: #F9FAFB;
+            --border: #E5E7EB;
+            --shadow-subtle: 0 1px 3px rgba(0, 0, 0, 0.1);
+            --shadow-medium: 0 4px 6px rgba(0, 0, 0, 0.05);
+            --shadow-large: 0 20px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--background);
+            overflow-x: hidden;
+        }
+        
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Modern Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            padding: 0 2rem;
+            text-align: center;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #F3F4F6 0%, #E5E7EB 100%);
+            opacity: 0.5;
+            z-index: -1;
+        }
+        
+        /* Geometric background elements */
+        .geometric-bg {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            top: 20%;
+            right: -200px;
+            opacity: 0.3;
+            animation: geometricFloat 20s linear infinite;
+        }
+        
+        .geometric-bg:nth-child(2) {
+            width: 300px;
+            height: 300px;
+            top: 60%;
+            left: -150px;
+            animation-delay: -10s;
+        }
+        
+        .geometric-bg:nth-child(3) {
+            width: 200px;
+            height: 200px;
+            top: 40%;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 0;
+            animation-delay: -5s;
+        }
+        
+        @keyframes geometricFloat {
+            0% { transform: translateY(0px) rotate(0deg); }
+            25% { transform: translateY(-20px) rotate(90deg); }
+            50% { transform: translateY(0px) rotate(180deg); }
+            75% { transform: translateY(-10px) rotate(270deg); }
+            100% { transform: translateY(0px) rotate(360deg); }
+        }
+        
+        .hero-content {
+            z-index: 2;
+            max-width: 800px;
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+            font-weight: 300;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+        
+        .hero-date {
+            font-size: 1.125rem;
+            color: var(--accent-color);
+            font-weight: 500;
+            margin-bottom: 3rem;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+        
+        /* Modern Countdown */
+        .countdown-section {
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+        
+        .countdown-title {
+            font-size: 0.875rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            font-weight: 500;
+        }
+        
+        .countdown-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        
+        .countdown-item {
+            text-align: center;
+            padding: 1.5rem 1rem;
+            background: var(--background);
+            border-radius: 12px;
+            box-shadow: var(--shadow-medium);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border);
+        }
+        
+        .countdown-item:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-large);
+        }
+        
+        .countdown-number {
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        
+        .countdown-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+        
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            opacity: 0.6;
+            animation: fadeInUp 1s ease-out 1s both;
+        }
+        
+        .scroll-text {
+            font-size: 0.875rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        
+        .scroll-line {
+            width: 1px;
+            height: 40px;
+            background: var(--text-light);
+            animation: scrollPulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes scrollPulse {
+            0%, 100% { opacity: 0.3; transform: scaleY(1); }
+            50% { opacity: 1; transform: scaleY(1.2); }
+        }
+        
+        /* Main Content */
+        .main-content {
+            padding: 6rem 0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .section-header.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Activity Cards */
+        .activities-grid {
+            display: grid;
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+        
+        .activity-card {
+            background: var(--background);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow-medium);
+            transition: all 0.4s ease;
+            opacity: 0;
+            transform: translateY(30px);
+            border: 1px solid var(--border);
+        }
+        
+        .activity-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .activity-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-large);
+        }
+        
+        .activity-header {
+            padding: 2rem 2rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .activity-time {
+            background: var(--accent-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 500;
+            font-size: 0.875rem;
+            white-space: nowrap;
+        }
+        
+        .activity-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            flex: 1;
+        }
+        
+        .activity-content {
+            padding: 0 2rem 2rem;
+        }
+        
+        .activity-description {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+        
+        .activity-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .detail-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-light);
+            font-size: 0.875rem;
+        }
+        
+        .detail-icon {
+            width: 16px;
+            height: 16px;
+            color: var(--accent-color);
+        }
+        
+        .activity-highlight {
+            background: var(--surface);
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 3px solid var(--accent-color);
+            font-style: italic;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Gallery Grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .gallery-item {
+            aspect-ratio: 1;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.02);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        /* Progress Timeline */
+        .progress-timeline {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--surface);
+            z-index: 1000;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: var(--accent-color);
+            width: 0%;
+            transition: width 0.1s ease;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .countdown-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+            
+            .countdown-item {
+                padding: 1rem;
+            }
+            
+            .countdown-number {
+                font-size: 1.5rem;
+            }
+            
+            .activity-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+            
+            .activity-title {
+                font-size: 1.5rem;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 0.75rem;
+            }
+        }
+        
+        /* Animation Keyframes */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes slideInFromLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes slideInFromRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        /* Utility Classes */
+        .fade-in {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+        
+        .slide-in-left {
+            animation: slideInFromLeft 0.6s ease-out forwards;
+        }
+        
+        .slide-in-right {
+            animation: slideInFromRight 0.6s ease-out forwards;
+        }
+    </style>
+</head>
+<body>
+    <!-- Progress Timeline -->
+    <div class="progress-timeline">
+        <div class="progress-bar" id="progress-bar"></div>
+    </div>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="geometric-bg"></div>
+        <div class="geometric-bg"></div>
+        <div class="geometric-bg"></div>
+        
+        <div class="hero-content">
+            <h1>Santa Barbara</h1>
+            <p class="hero-subtitle">A Coastal Weekend Escape</p>
+            <p class="hero-date">August 30 - September 1, 2025</p>
+            
+            <div class="countdown-section">
+                <h2 class="countdown-title">Your Adventure Begins In</h2>
+                <div class="countdown-grid">
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="days">00</span>
+                        <span class="countdown-label">Days</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="hours">00</span>
+                        <span class="countdown-label">Hours</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="minutes">00</span>
+                        <span class="countdown-label">Minutes</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="seconds">00</span>
+                        <span class="countdown-label">Seconds</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="scroll-indicator">
+            <span class="scroll-text">Scroll</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+    
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Your Itinerary</h2>
+                <p class="section-subtitle">Three days of carefully curated experiences along California's beautiful coast</p>
+            </div>
+            
+            <div class="activities-grid">
+                <!-- Saturday Activities -->
+                <div class="activity-card" data-day="saturday">
+                    <div class="activity-header">
+                        <div class="activity-time">9:50 AM</div>
+                        <h3 class="activity-title">Coast Starlight Departure</h3>
+                    </div>
+                    <div class="activity-content">
+                        <p class="activity-description">Begin your journey aboard Amtrak's Coast Starlight, one of America's most scenic train routes. Enjoy panoramic views of the Pacific coastline as you travel from Los Angeles to Santa Barbara.</p>
+                        <div class="activity-details">
+                            <div class="detail-item">
+                                <svg class="detail-icon" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
+                                </svg>
+                                2.5 hour journey
+                            </div>
+                            <div class="detail-item">
+                                <svg class="detail-icon" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+                                </svg>
+                                LA Union Station to SB
+                            </div>
+                        </div>
+                        <div class="activity-highlight">
+                            Book seats on the ocean side (right side of train heading north) for the best coastal views!
+                        </div>
+                        <div class="gallery-grid">
+                            <div class="gallery-item">
+                                <img src="./santa-barbara-images/Saturday-0950-CoastStarlight/image1.jpg" alt="Coast Starlight train">
+                            </div>
+                            <div class="gallery-item">
+                                <img src="./santa-barbara-images/Saturday-0950-CoastStarlight/image2.jpg" alt="Ocean views from train">
+                            </div>
+                            <div class="gallery-item">
+                                <img src="./santa-barbara-images/Saturday-0950-CoastStarlight/image3.jpg" alt="Train interior">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="activity-card" data-day="saturday">
+                    <div class="activity-header">
+                        <div class="activity-time">12:00 PM</div>
+                        <h3 class="activity-title">Waterfront Lunch</h3>
+                    </div>
+                    <div class="activity-content">
+                        <p class="activity-description">Arrive in Santa Barbara and enjoy a leisurely lunch at one of the waterfront restaurants. Savor fresh seafood while taking in views of the harbor and Channel Islands.</p>
+                        <div class="activity-details">
+                            <div class="detail-item">
+                                <svg class="detail-icon" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"></path>
+                                </svg>
+                                Harbor views
+                            </div>
+                            <div class="detail-item">
+                                <svg class="detail-icon" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                Fresh seafood
+                            </div>
+                        </div>
+                        <div class="activity-highlight">
+                            Many restaurants offer happy hour 3-6 PM. Perfect timing for discounted appetizers and local wine!
+                        </div>
+                        <div class="gallery-grid">
+                            <div class="gallery-item">
+                                <img src="./santa-barbara-images/Saturday-1200-Lunch/image1.jpg" alt="Waterfront restaurant">
+                            </div>
+                            <div class="gallery-item">
+                                <img src="./santa-barbara-images/Saturday-1200-Lunch/image2.jpg" alt="Fresh seafood dish">
+                            </div>
+                            <div class="gallery-item">
+                                <img src="./santa-barbara-images/Saturday-1200-Lunch/image3.jpg" alt="Harbor view">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="activity-card" data-day="saturday">
+                    <div class="activity-header">
+                        <div class="activity-time">4:00 PM</div>
+                        <h3 class="activity-title">Chase Palm Park</h3>
+                    </div>
+                    <div class="activity-content">
+                        <p class="activity-description">Stroll through this beautiful oceanfront park featuring art installations, a vintage carousel, and stunning beach access. Perfect for a relaxing afternoon walk along the coast.</p>
+                        <div class="activity-details">
+                            <div class="detail-item">
+                                <svg class="detail-icon" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M4.083 9h1.946c.089-1.546.383-2.97.837-4.118A6.004 6.004 0 004.083 9zM10 2a8 8 0 100 16 8 8 0 000-16zm0 2c-.076 0-.232.032-.465.262-.238.234-.497.623-.737 1.182-.389.907-.673 2.142-.766 3.556h3.936c-.093-1.414-.377-2.649-.766-3.556-.24-.56-.5-.948-.737-1.182C10.232 4.032 10.076 4 10 4zm3.971 5c-.089-1.546-.383-2.97-.837-4.118A6.004 6.004 0 0115.917 9h-1.946zm-2.003 2H8.032c.093 1.414.377 2.649.766 3.556.24.56.5.948.737 1.182.233.23.389.262.465.262.076 0 .232-.032.465-.262.238-.234.498-.623.737-1.182.389-.907.673-2.142.766-3.556zm1.166 4.118c.454-1.147.748-2.572.837-4.118h1.946a6.004 6.004 0 01-2.783 4.118zm-6.268 0C6.412 13.97 6.118 12.546 6.03 11H4.083a6.004 6.004 0 002.783 4.118z" clip-rule="evenodd"></path>
+                                </svg>
+                                Oceanfront location
+                            </div>
+                            <div class="detail-item">
+                                <svg class="detail-icon" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z"></path>
+                                </svg>
+                                Art installations
+                            </div>
+                        </div>
+                        <div class="gallery-grid">
+                            <div class="gallery-item">
+                                <img src="./santa-barbara-images/Saturday-1600-ChasePalmPark/image1.jpg" alt="Chase Palm Park">
+                            </div>
+                            <div class="gallery-item">
+                                <img src="./santa-barbara-images/Saturday-1600-ChasePalmPark/image2.jpg" alt="Art installation">
+                            </div>
+                            <div class="gallery-item">
+                                <img src="./santa-barbara-images/Saturday-1600-ChasePalmPark/image3.jpg" alt="Beachfront walkway">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="activity-card" data-day="saturday">
+                    <div class="activity-header">
+                        <div class="activity-time">7:00 PM</div>
+                        <h3 class="activity-title">FisHouse Dinner</h3>
+                    </div>
+                    <div class="activity-content">
+                        <p class="activity-description">End your first day with dinner at this acclaimed seafood restaurant. Known for their fresh catches and innovative preparations, it's the perfect introduction to Santa Barbara's culinary scene.</p>
+                        <div class="activity-details">
+                            <div class="detail-item">
+                                <svg class="detail-icon" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                </svg>
+                                Acclaimed restaurant
+                            </div>
+                            <div class="detail-item">
+                                <svg class="detail-icon" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"></path>
+                                </svg>
+                                Fresh local seafood
+                            </div>
+                        </div>
+                        <div class="activity-highlight">
+                            Reservations recommended, especially for weekend evenings. Try their signature cioppino!
+                        </div>
+                        <div class="gallery-grid">
+                            <div class="gallery-item">
+                                <img src="./santa-barbara-images/Saturday-1900-FisHouse/image1.jpg" alt="FisHouse exterior">
+                            </div>
+                            <div class="gallery-item">
+                                <img src="./santa-barbara-images/Saturday-1900-FisHouse/image2.jpg" alt="Seafood platter">
+                            </div>
+                            <div class="gallery-item">
+                                <img src="./santa-barbara-images/Saturday-1900-FisHouse/image3.jpg" alt="Restaurant interior">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Hotel -->
+                <div class="activity-card" data-day="accommodation">
+                    <div class="activity-header">
+                        <div class="activity-time">Hotel</div>
+                        <h3 class="activity-title">Hotel Californian</h3>
+                    </div>
+                    <div class="activity-content">
+                        <p class="activity-description">Your home base for the weekend at this stunning Spanish Colonial Revival hotel. Located in the heart of the Funk Zone, you'll be steps away from galleries, tasting rooms, and restaurants.</p>
+                        <div class="activity-details">
+                            <div class="detail-item">
+                                <svg class="detail-icon" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+                                </svg>
+                                Funk Zone location
+                            </div>
+                            <div class="detail-item">
+                                <svg class="detail-icon" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                </svg>
+                                Luxury accommodation
+                            </div>
+                        </div>
+                        <div class="activity-highlight">
+                            Historic property with modern amenities. Rooftop bar offers stunning city and ocean views!
+                        </div>
+                        <div class="gallery-grid">
+                            <div class="gallery-item">
+                                <img src="./santa-barbara-images/Hotel-Californian/image1.jpg" alt="Hotel Californian exterior">
+                            </div>
+                            <div class="gallery-item">
+                                <img src="./santa-barbara-images/Hotel-Californian/image2.jpg" alt="Hotel lobby">
+                            </div>
+                            <div class="gallery-item">
+                                <img src="./santa-barbara-images/Hotel-Californian/image3.jpg" alt="Hotel room">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sunday Activities -->
+                <div class="activity-card" data-day="sunday">
+                    <div class="activity-header">
+                        <div class="activity-time">9:30 AM</div>
+                        <h3 class="activity-title">Santa Barbara Zoo</h3>
+                    </div>
+                    <div class="activity-content">
+                        <p class="activity-description">Start Sunday with a visit to this beautiful zoo overlooking the Pacific Ocean. Home to over 500 animals, it's perfectly sized for a morning visit with stunning coastal views throughout.</p>
+                        <div class="activity-details">
+                            <div class="detail-item">
+                                <svg class="detail-icon" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M4.083 9h1.946c.089-1.546.383-2.97.837-4.118A6.004 6.004 0 004.083 9zM10 2a8 8 0 100 16 8 8 0 000-16zm0 2c-.076 0-.232.032-.465.262-.238.234-.497.623-.737 1.182-.389.907-.673 2.142-.766 3.556h3.936c-.093-1.414-.377-2.649-.766-3.556-.24-.56-.5-.948-.737-1.182C10.232 4.032 10.076 4 10 4zm3.971 5c-.089-1.546-.383-2.97-.837-4.118A6.004 6.004 0 0115.917 9h-1.946zm-2.003 2H8.032c.093 1.414.377 2.649.766 3.556.24.56.5.948.737 1.182.233.23.389.262.465.262.076 0 .232-.032.465-.262.238-.234.498-.623.737-1.182.389-.907.673-2.142.766-3.556zm1.166 4.118c.454-1.147.748-2.572.837-4.118h1.946a6.004 6.004 0 01-2.783 4.118zm-6.268 0C6.412 13.97 6.118 12.546 6.03 11H4.083a6.004 6.004 0 002.783 4.118z" clip-rule="evenodd"></path>
+                                </svg>
+                                Ocean views
+                            </div>
+                            <div class="detail-item">
+                                <svg class="detail-icon" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
+                                </svg>
+                                2-3 hours
+                            </div>
+                        </div>
+                        <div class="activity-highlight">
+                            Don't miss the California sea lions and the miniature train ride with ocean views!
+                        </div>
+                        <div class="gallery-grid">
+                            <div class="gallery-item">
+                                <img src="./santa-barbara-images/Sunday-0930-SBZoo/image1.jpg" alt="Santa Barbara Zoo entrance">
+                            </div>
+                            <div class="gallery-item">
+                                <img src="./santa-barbara-images/Sunday-0930-SBZoo/image2.jpg" alt="Zoo animals">
+                            </div>
+                            <div class="gallery-item">
+                                <img src="./santa-barbara-images/Sunday-0930-SBZoo/image3.jpg" alt="Ocean view from zoo">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Monday Activities -->
+                <div class="activity-card" data-day="monday">
+                    <div class="activity-header">
+                        <div class="activity-time">9:00 AM</div>
+                        <h3 class="activity-title">MOXI Museum</h3>
+                    </div>
+                    <div class="activity-content">
+                        <p class="activity-description">Explore this innovative science and technology museum with interactive exhibits. MOXI offers hands-on experiences perfect for curious minds of all ages, from robotics to renewable energy displays.</p>
+                        <div class="activity-details">
+                            <div class="detail-item">
+                                <svg class="detail-icon" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z"></path>
+                                </svg>
+                                Interactive exhibits
+                            </div>
+                            <div class="detail-item">
+                                <svg class="detail-icon" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
+                                </svg>
+                                3-4 hours
+                            </div>
+                        </div>
+                        <div class="activity-highlight">
+                            Check their website for special exhibitions and workshops happening during your visit!
+                        </div>
+                        <div class="gallery-grid">
+                            <div class="gallery-item">
+                                <img src="./santa-barbara-images/Monday-0900-MOXI/image1.jpg" alt="MOXI Museum exterior">
+                            </div>
+                            <div class="gallery-item">
+                                <img src="./santa-barbara-images/Monday-0900-MOXI/image2.jpg" alt="Interactive exhibits">
+                            </div>
+                            <div class="gallery-item">
+                                <img src="./santa-barbara-images/Monday-0900-MOXI/image3.jpg" alt="Science demonstrations">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="activity-card" data-day="monday">
+                    <div class="activity-header">
+                        <div class="activity-time">1:45 PM</div>
+                        <h3 class="activity-title">Coast Starlight Return</h3>
+                    </div>
+                    <div class="activity-content">
+                        <p class="activity-description">Board the southbound Coast Starlight for your scenic return journey to Los Angeles. Enjoy your final coastal views and reflect on an amazing weekend adventure.</p>
+                        <div class="activity-details">
+                            <div class="detail-item">
+                                <svg class="detail-icon" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
+                                </svg>
+                                2.5 hour journey
+                            </div>
+                            <div class="detail-item">
+                                <svg class="detail-icon" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+                                </svg>
+                                SB to LA Union Station
+                            </div>
+                        </div>
+                        <div class="activity-highlight">
+                            Perfect time for a final meal on the train and capturing sunset photos over the Pacific!
+                        </div>
+                        <div class="gallery-grid">
+                            <div class="gallery-item">
+                                <img src="./santa-barbara-images/Monday-1345-CoastStarlightReturn/image1.jpg" alt="Train departure">
+                            </div>
+                            <div class="gallery-item">
+                                <img src="./santa-barbara-images/Monday-1345-CoastStarlightReturn/image2.jpg" alt="Coastal sunset view">
+                            </div>
+                            <div class="gallery-item">
+                                <img src="./santa-barbara-images/Monday-1345-CoastStarlightReturn/image3.jpg" alt="Train interior">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <script>
+        // Countdown Timer
+        function updateCountdown() {
+            const targetDate = new Date('August 30, 2025 09:50:00').getTime();
+            const now = new Date().getTime();
+            const difference = targetDate - now;
+
+            if (difference > 0) {
+                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+                document.getElementById('days').textContent = days.toString().padStart(2, '0');
+                document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+                document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+                document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+            }
+        }
+
+        // Progress Bar
+        function updateProgressBar() {
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            document.getElementById('progress-bar').style.width = scrollPercent + '%';
+        }
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Smooth animations on scroll
+        function handleScrollAnimations() {
+            const elements = document.querySelectorAll('.section-header, .activity-card');
+            elements.forEach(el => observer.observe(el));
+        }
+
+        // Parallax effect for geometric elements
+        function handleParallax() {
+            window.addEventListener('scroll', () => {
+                const scrolled = window.pageYOffset;
+                const parallaxElements = document.querySelectorAll('.geometric-bg');
+                
+                parallaxElements.forEach((element, index) => {
+                    const speed = (index + 1) * 0.1;
+                    element.style.transform = `translateY(${scrolled * speed}px) rotate(${scrolled * 0.1}deg)`;
+                });
+            });
+        }
+
+        // Enhanced hover effects
+        function initializeHoverEffects() {
+            const cards = document.querySelectorAll('.activity-card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    card.style.transition = 'all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1)';
+                });
+            });
+
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            galleryItems.forEach(item => {
+                item.addEventListener('mouseenter', () => {
+                    item.style.transition = 'all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1)';
+                });
+            });
+        }
+
+        // Initialize all functions
+        document.addEventListener('DOMContentLoaded', () => {
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+            
+            window.addEventListener('scroll', updateProgressBar);
+            updateProgressBar();
+            
+            handleScrollAnimations();
+            handleParallax();
+            initializeHoverEffects();
+            
+            // Add stagger animation to countdown items
+            const countdownItems = document.querySelectorAll('.countdown-item');
+            countdownItems.forEach((item, index) => {
+                item.style.animationDelay = `${0.6 + (index * 0.1)}s`;
+            });
+            
+            // Add stagger animation to activity cards
+            const activityCards = document.querySelectorAll('.activity-card');
+            activityCards.forEach((card, index) => {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            setTimeout(() => {
+                                entry.target.classList.add('visible');
+                            }, index * 100);
+                        }
+                    });
+                }, observerOptions);
+                
+                observer.observe(card);
+            });
+        });
+
+        // Smooth scroll behavior for better UX
+        document.documentElement.style.scrollBehavior = 'smooth';
+
+        // Performance optimization: throttle scroll events
+        let ticking = false;
+        function requestTick() {
+            if (!ticking) {
+                requestAnimationFrame(updateProgressBar);
+                ticking = true;
+            }
+        }
+
+        window.addEventListener('scroll', () => {
+            ticking = false;
+            requestTick();
+        });
+    </script>
+</body>
+</html>

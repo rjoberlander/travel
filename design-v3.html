@@ -1,0 +1,1479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Santa Barbara Weekend Escape - A Coastal Adventure</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Roboto:wght@300;400;500&family=Bebas+Neue&family=Cinzel:wght@400;600;700&family=Montserrat:wght@100;300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Parallax Container */
+        .parallax-container {
+            position: relative;
+            min-height: 100vh;
+            perspective: 1000px;
+            overflow: hidden;
+        }
+
+        /* Layer System */
+        .parallax-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+
+        /* Background Mountains Layer (Farthest) */
+        .layer-mountains {
+            z-index: 1;
+            background: linear-gradient(to bottom, 
+                #1a1a2e 0%, 
+                #16213e 30%, 
+                #0f3460 60%, 
+                #533483 100%);
+            transform: translateZ(-500px) scale(1.5);
+            filter: blur(2px);
+        }
+
+        .layer-mountains::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 40%;
+            background: 
+                radial-gradient(ellipse 800px 300px at 20% 100%, rgba(83, 52, 131, 0.6) 0%, transparent 50%),
+                radial-gradient(ellipse 600px 200px at 80% 100%, rgba(15, 52, 96, 0.4) 0%, transparent 50%),
+                linear-gradient(to top, rgba(16, 33, 62, 0.8) 0%, transparent 100%);
+        }
+
+        /* Mid-layer Clouds */
+        .layer-clouds {
+            z-index: 2;
+            transform: translateZ(-300px) scale(1.3);
+            opacity: 0.7;
+        }
+
+        .cloud {
+            position: absolute;
+            background: radial-gradient(ellipse 200px 60px, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            border-radius: 50px;
+            animation: cloudFloat 20s linear infinite;
+        }
+
+        .cloud:nth-child(1) {
+            top: 20%;
+            left: 10%;
+            width: 200px;
+            height: 60px;
+            animation-delay: -5s;
+            animation-duration: 25s;
+        }
+
+        .cloud:nth-child(2) {
+            top: 40%;
+            left: 70%;
+            width: 300px;
+            height: 80px;
+            animation-delay: -10s;
+            animation-duration: 30s;
+        }
+
+        .cloud:nth-child(3) {
+            top: 60%;
+            left: 30%;
+            width: 150px;
+            height: 40px;
+            animation-delay: -15s;
+            animation-duration: 35s;
+        }
+
+        @keyframes cloudFloat {
+            0% { transform: translateX(-100px); }
+            100% { transform: translateX(calc(100vw + 100px)); }
+        }
+
+        /* Ocean Layer */
+        .layer-ocean {
+            z-index: 3;
+            transform: translateZ(-100px) scale(1.1);
+            background: linear-gradient(to bottom, 
+                transparent 0%, 
+                rgba(0, 119, 190, 0.3) 50%, 
+                rgba(0, 77, 153, 0.6) 80%, 
+                rgba(0, 51, 102, 0.8) 100%);
+            bottom: -10%;
+        }
+
+        .ocean-waves {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 30%;
+            background: 
+                repeating-linear-gradient(90deg, 
+                    transparent, 
+                    rgba(135, 206, 235, 0.1) 50px, 
+                    transparent 100px);
+            animation: waveMotion 8s ease-in-out infinite;
+        }
+
+        @keyframes waveMotion {
+            0%, 100% { transform: translateX(0) scaleX(1); }
+            50% { transform: translateX(-50px) scaleX(1.1); }
+        }
+
+        /* Foreground Content Layer */
+        .layer-content {
+            z-index: 10;
+            transform: translateZ(0);
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(to bottom, 
+                rgba(0, 0, 0, 0) 0%, 
+                rgba(0, 0, 0, 0.3) 50%, 
+                rgba(0, 0, 0, 0.6) 100%);
+        }
+
+        /* Floating Particles */
+        .floating-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 4;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            animation: particleFloat 15s linear infinite;
+        }
+
+        @keyframes particleFloat {
+            0% {
+                transform: translateY(100vh) translateX(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) translateX(50px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* 3D Text Effects */
+        h1 {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 8rem;
+            color: #fff;
+            text-shadow: 
+                0 0 30px rgba(255, 255, 255, 0.5),
+                0 0 60px rgba(135, 206, 235, 0.3),
+                0 10px 20px rgba(0, 0, 0, 0.8),
+                0 20px 40px rgba(0, 0, 0, 0.6);
+            transform: perspective(300px) rotateX(15deg);
+            animation: textFloat 6s ease-in-out infinite, textGlow 4s ease-in-out infinite;
+            background: linear-gradient(45deg, #fff, #87ceeb, #fff, #ddeeff);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+        }
+
+        @keyframes textFloat {
+            0%, 100% { 
+                transform: perspective(300px) rotateX(15deg) translateY(0px) translateZ(20px); 
+            }
+            50% { 
+                transform: perspective(300px) rotateX(15deg) translateY(-15px) translateZ(30px); 
+            }
+        }
+
+        @keyframes textGlow {
+            0%, 100% { 
+                background-position: 0% 50%;
+                text-shadow: 
+                    0 0 30px rgba(255, 255, 255, 0.5),
+                    0 0 60px rgba(135, 206, 235, 0.3),
+                    0 10px 20px rgba(0, 0, 0, 0.8);
+            }
+            50% { 
+                background-position: 100% 50%;
+                text-shadow: 
+                    0 0 40px rgba(255, 255, 255, 0.8),
+                    0 0 80px rgba(135, 206, 235, 0.6),
+                    0 10px 30px rgba(0, 0, 0, 0.9);
+            }
+        }
+
+        .subtitle {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: #fff;
+            text-shadow: 
+                0 0 20px rgba(255, 255, 255, 0.4),
+                0 5px 15px rgba(0, 0, 0, 0.7);
+            transform: perspective(200px) rotateX(10deg) translateZ(10px);
+            animation: subtitleFloat 5s ease-in-out infinite;
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+
+        @keyframes subtitleFloat {
+            0%, 100% { 
+                transform: perspective(200px) rotateX(10deg) translateZ(10px) translateY(0px); 
+            }
+            50% { 
+                transform: perspective(200px) rotateX(10deg) translateZ(15px) translateY(-8px); 
+            }
+        }
+
+        .date-range {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.3rem;
+            color: #ddd;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+            transform: perspective(150px) rotateX(5deg) translateZ(5px);
+            animation: dateFloat 4s ease-in-out infinite;
+            margin-bottom: 40px;
+            opacity: 0.8;
+        }
+
+        @keyframes dateFloat {
+            0%, 100% { 
+                transform: perspective(150px) rotateX(5deg) translateZ(5px) translateY(0px); 
+            }
+            50% { 
+                transform: perspective(150px) rotateX(5deg) translateZ(8px) translateY(-5px); 
+            }
+        }
+
+        /* Depth-of-Field Countdown */
+        .countdown-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px) brightness(1.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 50px;
+            margin: 40px auto;
+            max-width: 800px;
+            border-radius: 20px;
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            transform: perspective(400px) rotateX(10deg) translateZ(30px);
+            animation: countdownFloat 7s ease-in-out infinite;
+        }
+
+        @keyframes countdownFloat {
+            0%, 100% { 
+                transform: perspective(400px) rotateX(10deg) translateZ(30px) translateY(0px); 
+            }
+            50% { 
+                transform: perspective(400px) rotateX(10deg) translateZ(40px) translateY(-10px); 
+            }
+        }
+
+        .countdown-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #fff;
+            text-shadow: 
+                0 0 30px rgba(255, 255, 255, 0.6),
+                0 0 60px rgba(135, 206, 235, 0.4),
+                0 5px 15px rgba(0, 0, 0, 0.8);
+            margin-bottom: 30px;
+            animation: countdownTitlePulse 5s ease-in-out infinite;
+        }
+
+        @keyframes countdownTitlePulse {
+            0%, 100% { 
+                text-shadow: 
+                    0 0 30px rgba(255, 255, 255, 0.6),
+                    0 0 60px rgba(135, 206, 235, 0.4),
+                    0 5px 15px rgba(0, 0, 0, 0.8);
+                transform: scale(1);
+            }
+            50% { 
+                text-shadow: 
+                    0 0 40px rgba(255, 255, 255, 0.9),
+                    0 0 80px rgba(135, 206, 235, 0.7),
+                    0 5px 20px rgba(0, 0, 0, 0.9);
+                transform: scale(1.02);
+            }
+        }
+
+        .countdown-timer {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            perspective: 600px;
+        }
+
+        .countdown-item {
+            text-align: center;
+            transform: perspective(200px) rotateY(0deg) translateZ(20px);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .countdown-item:hover {
+            transform: perspective(200px) rotateY(10deg) translateZ(40px) scale(1.05);
+        }
+
+        .countdown-value {
+            font-size: 4.5rem;
+            font-weight: 900;
+            color: #fff;
+            text-shadow: 
+                0 0 20px rgba(255, 255, 255, 0.8),
+                0 0 40px rgba(135, 206, 235, 0.6),
+                0 10px 20px rgba(0, 0, 0, 0.8);
+            animation: valueGlow 3s ease-in-out infinite;
+            margin-bottom: 10px;
+        }
+
+        @keyframes valueGlow {
+            0%, 100% { 
+                text-shadow: 
+                    0 0 20px rgba(255, 255, 255, 0.8),
+                    0 0 40px rgba(135, 206, 235, 0.6),
+                    0 10px 20px rgba(0, 0, 0, 0.8);
+            }
+            50% { 
+                text-shadow: 
+                    0 0 30px rgba(255, 255, 255, 1),
+                    0 0 60px rgba(135, 206, 235, 0.9),
+                    0 10px 30px rgba(0, 0, 0, 0.9);
+            }
+        }
+
+        .countdown-label {
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-weight: 600;
+            color: #ccc;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+        }
+
+        /* Scroll Progress with Depth */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .scroll-progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #87ceeb, #4682b4, #87ceeb);
+            background-size: 200% 100%;
+            animation: progressShimmer 3s ease-in-out infinite;
+            box-shadow: 0 0 20px rgba(135, 206, 235, 0.6);
+            width: 0%;
+            transition: width 0.1s ease;
+        }
+
+        @keyframes progressShimmer {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* Content Sections with Parallax */
+        .content {
+            position: relative;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(15,15,25,0.95));
+            min-height: 100vh;
+            z-index: 20;
+            transform: translateZ(0);
+        }
+
+        /* Navigation with Glass Effect */
+        .navigation {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 15px 0;
+            z-index: 100;
+            transform: translateZ(50px);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .nav-link {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transform: perspective(100px) translateZ(0px);
+        }
+
+        .nav-link:hover {
+            background: rgba(135, 206, 235, 0.2);
+            border-color: rgba(135, 206, 235, 0.4);
+            transform: perspective(100px) translateZ(10px) scale(1.05);
+            box-shadow: 0 10px 30px rgba(135, 206, 235, 0.3);
+        }
+
+        /* Day Sections with Depth */
+        .day-header {
+            text-align: center;
+            margin: 80px 0 60px;
+            transform: perspective(300px) translateZ(20px);
+        }
+
+        .day-title {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 5rem;
+            color: #87ceeb;
+            text-shadow: 
+                0 0 30px rgba(135, 206, 235, 0.6),
+                0 10px 20px rgba(0, 0, 0, 0.8);
+            margin-bottom: 20px;
+            position: relative;
+            animation: dayTitleFloat 8s ease-in-out infinite;
+        }
+
+        @keyframes dayTitleFloat {
+            0%, 100% { 
+                transform: perspective(200px) rotateX(5deg) translateY(0px) translateZ(10px); 
+            }
+            50% { 
+                transform: perspective(200px) rotateX(5deg) translateY(-10px) translateZ(20px); 
+            }
+        }
+
+        .day-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, #87ceeb, transparent);
+            border-radius: 2px;
+            box-shadow: 0 0 20px rgba(135, 206, 235, 0.5);
+        }
+
+        /* Activity Cards with Layered Depth */
+        .activity-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px) brightness(1.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px auto;
+            max-width: 1000px;
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            transform: perspective(400px) rotateX(2deg) translateZ(10px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .activity-card:hover {
+            transform: perspective(400px) rotateX(5deg) translateZ(30px) scale(1.02);
+            box-shadow: 
+                0 30px 80px rgba(0, 0, 0, 0.4),
+                0 0 40px rgba(135, 206, 235, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .activity-time {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.1rem;
+            color: #87ceeb;
+            font-weight: 600;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px rgba(135, 206, 235, 0.5);
+        }
+
+        .activity-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: #fff;
+            margin-bottom: 20px;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.6);
+        }
+
+        .activity-description {
+            color: #ddd;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Must-try section with glass effect */
+        .must-try-section {
+            background: rgba(135, 206, 235, 0.1);
+            border: 1px solid rgba(135, 206, 235, 0.2);
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 20px;
+            backdrop-filter: blur(10px);
+            transform: perspective(200px) translateZ(5px);
+        }
+
+        .must-try-title {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 1.1rem;
+            color: #87ceeb;
+            font-weight: 600;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+            text-shadow: 0 0 15px rgba(135, 206, 235, 0.5);
+        }
+
+        .must-try-item {
+            color: #f0f8ff;
+            margin-bottom: 8px;
+            padding-left: 15px;
+            position: relative;
+            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Gallery with depth */
+        .gallery-container {
+            margin: 30px 0;
+            position: relative;
+            transform: perspective(300px) translateZ(0px);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-container:hover {
+            transform: perspective(300px) translateZ(20px);
+        }
+
+        .masonry-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 
+                0 10px 30px rgba(0, 0, 0, 0.4),
+                0 0 20px rgba(135, 206, 235, 0.1);
+            transform: perspective(200px) rotateX(0deg) translateZ(0px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: perspective(200px) rotateX(5deg) translateZ(20px) scale(1.05);
+            box-shadow: 
+                0 20px 50px rgba(0, 0, 0, 0.5),
+                0 0 30px rgba(135, 206, 235, 0.3);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            filter: brightness(0.9) contrast(1.1);
+            transition: filter 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            filter: brightness(1) contrast(1.2);
+        }
+
+        /* Show more button with glass effect */
+        .show-more-btn {
+            background: rgba(135, 206, 235, 0.2);
+            border: 2px solid rgba(135, 206, 235, 0.4);
+            color: #fff;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            backdrop-filter: blur(15px);
+            transition: all 0.3s ease;
+            transform: perspective(150px) translateZ(10px);
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .show-more-btn:hover {
+            background: rgba(135, 206, 235, 0.3);
+            border-color: rgba(135, 206, 235, 0.6);
+            transform: perspective(150px) translateZ(20px) scale(1.05);
+            box-shadow: 0 10px 30px rgba(135, 206, 235, 0.3);
+        }
+
+        /* Hotel section with premium depth */
+        .hotel-section {
+            background: rgba(255, 215, 0, 0.05);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 20px;
+            padding: 50px;
+            margin: 60px auto;
+            max-width: 1000px;
+            text-align: center;
+            backdrop-filter: blur(20px) brightness(1.2);
+            transform: perspective(400px) rotateX(3deg) translateZ(25px);
+            box-shadow: 
+                0 25px 70px rgba(0, 0, 0, 0.4),
+                0 0 50px rgba(255, 215, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .hotel-section:hover {
+            transform: perspective(400px) rotateX(6deg) translateZ(40px);
+        }
+
+        /* Weather section */
+        .weather-section {
+            background: rgba(0, 191, 255, 0.05);
+            border: 1px solid rgba(0, 191, 255, 0.2);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 60px auto;
+            max-width: 1000px;
+            backdrop-filter: blur(20px) brightness(1.1);
+            transform: perspective(350px) rotateX(2deg) translateZ(15px);
+        }
+
+        .weather-forecast {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 30px;
+        }
+
+        .weather-day {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 25px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transform: perspective(200px) translateZ(10px);
+            transition: transform 0.3s ease;
+        }
+
+        .weather-day:hover {
+            transform: perspective(200px) translateZ(25px) scale(1.05);
+        }
+
+        /* Map section with depth */
+        .map-section {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 60px 40px;
+            margin: 60px 0;
+            text-align: center;
+            backdrop-filter: blur(15px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transform: perspective(400px) translateZ(0px);
+        }
+
+        .map-title {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 3.5rem;
+            color: #87ceeb;
+            margin-bottom: 15px;
+            text-shadow: 
+                0 0 30px rgba(135, 206, 235, 0.6),
+                0 10px 20px rgba(0, 0, 0, 0.8);
+        }
+
+        .map-subtitle {
+            color: #bbb;
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+        }
+
+        iframe {
+            border-radius: 20px;
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.5),
+                0 0 40px rgba(135, 206, 235, 0.2);
+            transform: perspective(300px) rotateX(5deg) translateZ(20px);
+            transition: transform 0.3s ease;
+        }
+
+        iframe:hover {
+            transform: perspective(300px) rotateX(8deg) translateZ(35px);
+        }
+
+        /* Footer with depth */
+        .footer {
+            background: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            text-align: center;
+            padding: 60px 20px;
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            transform: perspective(300px) translateZ(10px);
+        }
+
+        .footer-title {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: #87ceeb;
+            text-shadow: 
+                0 0 20px rgba(135, 206, 235, 0.5),
+                0 5px 15px rgba(0, 0, 0, 0.8);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .parallax-layer {
+                transform: none !important;
+            }
+            
+            .layer-content {
+                transform: none !important;
+            }
+            
+            h1 {
+                font-size: 4.5rem;
+                transform: none;
+            }
+            
+            .subtitle {
+                font-size: 1.8rem;
+                transform: none;
+            }
+            
+            .countdown-container {
+                padding: 30px 20px;
+                transform: none;
+                margin: 20px;
+            }
+            
+            .countdown-title {
+                font-size: 1.8rem;
+            }
+            
+            .countdown-value {
+                font-size: 3rem;
+            }
+            
+            .countdown-timer {
+                flex-wrap: wrap;
+                gap: 20px;
+            }
+            
+            .countdown-item {
+                transform: none;
+            }
+            
+            .day-title {
+                font-size: 3rem;
+                transform: none;
+            }
+            
+            .activity-card {
+                margin: 20px;
+                padding: 25px;
+                transform: none;
+            }
+            
+            .nav-container {
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+            
+            .weather-forecast {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .masonry-gallery {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animation for when elements come into view */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Rating stars styling */
+        .rating-info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .rating-stars {
+            color: #ffd700;
+            font-size: 1.5rem;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        .rating-text {
+            color: #ddd;
+            font-weight: 600;
+        }
+
+        /* Print styles */
+        @media print {
+            .parallax-container,
+            .navigation, 
+            .countdown-container, 
+            .show-more-btn, 
+            .scroll-progress {
+                display: none !important;
+            }
+            
+            .activity-card {
+                page-break-inside: avoid;
+                box-shadow: none;
+                border: 1px solid #ccc;
+                transform: none;
+            }
+            
+            body {
+                background: white;
+                color: black;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Scroll Progress -->
+    <div class="scroll-progress">
+        <div class="scroll-progress-bar" id="simple-progress"></div>
+    </div>
+
+    <!-- Parallax Header Container -->
+    <div class="parallax-container">
+        <!-- Background Mountains Layer -->
+        <div class="parallax-layer layer-mountains"></div>
+        
+        <!-- Cloud Layer -->
+        <div class="parallax-layer layer-clouds">
+            <div class="cloud"></div>
+            <div class="cloud"></div>
+            <div class="cloud"></div>
+        </div>
+        
+        <!-- Ocean Layer -->
+        <div class="parallax-layer layer-ocean">
+            <div class="ocean-waves"></div>
+        </div>
+        
+        <!-- Floating Particles -->
+        <div class="floating-particles" id="particles"></div>
+        
+        <!-- Content Layer -->
+        <div class="parallax-layer layer-content">
+            <h1>SANTA BARBARA</h1>
+            <p class="subtitle">A Coastal Weekend Escape</p>
+            <p class="date-range">August 30 - September 1, 2025</p>
+        </div>
+    </div>
+
+    <!-- Countdown Container with 3D Effects -->
+    <div class="countdown-container">
+        <h2 class="countdown-title">YOUR ADVENTURE BEGINS IN:</h2>
+        <div class="countdown-timer" id="countdown">
+            <div class="countdown-item">
+                <div class="countdown-value" id="days">45</div>
+                <div class="countdown-label">Days</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-value" id="hours">12</div>
+                <div class="countdown-label">Hours</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-value" id="minutes">34</div>
+                <div class="countdown-label">Minutes</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-value" id="seconds">56</div>
+                <div class="countdown-label">Seconds</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content with Depth -->
+    <div class="content">
+        <!-- Navigation -->
+        <nav class="navigation">
+            <div class="nav-container">
+                <a href="#saturday" class="nav-link">Saturday</a>
+                <a href="#sunday" class="nav-link">Sunday</a>
+                <a href="#monday" class="nav-link">Monday</a>
+                <a href="#hotel" class="nav-link">Hotel</a>
+                <a href="#weather" class="nav-link">Weather</a>
+                <a href="#map" class="nav-link">Map</a>
+            </div>
+        </nav>
+
+        <!-- Saturday Activities -->
+        <div id="saturday" class="day-header">
+            <h2 class="day-title">SATURDAY</h2>
+        </div>
+        
+        <!-- 9:50 AM - Coast Starlight Train -->
+        <div class="activity-card fade-in">
+            <div class="activity-time">9:50 AM</div>
+            <div class="gallery-container">
+                <div class="masonry-gallery" style="max-height: 300px; overflow: hidden;">
+                    <div class="gallery-item"><img src="santa-barbara-images/Saturday-0950-CoastStarlight/image1.jpg" alt="Coast Starlight exterior view" loading="lazy"></div>
+                    <div class="gallery-item"><img src="santa-barbara-images/Saturday-0950-CoastStarlight/image2.jpg" alt="Coast Starlight interior seating" loading="lazy"></div>
+                    <div class="gallery-item"><img src="santa-barbara-images/Saturday-0950-CoastStarlight/image3.jpg" alt="Scenic coastal views from train" loading="lazy"></div>
+                </div>
+                <div class="gallery-fade-overlay" style="position: absolute; bottom: 0; left: 0; right: 0; height: 100px; background: linear-gradient(transparent, rgba(255,255,255,0.95)); pointer-events: none;"></div>
+                <button class="show-more-btn">Show All Photos</button>
+            </div>
+            <div>
+                <h3 class="activity-title">Coast Starlight Adventure</h3>
+                <p class="activity-description">
+                    Begin your journey aboard Amtrak's legendary Coast Starlight, departing from Los Angeles Union Station. This spectacular rail journey hugs the Pacific coastline, offering views you simply can't see from the highway.
+                </p>
+                <div class="must-try-section">
+                    <div class="must-try-title">TRAIN EXPERIENCE HIGHLIGHTS</div>
+                    <div class="must-try-item">🚂 Sightseer Lounge - Floor-to-ceiling windows</div>
+                    <div class="must-try-item">🌊 Pacific Ocean views - Left side seating</div>
+                    <div class="must-try-item">🥪 Café Car - Fresh snacks and beverages</div>
+                    <div class="must-try-item">📱 Free WiFi throughout the journey</div>
+                    <div class="must-try-item">⚡ Power outlets at every seat</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hotel Check-in -->
+        <div class="activity-card fade-in">
+            <div class="activity-time">12:00 PM</div>
+            <div class="gallery-container">
+                <div class="masonry-gallery" style="max-height: 300px; overflow: hidden;">
+                    <div class="gallery-item"><img src="santa-barbara-images/Hotel-Californian/image1.jpg" alt="Hotel Californian exterior" loading="lazy"></div>
+                    <div class="gallery-item"><img src="santa-barbara-images/Hotel-Californian/image2.jpg" alt="Hotel lobby and reception" loading="lazy"></div>
+                    <div class="gallery-item"><img src="santa-barbara-images/Hotel-Californian/image3.jpg" alt="Ocean view room" loading="lazy"></div>
+                </div>
+                <div class="gallery-fade-overlay" style="position: absolute; bottom: 0; left: 0; right: 0; height: 100px; background: linear-gradient(transparent, rgba(255,255,255,0.95)); pointer-events: none;"></div>
+                <button class="show-more-btn">Show All Photos</button>
+            </div>
+            <div>
+                <h3 class="activity-title">Hotel Californian Check-In</h3>
+                <p class="activity-description">
+                    Arrive at Santa Barbara Station and make your way to the luxurious Hotel Californian. This Spanish Colonial-inspired property sits at the heart of Santa Barbara's vibrant waterfront, just steps from the beach and Stearns Wharf.
+                </p>
+                <div class="must-try-section">
+                    <div class="must-try-title">HOTEL HIGHLIGHTS</div>
+                    <div class="must-try-item">🏊 Rooftop pool with 360° ocean views</div>
+                    <div class="must-try-item">🍹 Djinn rooftop lounge for sunset cocktails</div>
+                    <div class="must-try-item">💆 Moroccan-inspired spa treatments</div>
+                    <div class="must-try-item">🌊 Direct beach access</div>
+                    <div class="must-try-item">🅿️ Valet parking available</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Lunch -->
+        <div class="activity-card fade-in">
+            <div class="activity-time">2:00 PM</div>
+            <div class="gallery-container">
+                <div class="masonry-gallery" style="max-height: 300px; overflow: hidden;">
+                    <div class="gallery-item"><img src="santa-barbara-images/Saturday-1200-Lunch/image1.jpg" alt="State Street dining scene" loading="lazy"></div>
+                    <div class="gallery-item"><img src="santa-barbara-images/Saturday-1200-Lunch/image2.jpg" alt="Outdoor patio dining" loading="lazy"></div>
+                    <div class="gallery-item"><img src="santa-barbara-images/Saturday-1200-Lunch/image3.jpg" alt="Local cuisine and cocktails" loading="lazy"></div>
+                </div>
+                <div class="gallery-fade-overlay" style="position: absolute; bottom: 0; left: 0; right: 0; height: 100px; background: linear-gradient(transparent, rgba(255,255,255,0.95)); pointer-events: none;"></div>
+                <button class="show-more-btn">Show All Photos</button>
+            </div>
+            <div>
+                <h3 class="activity-title">State Street Dining</h3>
+                <p class="activity-description">
+                    Explore State Street's vibrant dining scene for a late lunch. This pedestrian-friendly boulevard is lined with outdoor cafes, local boutiques, and historic Spanish architecture. Perfect for people-watching and soaking in the Santa Barbara vibe.
+                </p>
+                <div class="must-try-section">
+                    <div class="must-try-title">RECOMMENDED SPOTS</div>
+                    <div class="must-try-item">🌮 Los Agaves - Authentic Mexican cuisine</div>
+                    <div class="must-try-item">🍕 Olio Pizzeria - Wood-fired pizzas</div>
+                    <div class="must-try-item">🥗 Jane - Fresh California fare</div>
+                    <div class="must-try-item">☕ Handlebar Coffee Roasters</div>
+                    <div class="must-try-item">🍦 McConnell's Fine Ice Creams</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chase Palm Park -->
+        <div class="activity-card fade-in">
+            <div class="activity-time">4:00 PM</div>
+            <div class="gallery-container">
+                <div class="masonry-gallery" style="max-height: 300px; overflow: hidden;">
+                    <div class="gallery-item"><img src="santa-barbara-images/Saturday-1600-ChasePalmPark/image1.jpg" alt="Chase Palm Park oceanfront path" loading="lazy"></div>
+                    <div class="gallery-item"><img src="santa-barbara-images/Saturday-1600-ChasePalmPark/image2.jpg" alt="Shipwreck Playground" loading="lazy"></div>
+                    <div class="gallery-item"><img src="santa-barbara-images/Saturday-1600-ChasePalmPark/image3.jpg" alt="Palm-lined boardwalk" loading="lazy"></div>
+                </div>
+                <div class="gallery-fade-overlay" style="position: absolute; bottom: 0; left: 0; right: 0; height: 100px; background: linear-gradient(transparent, rgba(255,255,255,0.95)); pointer-events: none;"></div>
+                <button class="show-more-btn">Show All Photos</button>
+            </div>
+            <div>
+                <h3 class="activity-title">Chase Palm Park & Boardwalk</h3>
+                <p class="activity-description">
+                    Stroll along the waterfront path at Chase Palm Park, featuring the famous Shipwreck Playground, art installations, and stunning ocean views. The palm-lined promenade connects East Beach to the harbor, perfect for sunset walks.
+                </p>
+                <div class="must-try-section">
+                    <div class="must-try-title">PARK HIGHLIGHTS</div>
+                    <div class="must-try-item">🏴‍☠️ Shipwreck Playground - Kids love it!</div>
+                    <div class="must-try-item">🌴 Palm-lined oceanfront path</div>
+                    <div class="must-try-item">🎨 Rotating art installations</div>
+                    <div class="must-try-item">🚴 Bike rental stations nearby</div>
+                    <div class="must-try-item">🌅 Perfect sunset viewing spot</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dinner at FisHouse -->
+        <div class="activity-card fade-in">
+            <div class="activity-time">7:00 PM</div>
+            <div class="gallery-container">
+                <div class="masonry-gallery" style="max-height: 300px; overflow: hidden;">
+                    <div class="gallery-item"><img src="santa-barbara-images/Saturday-1900-FisHouse/image1.jpg" alt="FisHouse exterior with ocean views" loading="lazy"></div>
+                    <div class="gallery-item"><img src="santa-barbara-images/Saturday-1900-FisHouse/image2.jpg" alt="Fresh seafood platter" loading="lazy"></div>
+                    <div class="gallery-item"><img src="santa-barbara-images/Saturday-1900-FisHouse/image3.jpg" alt="Waterfront patio dining" loading="lazy"></div>
+                </div>
+                <div class="gallery-fade-overlay" style="position: absolute; bottom: 0; left: 0; right: 0; height: 100px; background: linear-gradient(transparent, rgba(255,255,255,0.95)); pointer-events: none;"></div>
+                <button class="show-more-btn">Show All Photos</button>
+            </div>
+            <div>
+                <h3 class="activity-title">Santa Barbara FisHouse</h3>
+                <p class="activity-description">
+                    Dine where local fishermen bring their catch straight from boat to table at this waterfront gem across from East Beach. Known for spectacular seafood and sunset views from the patio.
+                </p>
+                <div class="must-try-section">
+                    <div class="must-try-title">MUST-TRY DISHES FROM REVIEWS</div>
+                    <div class="must-try-item">🦞 Lobster Mac & Cheese - "Legendary!"</div>
+                    <div class="must-try-item">🦀 Cioppino - "sooo much fresh crab"</div>
+                    <div class="must-try-item">🐟 Macadamia Mahi Mahi - "pineapple beurre blanc"</div>
+                    <div class="must-try-item">🍷 Local Santa Barbara County wines</div>
+                    <div class="must-try-item">🌅 Sunset patio seating (reserve ahead!)</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sunday Activities -->
+        <div id="sunday" class="day-header">
+            <h2 class="day-title">SUNDAY</h2>
+        </div>
+        
+        <!-- Santa Barbara Zoo -->
+        <div class="activity-card fade-in">
+            <div class="activity-time">9:30 AM</div>
+            <div class="gallery-container">
+                <div class="masonry-gallery" style="max-height: 300px; overflow: hidden;">
+                    <div class="gallery-item"><img src="santa-barbara-images/Sunday-0930-SBZoo/image1.jpg" alt="Santa Barbara Zoo entrance" loading="lazy"></div>
+                    <div class="gallery-item"><img src="santa-barbara-images/Sunday-0930-SBZoo/image2.jpg" alt="Giraffe feeding experience" loading="lazy"></div>
+                    <div class="gallery-item"><img src="santa-barbara-images/Sunday-0930-SBZoo/image3.jpg" alt="Zoo train with ocean views" loading="lazy"></div>
+                </div>
+                <div class="gallery-fade-overlay" style="position: absolute; bottom: 0; left: 0; right: 0; height: 100px; background: linear-gradient(transparent, rgba(255,255,255,0.95)); pointer-events: none;"></div>
+                <button class="show-more-btn">Show All Photos</button>
+            </div>
+            <div>
+                <h3 class="activity-title">Santa Barbara Zoo</h3>
+                <p class="activity-description">
+                    Start your day at this beautifully landscaped 30-acre zoo overlooking the Pacific Ocean. Home to over 500 animals with spectacular ocean views, it's consistently ranked as one of the best small zoos in America.
+                </p>
+                <div class="must-try-section">
+                    <div class="must-try-title">ZOO HIGHLIGHTS</div>
+                    <div class="must-try-item">🦒 Giraffe feeding experience ($7)</div>
+                    <div class="must-try-item">🦭 California Sea Lions show</div>
+                    <div class="must-try-item">🚂 Zoo Train with ocean views ($5)</div>
+                    <div class="must-try-item">🐧 Humboldt Penguin habitat</div>
+                    <div class="must-try-item">🎠 Conservation Carousel ($3)</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Monday Activities -->
+        <div id="monday" class="day-header">
+            <h2 class="day-title">MONDAY</h2>
+        </div>
+        
+        <!-- MOXI Museum -->
+        <div class="activity-card fade-in">
+            <div class="activity-time">9:00 AM</div>
+            <div class="gallery-container">
+                <div class="masonry-gallery" style="max-height: 300px; overflow: hidden;">
+                    <div class="gallery-item"><img src="santa-barbara-images/Monday-0900-MOXI/image1.jpg" alt="MOXI Museum exterior" loading="lazy"></div>
+                    <div class="gallery-item"><img src="santa-barbara-images/Monday-0900-MOXI/image2.jpg" alt="Interactive science exhibits" loading="lazy"></div>
+                    <div class="gallery-item"><img src="santa-barbara-images/Monday-0900-MOXI/image3.jpg" alt="Sky Garden rooftop views" loading="lazy"></div>
+                </div>
+                <div class="gallery-fade-overlay" style="position: absolute; bottom: 0; left: 0; right: 0; height: 100px; background: linear-gradient(transparent, rgba(255,255,255,0.95)); pointer-events: none;"></div>
+                <button class="show-more-btn">Show All Photos</button>
+            </div>
+            <div>
+                <h3 class="activity-title">MOXI, The Wolf Museum</h3>
+                <p class="activity-description">
+                    Explore three floors of hands-on science exhibits at Santa Barbara's newest attraction. From the rooftop Sky Garden to the Innovation Workshop, MOXI makes science irresistibly fun for all ages.
+                </p>
+                <div class="must-try-section">
+                    <div class="must-try-title">MOXI HIGHLIGHTS</div>
+                    <div class="must-try-item">🔬 Innovation Workshop - Build & create</div>
+                    <div class="must-try-item">🌿 Sky Garden - Rooftop views</div>
+                    <div class="must-try-item">⚡ Lightning exhibit - Hair-raising!</div>
+                    <div class="must-try-item">🎵 Sound exhibits and music lab</div>
+                    <div class="must-try-item">🌊 Ocean discovery zone</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Coast Starlight Return -->
+        <div class="activity-card fade-in">
+            <div class="activity-time">1:45 PM</div>
+            <div class="gallery-container">
+                <div class="masonry-gallery" style="max-height: 300px; overflow: hidden;">
+                    <div class="gallery-item"><img src="santa-barbara-images/Monday-1345-CoastStarlightReturn/image1.jpg" alt="Southbound Coast Starlight" loading="lazy"></div>
+                    <div class="gallery-item"><img src="santa-barbara-images/Monday-1345-CoastStarlightReturn/image2.jpg" alt="Afternoon coastal views" loading="lazy"></div>
+                    <div class="gallery-item"><img src="santa-barbara-images/Monday-1345-CoastStarlightReturn/image3.jpg" alt="Relaxing train journey home" loading="lazy"></div>
+                </div>
+                <div class="gallery-fade-overlay" style="position: absolute; bottom: 0; left: 0; right: 0; height: 100px; background: linear-gradient(transparent, rgba(255,255,255,0.95)); pointer-events: none;"></div>
+                <button class="show-more-btn">Show All Photos</button>
+            </div>
+            <div>
+                <h3 class="activity-title">Coast Starlight Return</h3>
+                <p class="activity-description">
+                    Board the southbound Coast Starlight for your return journey to Los Angeles. The afternoon light creates even more spectacular coastal views as you reflect on your Santa Barbara adventure.
+                </p>
+                <div class="must-try-section">
+                    <div class="must-try-title">RETURN JOURNEY TIPS</div>
+                    <div class="must-try-item">🌅 Afternoon light = best photos</div>
+                    <div class="must-try-item">🍷 Café car has local wines</div>
+                    <div class="must-try-item">💺 Right side for ocean views going south</div>
+                    <div class="must-try-item">📖 Perfect time to journal about your trip</div>
+                    <div class="must-try-item">🎧 Download podcasts for the journey</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hotel Section -->
+        <div id="hotel" class="hotel-section fade-in">
+            <h2 class="day-title">YOUR HOME BASE</h2>
+            <h3 style="font-size: 2.5rem; margin-top: 10px;">Hotel Californian</h3>
+            <div class="rating-info" style="justify-content: center; margin-top: 15px;">
+                <span class="rating-stars">★★★★★</span>
+                <span class="rating-text">Luxury Waterfront Resort</span>
+            </div>
+            <p style="max-width: 700px; margin: 0 auto; font-size: 1.1rem; line-height: 1.8; color: #ddd;">
+                Your sophisticated base in the heart of Santa Barbara's waterfront district. This Spanish Colonial-inspired luxury resort offers unparalleled ocean views, world-class amenities, and direct beach access, making it the perfect launching point for your coastal adventure.
+            </p>
+        </div>
+
+        <!-- Weather Section -->
+        <div id="weather" class="weather-section fade-in">
+            <h2 class="day-title" style="text-align: center; margin-bottom: 30px;">3-DAY WEATHER FORECAST</h2>
+            
+            <div class="weather-forecast">
+                <div class="weather-day">
+                    <div style="font-size: 1.5rem; margin-bottom: 10px;">SAT</div>
+                    <div style="font-size: 3rem; color: #87ceeb;">☀️</div>
+                    <div style="font-size: 1.8rem; margin: 10px 0; color: #fff;">75°F</div>
+                    <div style="color: #ccc;">Sunny & Clear</div>
+                    <div style="color: #aaa; font-size: 0.9rem; margin-top: 5px;">Perfect beach weather</div>
+                </div>
+                
+                <div class="weather-day">
+                    <div style="font-size: 1.5rem; margin-bottom: 10px;">SUN</div>
+                    <div style="font-size: 3rem; color: #87ceeb;">⛅</div>
+                    <div style="font-size: 1.8rem; margin: 10px 0; color: #fff;">73°F</div>
+                    <div style="color: #ccc;">Partly Cloudy</div>
+                    <div style="color: #aaa; font-size: 0.9rem; margin-top: 5px;">Great for outdoor activities</div>
+                </div>
+                
+                <div class="weather-day">
+                    <div style="font-size: 1.5rem; margin-bottom: 10px;">MON</div>
+                    <div style="font-size: 3rem; color: #87ceeb;">☀️</div>
+                    <div style="font-size: 1.8rem; margin: 10px 0; color: #fff;">77°F</div>
+                    <div style="color: #ccc;">Sunny & Warm</div>
+                    <div style="color: #aaa; font-size: 0.9rem; margin-top: 5px;">Ideal departure day</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Map Section -->
+        <div id="map" class="map-section fade-in">
+            <h2 class="map-title">YOUR SANTA BARBARA ADVENTURE MAP</h2>
+            <p class="map-subtitle">All locations plotted for easy navigation during your trip</p>
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m76!1m12!1m3!1d26178.19443569117!2d-119.71085847425264!3d34.42095499152317!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m61!3e2!4m5!1s0x80e91479fc8a0a5f%3A0x57288e38b4b16183!2sSanta%20Barbara%20Station%2C%20209%20State%20St%2C%20Santa%20Barbara%2C%20CA%2093101!3m2!1d34.414044099999996!2d-119.694471!4m5!1s0x80e914c9b839ce87%3A0x7ada6e30f85f40a7!2sHotel%20Californian%2C%2036%20State%20St%2C%20Santa%20Barbara%2C%20CA%2093101!3m2!1d34.4164948!2d-119.6909677!4m5!1s0x80e914ca125e1f3d%3A0xb5b5df6284374275!2sChase%20Palm%20Park%2C%20236%20E%20Cabrillo%20Blvd%2C%20Santa%20Barbara%2C%20CA%2093101!3m2!1d34.4099571!2d-119.6874511!4m5!1s0x80e914c60b88bead%3A0x4096e5c1653c8ca5!2sSanta%20Barbara%20FisHouse%2C%20101%20E%20Cabrillo%20Blvd%2C%20Santa%20Barbara%2C%20CA%2093101!3m2!1d34.4123556!2d-119.686049!4m5!1s0x80e9152e3e6b9949%3A0x32ce8b60ae52dce6!2sSanta%20Barbara%20Zoo%2C%20500%20Ninos%20Dr%2C%20Santa%20Barbara%2C%20CA%2093103!3m2!1d34.420048!2d-119.66398299999999!4m5!1s0x80e914c843e19c75%3A0xfa97e1e62f5b5a09!2sStearns%20Wharf%2C%20Santa%20Barbara%2C%20CA%2093101!3m2!1d34.4108446!2d-119.68588459999999!4m5!1s0x80e9149b8fb7f843%3A0x3bc1c3da86cc7b17!2sShoreline%20Park%2C%20Shoreline%20Dr%2C%20Santa%20Barbara%2C%20CA%2093109!3m2!1d34.404832999999995!2d-119.71796!4m5!1s0x80e914bc20838c45%3A0x9074a19f5a82dcb!2sMOXI%2C%20The%20Wolf%20Museum%20of%20Exploration%20%2B%20Innovation%2C%20125%20State%20St%2C%20Santa%20Barbara%2C%20CA%2093101!3m2!1d34.4175871!2d-119.69893449999999!4m3!3m2!1d34.414044099999996!2d-119.694471!5e0!3m2!1sen!2sus!4v1703694827563!5m2!1sen!2sus"
+                width="100%" 
+                height="500" 
+                style="border:0;" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <h3 class="footer-title">HAVE AN AMAZING TRIP!</h3>
+        <p>Santa Barbara awaits your adventure</p>
+        <p style="margin-top: 20px; opacity: 0.7;">Created with the Travel Itinerary Generator</p>
+    </footer>
+
+    <script>
+        // Countdown Timer Functionality
+        function updateCountdown() {
+            const tripDate = new Date('2025-08-30T09:50:00');
+            const now = new Date();
+            const difference = tripDate - now;
+            
+            if (difference > 0) {
+                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+                
+                document.getElementById('days').textContent = days;
+                document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+                document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+                document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+            } else {
+                document.getElementById('days').textContent = '0';
+                document.getElementById('hours').textContent = '00';
+                document.getElementById('minutes').textContent = '00';
+                document.getElementById('seconds').textContent = '00';
+                document.querySelector('.countdown-title').textContent = 'YOUR ADVENTURE HAS BEGUN!';
+            }
+        }
+
+        // Update countdown every second
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        // Parallax Scroll Effects
+        function handleParallaxScroll() {
+            const scrolled = window.pageYOffset;
+            const rate = scrolled * -0.5;
+            const fastRate = scrolled * -0.3;
+            const slowRate = scrolled * -0.7;
+            
+            // Mountains layer (slowest)
+            const mountains = document.querySelector('.layer-mountains');
+            if (mountains) {
+                mountains.style.transform = `translateZ(-500px) scale(1.5) translateY(${slowRate}px)`;
+            }
+            
+            // Clouds layer (medium speed)
+            const clouds = document.querySelector('.layer-clouds');
+            if (clouds) {
+                clouds.style.transform = `translateZ(-300px) scale(1.3) translateY(${rate}px)`;
+            }
+            
+            // Ocean layer (faster)
+            const ocean = document.querySelector('.layer-ocean');
+            if (ocean) {
+                ocean.style.transform = `translateZ(-100px) scale(1.1) translateY(${fastRate}px)`;
+            }
+            
+            // Content layer depth adjustment
+            const content = document.querySelector('.layer-content');
+            if (content && scrolled < window.innerHeight) {
+                const opacity = 1 - (scrolled / window.innerHeight) * 0.8;
+                content.style.opacity = Math.max(opacity, 0.2);
+                content.style.transform = `translateZ(0) translateY(${scrolled * 0.3}px)`;
+            }
+        }
+
+        // Scroll Progress Bar
+        function updateScrollProgress() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrollPercent = (scrollTop / scrollHeight) * 100;
+            document.getElementById('simple-progress').style.width = scrollPercent + '%';
+        }
+
+        // Smooth Scrolling for Navigation
+        document.querySelectorAll('.nav-link').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                if (this.getAttribute('href').startsWith('#')) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }
+            });
+        });
+
+        // Show More Gallery Functionality
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('show-more-btn')) {
+                const container = e.target.closest('.gallery-container');
+                const gallery = container.querySelector('.masonry-gallery');
+                const overlay = container.querySelector('.gallery-fade-overlay');
+                const button = e.target;
+                
+                gallery.style.maxHeight = 'none';
+                gallery.style.overflow = 'visible';
+                overlay.style.display = 'none';
+                button.style.display = 'none';
+                
+                container.classList.add('expanded');
+            }
+        });
+
+        // Create Floating Particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 20;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Fade-in Animation Observer
+        function observeFadeElements() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            fadeElements.forEach(element => observer.observe(element));
+        }
+
+        // Countdown Item Hover Effects
+        function setupCountdownEffects() {
+            const countdownItems = document.querySelectorAll('.countdown-item');
+            countdownItems.forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    this.style.transform = 'perspective(200px) rotateY(10deg) translateZ(40px) scale(1.05)';
+                    this.style.transition = 'transform 0.3s ease';
+                });
+                
+                item.addEventListener('mouseleave', function() {
+                    this.style.transform = 'perspective(200px) rotateY(0deg) translateZ(20px) scale(1)';
+                });
+            });
+        }
+
+        // Enhanced 3D Card Interactions
+        function setupCardEffects() {
+            const cards = document.querySelectorAll('.activity-card');
+            cards.forEach(card => {
+                card.addEventListener('mousemove', function(e) {
+                    const rect = this.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    
+                    const rotateX = (y - centerY) / 10;
+                    const rotateY = (centerX - x) / 10;
+                    
+                    this.style.transform = `perspective(400px) rotateX(${2 + rotateX}deg) rotateY(${rotateY}deg) translateZ(30px) scale(1.02)`;
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'perspective(400px) rotateX(2deg) translateZ(10px)';
+                });
+            });
+        }
+
+        // Initialize everything
+        document.addEventListener('DOMContentLoaded', function() {
+            createParticles();
+            observeFadeElements();
+            setupCountdownEffects();
+            setupCardEffects();
+            
+            // Add scroll listeners
+            window.addEventListener('scroll', function() {
+                handleParallaxScroll();
+                updateScrollProgress();
+            });
+            
+            // Initial calls
+            handleParallaxScroll();
+            updateScrollProgress();
+            
+            // Smooth initial load
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+    </script>
+</body>
+</html>

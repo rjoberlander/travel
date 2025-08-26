@@ -1,0 +1,1466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Santa Barbara Weekend Escape - A Coastal Adventure</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Roboto:wght@300;400;500&family=Bebas+Neue&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #fef9f3;
+            color: #2c3e50;
+            line-height: 1.6;
+        }
+
+        /* Vintage Travel Poster Style */
+        .header {
+            background: linear-gradient(135deg, #87CEEB 0%, #4682B4 100%);
+            text-align: center;
+            padding: 60px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"><path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" fill="%23fef9f3"></path></svg>') no-repeat;
+            background-size: cover;
+        }
+
+        h1 {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 5rem;
+            color: #fff;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+            margin-bottom: 10px;
+            letter-spacing: 3px;
+        }
+
+        .subtitle {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: #fffaf0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .trip-dates {
+            background: #fff;
+            display: inline-block;
+            padding: 10px 30px;
+            margin-top: 20px;
+            border-radius: 30px;
+            font-weight: 500;
+            color: #4682B4;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        /* Countdown Timer */
+        .countdown {
+            background: #fff;
+            margin: 30px auto;
+            padding: 30px;
+            max-width: 600px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .countdown-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: #4682B4;
+            margin-bottom: 20px;
+        }
+
+        .countdown-timer {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .time-unit {
+            background: #f0f8ff;
+            padding: 15px 20px;
+            border-radius: 10px;
+            min-width: 80px;
+        }
+
+        .time-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #ff6b6b;
+        }
+
+        .time-label {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* Weather Widget Removed */
+
+        /* Navigation */
+        .nav {
+            background: #fff;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            padding: 0 20px;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #4682B4;
+            font-weight: 500;
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .nav-link:hover {
+            background: #f0f8ff;
+            border-color: #4682B4;
+        }
+
+        /* Day Sections */
+        .day-section {
+            margin: 60px auto;
+            max-width: 1200px;
+            padding: 0 20px;
+        }
+
+        .day-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .day-title {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 3rem;
+            color: #ff6b6b;
+            letter-spacing: 2px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .day-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: #4682B4;
+        }
+
+        /* Review Quotes */
+        .review-quote {
+            background: #fffaf0;
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            position: relative;
+            font-style: italic;
+            color: #555;
+            border-left: 3px solid #ff6b6b;
+        }
+
+        .review-quote::before {
+            content: '"';
+            font-size: 2rem;
+            color: #ff6b6b;
+            position: absolute;
+            top: -5px;
+            left: 10px;
+        }
+
+        .review-source {
+            font-size: 0.85rem;
+            color: #999;
+            text-align: right;
+            margin-top: 10px;
+            font-style: normal;
+        }
+
+        .must-try-list {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .must-try-title {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 1.3rem;
+            color: #ff6b6b;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .must-try-item {
+            padding: 8px 0;
+            border-bottom: 1px dotted #ddd;
+            color: #666;
+        }
+
+        .must-try-item:last-child {
+            border-bottom: none;
+        }
+
+        .rating-info {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #f0f8ff;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin: 10px 0;
+        }
+
+        .rating-stars {
+            color: #ffa500;
+        }
+
+        /* Activity Cards */
+        .activity-card {
+            background: #fff;
+            border-radius: 20px;
+            overflow: hidden;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .activity-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .activity-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 400px;
+        }
+
+        .activity-card:nth-child(even) .activity-content {
+            direction: rtl;
+        }
+
+        .activity-card:nth-child(even) .activity-info {
+            direction: ltr;
+        }
+
+        .activity-image {
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .activity-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, transparent 50%, rgba(0,0,0,0.3) 100%);
+        }
+
+        .activity-info {
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .activity-time {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 1.2rem;
+            color: #ff6b6b;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .activity-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .activity-description {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .activity-highlight {
+            background: #f0f8ff;
+            padding: 15px 20px;
+            border-left: 4px solid #4682B4;
+            font-style: italic;
+            color: #4682B4;
+            margin-top: 20px;
+        }
+
+        /* Map Section */
+        .map-section {
+            background: #f0f8ff;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .map-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        /* Footer */
+        .footer {
+            background: #2c3e50;
+            color: #fff;
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 60px;
+        }
+
+        .footer-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        /* Print Styles */
+        @media print {
+            .weather-widget,
+            .countdown,
+            .weather-section {
+                display: none;
+            }
+
+            .activity-card {
+                break-inside: avoid;
+            }
+        }
+
+        /* Weather Forecast Section */
+        .weather-section {
+            background: #87CEEB;
+            background: linear-gradient(135deg, #87CEEB 0%, #4682B4 100%);
+            padding: 60px 20px;
+            margin-top: 60px;
+            position: relative;
+        }
+
+        .weather-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"><path d="M0,120 C150,80 350,80 600,120 C850,80 1050,80 1200,120 V0 H0 Z" fill="%23fef9f3"></path></svg>') no-repeat;
+            background-size: cover;
+            transform: rotate(180deg);
+        }
+
+        .weather-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 40px;
+        }
+
+        .weather-title {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 3rem;
+            color: #fff;
+            text-align: center;
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .weather-days {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .weather-day {
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .weather-day-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        .weather-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .weather-temp-range {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #4682B4;
+            margin-bottom: 20px;
+        }
+
+        .weather-details {
+            text-align: left;
+            margin-top: 20px;
+        }
+
+        .weather-time-slot {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .weather-time-slot:last-child {
+            border-bottom: none;
+        }
+
+        .weather-metrics {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid #4682B4;
+        }
+
+        .weather-metric {
+            text-align: center;
+        }
+
+        .metric-label {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .metric-value {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        /* Hotel Section */
+        .hotel-section {
+            margin: 60px auto;
+            max-width: 1200px;
+            padding: 0 20px;
+        }
+
+        .hotel-card {
+            background: #fff;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .hotel-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .hotel-images {
+            display: grid;
+            grid-template-rows: 2fr 1fr;
+            height: 600px;
+        }
+
+        .hotel-main-image {
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .hotel-secondary-images {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+        }
+
+        .hotel-small-image {
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hotel-info {
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .hotel-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .hotel-address {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+
+        .hotel-description {
+            color: #444;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .hotel-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .hotel-feature {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .feature-icon {
+            font-size: 1.5rem;
+        }
+
+        .hotel-highlight-box {
+            background: linear-gradient(135deg, #f0f8ff 0%, #e6f3ff 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin-top: 30px;
+            border-left: 4px solid #4682B4;
+        }
+
+        .hotel-highlight-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: #4682B4;
+            margin-bottom: 15px;
+        }
+
+        /* Photo Gallery Styles */
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            aspect-ratio: 1;
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            color: #999;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .instagram-section {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .instagram-handle {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #fff;
+            padding: 8px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            color: #E1306C;
+            font-weight: 500;
+            margin: 10px 0;
+            transition: transform 0.2s;
+        }
+
+        .instagram-handle:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .instagram-embed {
+            margin: 20px auto;
+            max-width: 500px;
+        }
+
+        .official-photos-note {
+            background: #fff8dc;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid #ffa500;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* Vintage Texture Overlay */
+        .vintage-texture {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            opacity: 0.03;
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><filter id="noise"><feTurbulence baseFrequency="0.9" /></filter><rect width="100" height="100" filter="url(%23noise)" opacity="0.5"/></svg>');
+            z-index: 9999;
+        }
+    </style>
+</head>
+<body>
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <span class="close-lightbox">&times;</span>
+        <img class="lightbox-content" id="lightbox-img">
+    </div>
+    <div class="vintage-texture"></div>
+
+    <!-- Weather Widget Removed -->
+
+    <!-- Header -->
+    <header class="header">
+        <h1>SANTA BARBARA</h1>
+        <p class="subtitle">A Weekend Coastal Adventure</p>
+        <div class="trip-dates">Saturday - Monday • Coast Starlight Journey</div>
+    </header>
+
+    <!-- Countdown Timer -->
+    <div class="countdown">
+        <h2 class="countdown-title">Adventure Begins In:</h2>
+        <div class="countdown-timer" id="countdown">
+            <div class="time-unit">
+                <div class="time-value" id="days">0</div>
+                <div class="time-label">Days</div>
+            </div>
+            <div class="time-unit">
+                <div class="time-value" id="hours">0</div>
+                <div class="time-label">Hours</div>
+            </div>
+            <div class="time-unit">
+                <div class="time-value" id="minutes">0</div>
+                <div class="time-label">Minutes</div>
+            </div>
+            <div class="time-unit">
+                <div class="time-value" id="seconds">0</div>
+                <div class="time-label">Seconds</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="#saturday" class="nav-link">Saturday</a>
+            <a href="#sunday" class="nav-link">Sunday</a>
+            <a href="#monday" class="nav-link">Monday</a>
+            <a href="#hotel" class="nav-link">Hotel</a>
+            <a href="#weather" class="nav-link">Weather</a>
+            <a href="#map" class="nav-link">Map</a>
+            <a href="javascript:window.print()" class="nav-link">Print Itinerary</a>
+        </div>
+    </nav>
+
+    <!-- Saturday Section -->
+    <section id="saturday" class="day-section">
+        <div class="day-header">
+            <h2 class="day-title">SATURDAY</h2>
+        </div>
+
+        <!-- Coast Starlight Train -->
+        <div class="activity-card">
+            <div class="activity-content">
+                <div class="activity-image" style="background-image: url('https://www.amtrak.com/content/dam/projects/dotcom/english/public/images/routes/Coast-Starlight-Route-Scenery-1900x740.jpg')"></div>
+                <div class="activity-info">
+                    <div class="activity-time">9:50 AM - Departure</div>
+                    <h3 class="activity-title">Coast Starlight Adventure</h3>
+                    <p class="activity-description">
+                        Begin your journey aboard Amtrak's legendary Coast Starlight, departing from Los Angeles Union Station. This spectacular rail journey hugs the Pacific coastline, offering views you simply can't see from the highway. Settle into the double-decker Superliner and make your way to the Sightseer Lounge car with floor-to-ceiling windows.
+                    </p>
+                    <div class="activity-highlight">
+                        Pro tip: Sit on the left side of the train for the best ocean views as you cruise past beaches that are inaccessible by car!
+                    </div>
+                    
+                    <div class="photo-gallery">
+                        <div class="gallery-item" onclick="openLightbox('./santa-barbara-images/Saturday-0950-CoastStarlight/coast-starlight-ocean.jpg')">
+                            <img src="./santa-barbara-images/Saturday-0950-CoastStarlight/coast-starlight-ocean.jpg" alt="Pacific Ocean Views" onerror="this.src='data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%2387CEEB" width="400" height="300"/%3E%3Ctext x="50%25" y="50%25" text-anchor="middle" dy=".3em" fill="white" font-family="Arial" font-size="18"%3EPacific Ocean Views%3C/text%3E%3C/svg%3E'">
+                            <div class="gallery-item-caption">Pacific Ocean Views</div>
+                        </div>
+                        <div class="gallery-item" onclick="openLightbox(this.querySelector('img').src)">
+                            <img src="./santa-barbara-images/Saturday-0950-CoastStarlight/sightseer-lounge.jpg" alt="Sightseer Lounge" onerror="this.src='data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%234682B4" width="400" height="300"/%3E%3Ctext x="50%25" y="50%25" text-anchor="middle" dy=".3em" fill="white" font-family="Arial" font-size="18"%3ESightseer Lounge%3C/text%3E%3C/svg%3E'">
+                            <div class="gallery-item-caption">Sightseer Lounge Car</div>
+                        </div>
+                        <div class="gallery-item" onclick="openLightbox(this.querySelector('img').src)">
+                            <img src="./santa-barbara-images/Saturday-0950-CoastStarlight/coastal-route.jpg" alt="Coastal Route" onerror="this.src='data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%235F9EA0" width="400" height="300"/%3E%3Ctext x="50%25" y="50%25" text-anchor="middle" dy=".3em" fill="white" font-family="Arial" font-size="18"%3ECoastal Route%3C/text%3E%3C/svg%3E'">
+                            <div class="gallery-item-caption">Scenic Coastal Route</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Lunch Options -->
+        <div class="activity-card">
+            <div class="activity-content">
+                <div class="activity-image" style="background-image: url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&q=80')"></div>
+                <div class="activity-info">
+                    <div class="activity-time">12:00 PM - Arrival & Lunch</div>
+                    <h3 class="activity-title">Waterfront Dining</h3>
+                    <p class="activity-description">
+                        Arrive in Santa Barbara and head straight to the waterfront for lunch. Choose from Chad's Cafe for all-day breakfast with ocean views, The Lark in the artsy Funk Zone for farm-to-table delights, or Brophy Bros. for the freshest catch of the day. Each offers a quintessential Santa Barbara dining experience.
+                    </p>
+                    <div class="activity-highlight">
+                        The Funk Zone is right next to the train station - perfect for exploring local art galleries and wine tasting rooms!
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chase Palm Park -->
+        <div class="activity-card">
+            <div class="activity-content">
+                <div class="activity-image" style="background-image: url('./santa-barbara-images/Saturday-1600-ChasePalmPark/shipwreck-playground.jpg')"></div>
+                <div class="activity-info">
+                    <div class="activity-time">4:00 PM</div>
+                    <h3 class="activity-title">Chase Palm Park & Boardwalk</h3>
+                    <p class="activity-description">
+                        Stroll along Santa Barbara's stunning 10-acre waterfront park expanded in 1998. The star attraction is the famous Shipwreck Playground modeled after the Winfield Scott paddle-wheeler that sank in 1853.
+                    </p>
+
+                    <div class="rating-info">
+                        <span class="rating-stars">★★★★★</span>
+                        <span>4.5/5 • 32 Reviews • "Child Approved!"</span>
+                    </div>
+
+                    <div class="must-try-list">
+                        <div class="must-try-title">PARK HIGHLIGHTS FROM VISITORS</div>
+                        <div class="must-try-item">🚢 Shipwreck Playground - Two structures (ages 2-5 & 5-12)</div>
+                        <div class="must-try-item">🐋 Surfacing Whales & Conch Shell Lighthouse sculptures</div>
+                        <div class="must-try-item">🎠 Vintage Carousel (Note: Currently relocated)</div>
+                        <div class="must-try-item">⛲ Fountains, lagoon & creek features</div>
+                        <div class="must-try-item">🎵 Summer Concerts in the Park venue</div>
+                    </div>
+
+                    <div class="review-quote">
+                        A playground so distinct, well kept and child approved I made a special stop in Santa Barbara for my 2 year old son to play here.
+                        <div class="review-source">- Yelp Parent Review</div>
+                    </div>
+                    
+                    <div class="activity-highlight">
+                        The ship's sinking bow forms a slide! Kids can scamper on bridges and netting in soft beach sand.
+                    </div>
+                    
+                    <div class="photo-gallery">
+                        <div class="gallery-item" onclick="openLightbox('./santa-barbara-images/Saturday-1600-ChasePalmPark/shipwreck-playground.jpg')">
+                            <img src="./santa-barbara-images/Saturday-1600-ChasePalmPark/shipwreck-playground.jpg" alt="Shipwreck Playground">
+                            <div class="gallery-item-caption">Shipwreck Playground</div>
+                        </div>
+                        <div class="gallery-item" onclick="openLightbox(this.querySelector('img').src)">
+                            <img src="./santa-barbara-images/Saturday-1600-ChasePalmPark/surfacing-whales.jpg" alt="Surfacing Whales" onerror="this.src='data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%2320B2AA" width="400" height="300"/%3E%3Ctext x="50%25" y="50%25" text-anchor="middle" dy=".3em" fill="white" font-family="Arial" font-size="18"%3ESurfacing Whales%3C/text%3E%3C/svg%3E'">
+                            <div class="gallery-item-caption">Surfacing Whales Sculpture</div>
+                        </div>
+                        <div class="gallery-item" onclick="openLightbox(this.querySelector('img').src)">
+                            <img src="./santa-barbara-images/Saturday-1600-ChasePalmPark/conch-lighthouse.jpg" alt="Conch Shell Lighthouse" onerror="this.src='data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%23FF7F50" width="400" height="300"/%3E%3Ctext x="50%25" y="50%25" text-anchor="middle" dy=".3em" fill="white" font-family="Arial" font-size="18"%3EConch Shell Lighthouse%3C/text%3E%3C/svg%3E'">
+                            <div class="gallery-item-caption">Conch Shell Lighthouse</div>
+                        </div>
+                        <div class="gallery-item" onclick="openLightbox(this.querySelector('img').src)">
+                            <img src="./santa-barbara-images/Saturday-1600-ChasePalmPark/carousel-house.jpg" alt="Carousel House" onerror="this.src='data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%23DDA0DD" width="400" height="300"/%3E%3Ctext x="50%25" y="50%25" text-anchor="middle" dy=".3em" fill="white" font-family="Arial" font-size="18"%3ECarousel House%3C/text%3E%3C/svg%3E'">
+                            <div class="gallery-item-caption">Historic Carousel House</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FisHouse Dinner -->
+        <div class="activity-card">
+            <div class="activity-content">
+                <div class="activity-image" style="background-image: url('https://fishousesb.com/wp-content/uploads/2023/seafood-restaurant-santa-barbara.jpg')"></div>
+                <div class="activity-info">
+                    <div class="activity-time">Dinner</div>
+                    <h3 class="activity-title">Santa Barbara FisHouse</h3>
+                    <p class="activity-description">
+                        Dine where local fishermen bring their catch straight from boat to table at this waterfront gem across from East Beach. With 1,461 Yelp reviews and a 4.2/5 TripAdvisor rating, it's ranked #31 of 395 Santa Barbara restaurants.
+                    </p>
+                    
+                    <div class="rating-info">
+                        <span class="rating-stars">★★★★☆</span>
+                        <span>4.2/5 • 1,461 Reviews • Established 1999</span>
+                    </div>
+
+                    <div class="must-try-list">
+                        <div class="must-try-title">MUST-TRY DISHES FROM REVIEWS</div>
+                        <div class="must-try-item">🦞 Lobster Mac & Cheese - "Legendary!"</div>
+                        <div class="must-try-item">🦀 Cioppino - "sooo much fresh crab and shrimp"</div>
+                        <div class="must-try-item">🐟 Macadamia Mahi Mahi - "creamy pineapple beurre blanc"</div>
+                        <div class="must-try-item">🥣 Clam Chowder - "Best New England chowder on the west coast"</div>
+                        <div class="must-try-item">🍤 Coconut Shrimp - Visitor favorite appetizer</div>
+                    </div>
+
+                    <div class="review-quote">
+                        We spent a lot of money on food at far more expensive, higher rated places this trip, and FisHouse was the best overall choice we made!
+                        <div class="review-source">- Yelp Reviewer</div>
+                    </div>
+                    
+                    <div class="activity-highlight">
+                        Happy Hour: Mon-Thu 4PM-Close | Fri 4PM-Close | Sat 2-5PM | Sun 4PM-Close<br>
+                        Pro tip: Fire pit patio seating fills up fast at sunset!
+                    </div>
+                    
+                    <div class="photo-gallery">
+                        <div class="gallery-item" onclick="openLightbox(this.querySelector('img').src)">
+                            <img src="./santa-barbara-images/Saturday-1900-FisHouse/seafood-platter.jpg" alt="Fresh Seafood" onerror="this.src='data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%23FF6347" width="400" height="300"/%3E%3Ctext x="50%25" y="50%25" text-anchor="middle" dy=".3em" fill="white" font-family="Arial" font-size="18"%3EFresh Seafood%3C/text%3E%3C/svg%3E'">
+                            <div class="gallery-item-caption">Fresh Local Catch</div>
+                        </div>
+                        <div class="gallery-item" onclick="openLightbox(this.querySelector('img').src)">
+                            <img src="./santa-barbara-images/Saturday-1900-FisHouse/ocean-view.jpg" alt="Ocean View Dining" onerror="this.src='data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%234169E1" width="400" height="300"/%3E%3Ctext x="50%25" y="50%25" text-anchor="middle" dy=".3em" fill="white" font-family="Arial" font-size="18"%3EOcean View Dining%3C/text%3E%3C/svg%3E'">
+                            <div class="gallery-item-caption">Ocean View Patio</div>
+                        </div>
+                        <div class="gallery-item" onclick="openLightbox(this.querySelector('img').src)">
+                            <img src="./santa-barbara-images/Saturday-1900-FisHouse/fire-pit.jpg" alt="Fire Pit Patio" onerror="this.src='data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%23FF8C00" width="400" height="300"/%3E%3Ctext x="50%25" y="50%25" text-anchor="middle" dy=".3em" fill="white" font-family="Arial" font-size="18"%3EFire Pit Patio%3C/text%3E%3C/svg%3E'">
+                            <div class="gallery-item-caption">Fire Pit Seating</div>
+                        </div>
+                        <div class="gallery-item" onclick="openLightbox(this.querySelector('img').src)">
+                            <img src="./santa-barbara-images/Saturday-1900-FisHouse/lobster-mac.jpg" alt="Lobster Mac & Cheese" onerror="this.src='data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%23FFD700" width="400" height="300"/%3E%3Ctext x="50%25" y="50%25" text-anchor="middle" dy=".3em" fill="%23333" font-family="Arial" font-size="18"%3ELobster Mac %26 Cheese%3C/text%3E%3C/svg%3E'">
+                            <div class="gallery-item-caption">Famous Lobster Mac</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sunday Section -->
+    <section id="sunday" class="day-section">
+        <div class="day-header">
+            <h2 class="day-title">SUNDAY</h2>
+        </div>
+
+        <!-- Santa Barbara Zoo -->
+        <div class="activity-card">
+            <div class="activity-content">
+                <div class="activity-image" style="background-image: url('https://images.unsplash.com/photo-1503919545889-aef636e10ad4?w=800&q=80')"></div>
+                <div class="activity-info">
+                    <div class="activity-time">9:30 AM</div>
+                    <h3 class="activity-title">Santa Barbara Zoo</h3>
+                    <p class="activity-description">
+                        Experience "the zoo with an ocean view" - 30 acres overlooking the Pacific, home to over 500 animals representing 146 species. The manageable size allows leisurely exploration in 2-3 hours.
+                    </p>
+
+                    <div class="rating-info">
+                        <span class="rating-stars">★★★★☆</span>
+                        <span>4.5/5 • Ranked #7 of 128 Santa Barbara Attractions</span>
+                    </div>
+
+                    <div class="must-try-list">
+                        <div class="must-try-title">CAN'T-MISS EXPERIENCES</div>
+                        <div class="must-try-item">🦒 Giraffe Feeding ($8) - "Eye-to-eye with Masai giraffes!"</div>
+                        <div class="must-try-item">🦘 Australian Walkabout - Walk freely among kangaroos & wallabies</div>
+                        <div class="must-try-item">🐧 Humboldt Penguins - Above & underwater viewing</div>
+                        <div class="must-try-item">🦅 California Condors - Rare in captivity!</div>
+                        <div class="must-try-item">🚂 Zoo Train - C.P. Huntington trains circle the perimeter</div>
+                    </div>
+
+                    <div class="review-quote">
+                        Hand-feeding a Masai giraffe was my favorite experience - truly memorable!
+                        <div class="review-source">- Visitor Review</div>
+                    </div>
+                    
+                    <div class="activity-highlight">
+                        Pro tip: Check giraffe feeding times at the deck - arrive early! Free sensory backpacks available for sensitive children.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reunion Kitchen Lunch -->
+        <div class="activity-card">
+            <div class="activity-content">
+                <div class="activity-image" style="background-image: url('https://www.reunionkitchen.net/assets/images/reunion-kitchen-santa-barbara-beachfront.jpg')"></div>
+                <div class="activity-info">
+                    <div class="activity-time">Lunch</div>
+                    <h3 class="activity-title">Reunion Kitchen + Drink</h3>
+                    <p class="activity-description">
+                        Enjoy New American cuisine at this beachfront hotspot voted #4 Beach Bar in the US. Located at 1118 E Cabrillo Blvd with views of the water from almost every seat, this modern venue offers a vibrant coastal dining experience.
+                    </p>
+
+                    <div class="rating-info">
+                        <span class="rating-stars">★★★★☆</span>
+                        <span>746 Reviews • #4 Beach Bar in US • Weekend Brunch 10AM</span>
+                    </div>
+
+                    <div class="must-try-list">
+                        <div class="must-try-title">SIGNATURE DISHES</div>
+                        <div class="must-try-item">🍖 Crispy Ribs - "Tangy and perfectly cooked"</div>
+                        <div class="must-try-item">🥩 Short Rib Entrees - "Mouthwatering"</div>
+                        <div class="must-try-item">🥗 Fresh Salads - Farm-to-table ingredients</div>
+                        <div class="must-try-item">🍳 Weekend Brunch - "Something for everyone"</div>
+                        <div class="must-try-item">🍹 Signature Cocktails - Beach bar specialties</div>
+                    </div>
+
+                    <div class="review-quote">
+                        The location on East Beach with views from almost every seat makes this the perfect Sunday brunch spot!
+                        <div class="review-source">- Local Review</div>
+                    </div>
+                    
+                    <div class="activity-highlight">
+                        Beachfront location means easy beach access - perfect for a post-meal stroll!
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sea Center -->
+        <div class="activity-card">
+            <div class="activity-content">
+                <div class="activity-image" style="background-image: url('https://www.sbnature.org/sites/default/files/images/sea-center-touch-pool.jpg')"></div>
+                <div class="activity-info">
+                    <div class="activity-time">3:00 PM</div>
+                    <h3 class="activity-title">Natural History Museum Sea Center</h3>
+                    <p class="activity-description">
+                        Discover the Santa Barbara Channel's marine life at this highly interactive regional aquarium on historic Stearns Wharf. Owned by the Museum of Natural History, it focuses on local marine conservation.
+                    </p>
+
+                    <div class="rating-info">
+                        <span class="rating-stars">★★★★☆</span>
+                        <span>4.0/5 • Perfect 1-1.5 hour visit • Free parking first 75 min</span>
+                    </div>
+
+                    <div class="must-try-list">
+                        <div class="must-try-title">INTERACTIVE HIGHLIGHTS</div>
+                        <div class="must-try-item">🦈 Shark Touch Pool - "Touch live sharks and rays!"</div>
+                        <div class="must-try-item">🐙 Two-spot Octopus - Meet face-to-tentacle</div>
+                        <div class="must-try-item">🌊 Wet Deck - Use real oceanographic tools</div>
+                        <div class="must-try-item">🐠 Moon Jellies - Mesmerizing dance display</div>
+                        <div class="must-try-item">🐋 Gray Whale Model - Life-size mother & calf</div>
+                    </div>
+
+                    <div class="review-quote">
+                        If you have a hands-on learner, they will absolutely love this aquarium. More opportunities to touch and get involved than the Monterey aquarium!
+                        <div class="review-source">- Parent Review</div>
+                    </div>
+                    
+                    <div class="activity-highlight">
+                        Located at 211 Stearns Wharf - combine with pier dining and shopping!
+                    </div>
+                    
+                    <div class="official-photos-note">
+                        🐠 Part of the Santa Barbara Museum of Natural History. Visit <a href="https://www.sbnature.org/visit/sea-center" target="_blank">their official page</a> for virtual tours.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Surrey Bike Ride -->
+        <div class="activity-card">
+            <div class="activity-content">
+                <div class="activity-image" style="background-image: url('https://wheelfunrentals.com/wp-content/uploads/santa-barbara-surrey-bikes.jpg')"></div>
+                <div class="activity-info">
+                    <div class="activity-time">5:00 PM</div>
+                    <h3 class="activity-title">Surrey Bike Adventure</h3>
+                    <p class="activity-description">
+                        Rent a Surrey bike from the Funk Zone location (24 E Mason St) - just one block from beach and Stearns Wharf. These four-wheeled canopy bikes with steering wheels seat 4-6 people for waterfront adventures.
+                    </p>
+
+                    <div class="rating-info">
+                        <span class="rating-stars">★★★★☆</span>
+                        <span>225 Reviews • 184 Photos • "Family Fun Central!"</span>
+                    </div>
+
+                    <div class="must-try-list">
+                        <div class="must-try-title">SURREY BIKE EXPERIENCE</div>
+                        <div class="must-try-item">🚲 Single Surrey - Perfect for couples or small kids</div>
+                        <div class="must-try-item">👨‍👩‍👧‍👦 Double Surrey - Up to 6 adults + 2 small children</div>
+                        <div class="must-try-item">🌊 3-mile waterfront bike path route</div>
+                        <div class="must-try-item">⚓ Pedal to harbor, lock up, explore breakwater</div>
+                        <div class="must-try-item">💰 Great value - Second hour often free!</div>
+                    </div>
+
+                    <div class="review-quote">
+                        We were laughing so hard and enjoying ourselves so much as we rode along the 3 miles of waterfront, that we didn't mind the workout!
+                        <div class="review-source">- Family Review</div>
+                    </div>
+                    
+                    <div class="activity-highlight">
+                        Pro tip: The canopy is totally great on sunny days! Limited to bike path but covers all the scenic spots.
+                    </div>
+                    
+                    <div class="instagram-section">
+                        <a href="https://www.instagram.com/wheelfunrentalssb/" target="_blank" class="instagram-handle">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="#E1306C">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073z"/>
+                                <path d="M12 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4z"/>
+                                <circle cx="18.406" cy="5.594" r="1.44"/>
+                            </svg>
+                            @wheelfunrentalssb
+                        </a>
+                        <p style="font-size: 0.9rem; color: #666;">Book your Surrey adventure online!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Shoreline Park -->
+        <div class="activity-card">
+            <div class="activity-content">
+                <div class="activity-image" style="background-image: url('https://sbparksandrec.santabarbaraca.gov/sites/default/files/images/parks/shoreline-park-ocean-view.jpg')"></div>
+                <div class="activity-info">
+                    <div class="activity-time">Sunset</div>
+                    <h3 class="activity-title">Shoreline Park & Cafe</h3>
+                    <p class="activity-description">
+                        Experience this 15-acre oceanside park known for incredible harbor and Channel Islands views. The playground (ages 2-5) features sandy bottom, oversized turtle and dolphin sculptures. Then dine at Shoreline Beach Cafe on Leadbetter Beach.
+                    </p>
+
+                    <div class="rating-info">
+                        <span class="rating-stars">★★★★☆</span>
+                        <span>4.2/5 • 734 Reviews • "Toes in the Sand Dining"</span>
+                    </div>
+
+                    <div class="must-try-list">
+                        <div class="must-try-title">SHORELINE CAFE FAVORITES</div>
+                        <div class="must-try-item">🌮 Baja Fish Tacos - "#1 Best Seller!"</div>
+                        <div class="must-try-item">🍹 Mai Tai & Shoreline Margarita - Top drinks</div>
+                        <div class="must-try-item">🍔 Beach Burger - Local favorite</div>
+                        <div class="must-try-item">🦐 Fresh Fish of the Day - From local fishermen</div>
+                        <div class="must-try-item">🪑 "The Chairs" - Adirondack chairs on sand</div>
+                    </div>
+
+                    <div class="review-quote">
+                        This long, narrow ocean-side park offers fabulous views. The whale watching area with telescope is next to a concrete whale tail statue!
+                        <div class="review-source">- Visitor Review</div>
+                    </div>
+                    
+                    <div class="activity-highlight">
+                        Cafe Hours: Mon-Wed 9AM-7:30PM | Thu 9AM-8PM | Fri-Sat 8AM-8PM | Sun 8AM-7:30PM<br>
+                        Happy Hour 4-6PM!
+                    </div>
+                    
+                    <div class="instagram-section">
+                        <a href="https://www.instagram.com/shorelinecafesb/" target="_blank" class="instagram-handle">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="#E1306C">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073z"/>
+                                <path d="M12 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4z"/>
+                                <circle cx="18.406" cy="5.594" r="1.44"/>
+                            </svg>
+                            @shorelinecafesb
+                        </a>
+                        <p style="font-size: 0.9rem; color: #666;">Beachfront dining since 1997!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Monday Section -->
+    <section id="monday" class="day-section">
+        <div class="day-header">
+            <h2 class="day-title">MONDAY</h2>
+        </div>
+
+        <!-- MOXI Museum -->
+        <div class="activity-card">
+            <div class="activity-content">
+                <div class="activity-image" style="background-image: url('https://moxi.org/wp-content/uploads/2023/exhibits/sky-garden-rooftop.jpg')"></div>
+                <div class="activity-info">
+                    <div class="activity-time">Morning</div>
+                    <h3 class="activity-title">MOXI Museum of Exploration + Innovation</h3>
+                    <p class="activity-description">
+                        Ignite learning at this 17,000-square-foot interactive science wonderland opened in 2017. Located at 125 State St in the Funk Zone, MOXI offers three floors of hands-on STEAM exhibits for curious minds of all ages.
+                    </p>
+
+                    <div class="rating-info">
+                        <span class="rating-stars">★★★★★</span>
+                        <span>213 Reviews • "2-3 hours of fun" • USA Today Top 10!</span>
+                    </div>
+
+                    <div class="must-try-list">
+                        <div class="must-try-title">MUST-SEE EXHIBITS</div>
+                        <div class="must-try-item">🎸 Giant Guitar - 24-ft with crawl-through hole!</div>
+                        <div class="must-try-item">🌀 Wind Column Workshop - Test flight creations</div>
+                        <div class="must-try-item">🏎️ Speed Track - Build & race custom cars</div>
+                        <div class="must-try-item">🌅 Sky Garden - Rooftop with water sculpture & views</div>
+                        <div class="must-try-item">🎬 Sound Studio - Record movie sound effects</div>
+                    </div>
+
+                    <div class="review-quote">
+                        Make sure to make it to the rooftop, where you get amazing views of Santa Barbara and a peek of the ocean.
+                        <div class="review-source">- Featured in 17 Yelp Reviews</div>
+                    </div>
+                    
+                    <div class="activity-highlight">
+                        Pro tip: The rooftop water play sculpture is the kids' favorite - bring a change of clothes!
+                    </div>
+                    
+                    <div class="instagram-section">
+                        <a href="https://www.instagram.com/moxisb/" target="_blank" class="instagram-handle">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="#E1306C">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073z"/>
+                                <path d="M12 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4z"/>
+                                <circle cx="18.406" cy="5.594" r="1.44"/>
+                            </svg>
+                            @moxisb
+                        </a>
+                        <p style="font-size: 0.9rem; color: #666;">Science + Innovation + Fun!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Return Journey -->
+        <div class="activity-card">
+            <div class="activity-content">
+                <div class="activity-image" style="background-image: url('https://www.amtrak.com/content/dam/projects/dotcom/english/public/images/routes/Coast-Starlight-Ocean-View.jpg')"></div>
+                <div class="activity-info">
+                    <div class="activity-time">1:45 PM - Departure</div>
+                    <h3 class="activity-title">Coast Starlight Return</h3>
+                    <p class="activity-description">
+                        Board the southbound Coast Starlight for your scenic journey home. Relax in the Sightseer Lounge as you retrace the stunning coastal route, watching surfers catch waves and pelicans glide over the Pacific. Arrive back in Los Angeles with hearts full of coastal memories and cameras full of spectacular photos.
+                    </p>
+                    <div class="activity-highlight">
+                        The afternoon light creates even more dramatic ocean views on the return journey!
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hotel Section -->
+    <section id="hotel" class="hotel-section">
+        <div class="day-header">
+            <h2 class="day-title">YOUR LUXURY RETREAT</h2>
+        </div>
+        
+        <div class="hotel-card">
+            <div class="hotel-content">
+                <div class="hotel-images">
+                    <div class="hotel-main-image" style="background-image: url('https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=800&q=80')"></div>
+                    <div class="hotel-secondary-images">
+                        <div class="hotel-small-image" style="background-image: url('https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=400&q=80')"></div>
+                        <div class="hotel-small-image" style="background-image: url('https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=400&q=80')"></div>
+                        <div class="hotel-small-image" style="background-image: url('https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=400&q=80')"></div>
+                    </div>
+                </div>
+                <div class="hotel-info">
+                    <h3 class="hotel-name">Hotel Californian</h3>
+                    <p class="hotel-address">36 State Street, Santa Barbara, CA 93101</p>
+                    
+                    <div class="rating-info">
+                        <span class="rating-stars">★★★★★</span>
+                        <span>Luxury • Celebrity Design • Opened 2017</span>
+                    </div>
+                    
+                    <p class="hotel-description">
+                        A magnet for Hollywood elite, this 121-room Spanish Colonial Revival masterpiece features Moroccan-inspired interiors by celebrity designer Martyn Lawrence Bullard. Located in the heart of the Funk Zone, steps from beach and wine tasting.
+                    </p>
+                    
+                    <div class="must-try-list">
+                        <div class="must-try-title">GUEST FAVORITES FROM REVIEWS</div>
+                        <div class="must-try-item">🏊 "Smallest hotel pool but amazing rooftop views"</div>
+                        <div class="must-try-item">🍹 Tan-Tan Bar - "Handcrafted cocktails poolside"</div>
+                        <div class="must-try-item">🌅 "360-degree views of ocean and mountains"</div>
+                        <div class="must-try-item">🍔 Goat Tree - "Smashburgers delivered poolside"</div>
+                        <div class="must-try-item">💆 Majorelle Spa - "Moroccan-inspired treatments"</div>
+                    </div>
+
+                    <div class="review-quote">
+                        The rooftop pool, while limited in size, is super clean and the view is awesome. Even in July it doesn't get too packed.
+                        <div class="review-source">- TripAdvisor Guest</div>
+                    </div>
+                    
+                    <div class="instagram-section">
+                        <a href="https://www.instagram.com/hotelcalifornian/" target="_blank" class="instagram-handle">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="#E1306C">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073z"/>
+                                <path d="M12 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4z"/>
+                                <circle cx="18.406" cy="5.594" r="1.44"/>
+                            </svg>
+                            @hotelcalifornian
+                        </a>
+                        <p style="font-size: 0.9rem; color: #666;">40K followers • Get lost in paradise!</p>
+                        <div class="official-photos-note">
+                            🏨 View the full gallery at <a href="https://www.hotelcalifornian.com/gallery.htm" target="_blank">hotelcalifornian.com/gallery</a>
+                        </div>
+                    </div>
+                    
+                    <div class="hotel-features">
+                        <div class="hotel-feature">
+                            <span class="feature-icon">🏊</span>
+                            <span>Rooftop Pool & Hot Tub</span>
+                        </div>
+                        <div class="hotel-feature">
+                            <span class="feature-icon">🍹</span>
+                            <span>Poolside Bar Service</span>
+                        </div>
+                        <div class="hotel-feature">
+                            <span class="feature-icon">💆</span>
+                            <span>Majorelle Spa</span>
+                        </div>
+                        <div class="hotel-feature">
+                            <span class="feature-icon">🌊</span>
+                            <span>Ocean & Mountain Views</span>
+                        </div>
+                    </div>
+                    
+                    <div class="hotel-highlight-box">
+                        <h4 class="hotel-highlight-title">Tan-Tan Rooftop Pool & Bar</h4>
+                        <p><strong>Hours:</strong> Pool 7AM-10PM | Bar Service Fri-Sun 11AM-6PM<br>
+                        Named after a Moroccan "Burning Man" festival village, the 4th floor pool deck offers heated pool, jacuzzi, terracotta daybeds, and epic ocean/mountain views. Order Goat Tree smashburgers and spicy margs delivered poolside. Access via Californian Building if staying in Mason buildings.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Weather Forecast Section -->
+    <section id="weather" class="weather-section">
+        <div class="weather-container">
+            <h2 class="weather-title">WEEKEND WEATHER FORECAST</h2>
+            
+            <div class="weather-days">
+                <!-- Saturday Weather -->
+                <div class="weather-day">
+                    <h3 class="weather-day-name">Saturday</h3>
+                    <div class="weather-icon">☀️</div>
+                    <div class="weather-temp-range">68°F - 75°F</div>
+                    
+                    <div class="weather-details">
+                        <div class="weather-time-slot">
+                            <span>Morning (6AM-12PM)</span>
+                            <strong>68°F</strong>
+                        </div>
+                        <div class="weather-time-slot">
+                            <span>Afternoon (12PM-6PM)</span>
+                            <strong>75°F</strong>
+                        </div>
+                        <div class="weather-time-slot">
+                            <span>Evening (6PM-12AM)</span>
+                            <strong>70°F</strong>
+                        </div>
+                    </div>
+                    
+                    <div class="weather-metrics">
+                        <div class="weather-metric">
+                            <div class="metric-label">UV Index</div>
+                            <div class="metric-value">7 (High)</div>
+                        </div>
+                        <div class="weather-metric">
+                            <div class="metric-label">Air Quality</div>
+                            <div class="metric-value">Good (42)</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sunday Weather -->
+                <div class="weather-day">
+                    <h3 class="weather-day-name">Sunday</h3>
+                    <div class="weather-icon">🌤️</div>
+                    <div class="weather-temp-range">66°F - 73°F</div>
+                    
+                    <div class="weather-details">
+                        <div class="weather-time-slot">
+                            <span>Morning (6AM-12PM)</span>
+                            <strong>66°F</strong>
+                        </div>
+                        <div class="weather-time-slot">
+                            <span>Afternoon (12PM-6PM)</span>
+                            <strong>73°F</strong>
+                        </div>
+                        <div class="weather-time-slot">
+                            <span>Evening (6PM-12AM)</span>
+                            <strong>68°F</strong>
+                        </div>
+                    </div>
+                    
+                    <div class="weather-metrics">
+                        <div class="weather-metric">
+                            <div class="metric-label">UV Index</div>
+                            <div class="metric-value">6 (High)</div>
+                        </div>
+                        <div class="weather-metric">
+                            <div class="metric-label">Air Quality</div>
+                            <div class="metric-value">Good (38)</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Monday Weather -->
+                <div class="weather-day">
+                    <h3 class="weather-day-name">Monday</h3>
+                    <div class="weather-icon">☀️</div>
+                    <div class="weather-temp-range">67°F - 74°F</div>
+                    
+                    <div class="weather-details">
+                        <div class="weather-time-slot">
+                            <span>Morning (6AM-12PM)</span>
+                            <strong>67°F</strong>
+                        </div>
+                        <div class="weather-time-slot">
+                            <span>Afternoon (12PM-6PM)</span>
+                            <strong>74°F</strong>
+                        </div>
+                        <div class="weather-time-slot">
+                            <span>Evening (6PM-12AM)</span>
+                            <strong>69°F</strong>
+                        </div>
+                    </div>
+                    
+                    <div class="weather-metrics">
+                        <div class="weather-metric">
+                            <div class="metric-label">UV Index</div>
+                            <div class="metric-value">7 (High)</div>
+                        </div>
+                        <div class="weather-metric">
+                            <div class="metric-label">Air Quality</div>
+                            <div class="metric-value">Good (45)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 40px;">
+                <div style="background: rgba(255,255,255,0.9); display: inline-block; padding: 20px 40px; border-radius: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                    <p style="color: #4682B4; font-weight: 500; margin-bottom: 10px;">☀️ Perfect Beach Weather All Weekend!</p>
+                    <p style="color: #666; font-size: 0.9rem;">Remember to pack sunscreen (SPF 30+) and stay hydrated</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section id="map" class="map-section">
+        <div class="map-container">
+            <h2 class="day-title">YOUR ADVENTURE MAP</h2>
+            <iframe 
+                width="100%" 
+                height="450" 
+                style="border:0; border-radius: 10px; margin-top: 30px;" 
+                loading="lazy" 
+                allowfullscreen 
+                src="https://www.google.com/maps/embed?pb=!1m40!1m12!1m3!1d13202.826350721584!2d-119.70490397585048!3d34.41440509448846!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m25!3e0!4m5!1s0x80e914c76f2d83d5%3A0xb32642ddf1233bf1!2sSanta%20Barbara%20Train%20Station%2C%20Santa%20Barbara%2C%20CA!3m2!1d34.4128!2d-119.6933!4m5!1s0x80e9148cd02b4929%3A0xacdca924bb59e8f5!2sChase%20Palm%20Park%2C%20Santa%20Barbara%2C%20CA!3m2!1d34.4089!2d-119.6861!4m5!1s0x80e9148e6c60db55%3A0x5ebced1e06d55ca5!2sSanta%20Barbara%20FisHouse%2C%20101%20E%20Cabrillo%20Blvd%2C%20Santa%20Barbara%2C%20CA%2093101!3m2!1d34.409699999999996!2d-119.6874!4m5!1s0x80e9147e7e3e22f1%3A0xfd7bef8c13eade49!2sSanta%20Barbara%20Zoo%2C%20500%20Ninos%20Dr%2C%20Santa%20Barbara%2C%20CA%2093103!3m2!1d34.4205!2d-119.6642!5e0!3m2!1sen!2sus!4v1629834567890!5m2!1sen!2sus">
+            </iframe>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <h3 class="footer-title">Ready for Your Santa Barbara Adventure?</h3>
+        <p>Pack your sunscreen, bring your sense of wonder, and prepare for an unforgettable coastal weekend!</p>
+    </footer>
+
+    <script>
+        // Countdown Timer
+        function updateCountdown() {
+            const tripDate = new Date();
+            const today = new Date();
+            
+            // Find next Saturday
+            const daysUntilSaturday = (6 - today.getDay() + 7) % 7 || 7;
+            tripDate.setDate(today.getDate() + daysUntilSaturday);
+            tripDate.setHours(9, 50, 0, 0);
+
+            const difference = tripDate - today;
+
+            if (difference > 0) {
+                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+                document.getElementById('days').textContent = days;
+                document.getElementById('hours').textContent = hours;
+                document.getElementById('minutes').textContent = minutes;
+                document.getElementById('seconds').textContent = seconds;
+            }
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Weather Widget Removed
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Lightbox functions
+        function openLightbox(src) {
+            document.getElementById('lightbox').style.display = 'block';
+            document.getElementById('lightbox-img').src = src;
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

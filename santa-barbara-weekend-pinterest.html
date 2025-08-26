@@ -1,0 +1,1543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Santa Barbara Weekend Escape - A Coastal Adventure</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Roboto:wght@300;400;500&family=Bebas+Neue&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #fef9f3;
+            color: #2c3e50;
+            line-height: 1.6;
+        }
+
+        /* Vintage Travel Poster Style */
+        .header {
+            background: linear-gradient(135deg, #87CEEB 0%, #4682B4 100%);
+            text-align: center;
+            padding: 60px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"><path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" fill="%23fef9f3"></path></svg>') no-repeat;
+            background-size: cover;
+        }
+
+        h1 {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 5rem;
+            color: #fff;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+            margin-bottom: 10px;
+            letter-spacing: 3px;
+        }
+
+        .subtitle {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: #fffaf0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .trip-dates {
+            background: #fff;
+            display: inline-block;
+            padding: 10px 30px;
+            margin-top: 20px;
+            border-radius: 30px;
+            font-weight: 500;
+            color: #4682B4;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        /* Countdown Timer */
+        .countdown {
+            background: #fff;
+            margin: 30px auto;
+            padding: 30px;
+            max-width: 600px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .countdown-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: #4682B4;
+            margin-bottom: 20px;
+        }
+
+        .countdown-timer {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .time-unit {
+            background: #f0f8ff;
+            padding: 15px 20px;
+            border-radius: 10px;
+            min-width: 80px;
+        }
+
+        .time-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #ff6b6b;
+        }
+
+        .time-label {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* Navigation */
+        .nav {
+            background: #fff;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            padding: 0 20px;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #4682B4;
+            font-weight: 500;
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .nav-link:hover {
+            background: #f0f8ff;
+            border-color: #4682B4;
+        }
+
+        /* Day Sections */
+        .day-section {
+            margin: 60px auto;
+            max-width: 1200px;
+            padding: 0 20px;
+        }
+
+        .day-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .day-title {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 3rem;
+            color: #ff6b6b;
+            letter-spacing: 2px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .day-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: #4682B4;
+        }
+
+        /* Pinterest Gallery Activity Cards */
+        .activity-card {
+            background: #fff;
+            border-radius: 20px;
+            overflow: hidden;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .activity-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .activity-content {
+            display: flex;
+            min-height: 500px;
+        }
+
+        /* Left Side - Activity Details (30%) */
+        .activity-info {
+            flex: 0 0 30%;
+            padding: 30px;
+            background: #f8fbff;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .activity-time {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 1.2rem;
+            color: #ff6b6b;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .activity-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+
+        .activity-description {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .rating-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #fff;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .rating-stars {
+            color: #ffa500;
+        }
+
+        .must-try-list {
+            background: #fff;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .must-try-title {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 1rem;
+            color: #ff6b6b;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .must-try-item {
+            padding: 5px 0;
+            border-bottom: 1px dotted #ddd;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .must-try-item:last-child {
+            border-bottom: none;
+        }
+
+        .activity-highlight {
+            background: linear-gradient(135deg, #e8f5ff 0%, #f0f8ff 100%);
+            padding: 12px 15px;
+            border-left: 4px solid #4682B4;
+            font-style: italic;
+            color: #4682B4;
+            border-radius: 5px;
+            font-size: 0.9rem;
+        }
+
+        /* Right Side - Pinterest Gallery (70%) */
+        .gallery-container {
+            flex: 1;
+            padding: 15px;
+            background: #fff;
+            position: relative;
+        }
+
+        .masonry-gallery {
+            column-count: 3;
+            column-gap: 10px;
+            column-fill: balance;
+            max-height: 550px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .masonry-gallery.expanded {
+            max-height: none;
+        }
+
+        .gallery-item {
+            break-inside: avoid;
+            margin-bottom: 10px;
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.15);
+            position: relative;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .gallery-item.hidden {
+            display: none;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Placeholder images with dramatic size variations */
+        .gallery-placeholder {
+            background: linear-gradient(135deg, #e0e0e0 0%, #f5f5f5 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            text-align: center;
+            padding: 20px 10px;
+            font-size: 0.85rem;
+            line-height: 1.3;
+        }
+
+        .gallery-placeholder.small { height: 120px; }
+        .gallery-placeholder.medium { height: 200px; }
+        .gallery-placeholder.tall { height: 280px; }
+        .gallery-placeholder.extra-tall { height: 360px; }
+        .gallery-placeholder.super-tall { height: 450px; }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white;
+            padding: 15px 10px 10px;
+            font-size: 0.8rem;
+            text-align: center;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
+        }
+
+        /* Fade-out effect at bottom of gallery */
+        .masonry-gallery::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: linear-gradient(transparent, rgba(255,255,255,0.95));
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .masonry-gallery.expanded::after {
+            display: none;
+        }
+
+        /* Show More Button */
+        .show-more-container {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+            text-align: center;
+        }
+
+        .show-more-btn {
+            background: linear-gradient(135deg, #4682B4 0%, #87CEEB 100%);
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(70, 130, 180, 0.3);
+        }
+
+        .show-more-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(70, 130, 180, 0.4);
+        }
+
+        .show-more-btn:active {
+            transform: translateY(0);
+        }
+
+        .photo-count {
+            color: #666;
+            font-size: 0.8rem;
+            margin-top: 8px;
+            background: rgba(255,255,255,0.9);
+            padding: 2px 8px;
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .masonry-gallery {
+                column-count: 2;
+                max-height: 500px;
+            }
+            
+            .gallery-placeholder.super-tall { height: 350px; }
+            .gallery-placeholder.extra-tall { height: 280px; }
+            .gallery-placeholder.tall { height: 220px; }
+            .gallery-placeholder.medium { height: 160px; }
+            .gallery-placeholder.small { height: 100px; }
+        }
+
+        @media (max-width: 768px) {
+            .activity-content {
+                flex-direction: column;
+            }
+            
+            .activity-info {
+                flex: none;
+                padding: 20px;
+            }
+            
+            .gallery-container {
+                padding: 10px 15px 60px;
+            }
+            
+            .masonry-gallery {
+                column-count: 2;
+                column-gap: 8px;
+                max-height: 450px;
+            }
+            
+            .activity-title {
+                font-size: 1.5rem;
+            }
+            
+            .gallery-placeholder.super-tall { height: 300px; }
+            .gallery-placeholder.extra-tall { height: 240px; }
+            .gallery-placeholder.tall { height: 180px; }
+            .gallery-placeholder.medium { height: 140px; }
+            .gallery-placeholder.small { height: 90px; }
+        }
+
+        @media (max-width: 480px) {
+            .masonry-gallery {
+                column-count: 1;
+                max-height: 400px;
+            }
+            
+            .activity-info {
+                padding: 15px;
+            }
+            
+            .activity-title {
+                font-size: 1.3rem;
+            }
+            
+            .gallery-container {
+                padding: 10px 15px 60px;
+            }
+            
+            .gallery-placeholder.super-tall { height: 250px; }
+            .gallery-placeholder.extra-tall { height: 200px; }
+            .gallery-placeholder.tall { height: 150px; }
+            .gallery-placeholder.medium { height: 120px; }
+            .gallery-placeholder.small { height: 80px; }
+        }
+
+        /* Map Section */
+        .map-section {
+            background: #f8f9fa;
+            padding: 60px 20px;
+            margin-top: 60px;
+        }
+
+        .map-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .map-title {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 3rem;
+            color: #4682B4;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .map-subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+        }
+
+        .map-embed {
+            margin-bottom: 40px;
+        }
+
+        .location-legend {
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .legend-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: #4682B4;
+            text-align: center;
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+
+        .legend-items {
+            display: grid;
+            gap: 15px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .legend-item:last-child {
+            border-bottom: none;
+        }
+
+        .legend-marker {
+            font-size: 1.5rem;
+            margin-right: 15px;
+            width: 30px;
+            text-align: center;
+        }
+
+        .legend-text {
+            font-size: 1.1rem;
+            color: #555;
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .map-title {
+                font-size: 2.5rem;
+            }
+            
+            .legend-items {
+                gap: 10px;
+            }
+            
+            .legend-item {
+                padding: 8px 0;
+            }
+        }
+
+        /* Weather Section */
+        .weather-section {
+            background: linear-gradient(135deg, #87CEEB 0%, #4682B4 100%);
+            padding: 60px 20px;
+            margin-top: 60px;
+            position: relative;
+        }
+
+        .weather-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 40px;
+        }
+
+        .weather-title {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 3rem;
+            color: #fff;
+            text-align: center;
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        /* Footer */
+        .footer {
+            background: #2c3e50;
+            color: #fff;
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 60px;
+        }
+
+        .footer-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        /* Lightbox styles */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            cursor: pointer;
+        }
+
+        .lightbox-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+            max-height: 80%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 10px;
+        }
+
+        .close-lightbox {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <span class="close-lightbox">&times;</span>
+        <img class="lightbox-content" id="lightbox-img">
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <h1>SANTA BARBARA</h1>
+        <p class="subtitle">A Weekend Coastal Adventure</p>
+        <div class="trip-dates">Saturday - Monday • Coast Starlight Journey</div>
+    </header>
+
+    <!-- Countdown Timer -->
+    <div class="countdown">
+        <h2 class="countdown-title">Adventure Begins In:</h2>
+        <div class="countdown-timer" id="countdown">
+            <div class="time-unit">
+                <div class="time-value" id="days">0</div>
+                <div class="time-label">Days</div>
+            </div>
+            <div class="time-unit">
+                <div class="time-value" id="hours">0</div>
+                <div class="time-label">Hours</div>
+            </div>
+            <div class="time-unit">
+                <div class="time-value" id="minutes">0</div>
+                <div class="time-label">Minutes</div>
+            </div>
+            <div class="time-unit">
+                <div class="time-value" id="seconds">0</div>
+                <div class="time-label">Seconds</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="#saturday" class="nav-link">Train Journey</a>
+            <a href="#sunday" class="nav-link">Zoo & Discovery</a>
+            <a href="#monday" class="nav-link">Science & Park</a>
+            <a href="#dining" class="nav-link">Dining</a>
+            <a href="#hotel" class="nav-link">Hotel</a>
+            <a href="#map" class="nav-link">Map</a>
+            <a href="#weather" class="nav-link">Weather</a>
+            <a href="javascript:window.print()" class="nav-link">Print Itinerary</a>
+        </div>
+    </nav>
+
+    <!-- Saturday Section -->
+    <section id="saturday" class="day-section">
+        <div class="day-header">
+            <h2 class="day-title">SATURDAY</h2>
+        </div>
+
+        <!-- Coast Starlight Train -->
+        <div class="activity-card">
+            <div class="activity-content">
+                <!-- Left Side - Activity Details (30%) -->
+                <div class="activity-info">
+                    <div>
+                        <div class="activity-time">9:50 AM - Departure</div>
+                        <h3 class="activity-title">Coast Starlight Adventure</h3>
+                        <p class="activity-description">
+                            Begin your journey aboard Amtrak's legendary Coast Starlight, departing from Los Angeles Union Station. This spectacular rail journey hugs the Pacific coastline, offering views you simply can't see from the highway.
+                        </p>
+                        
+                        <div class="rating-info">
+                            <span class="rating-stars">★★★★★</span>
+                            <span>Scenic Train Journey • 3.5 Hours to Santa Barbara</span>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="must-try-list">
+                            <div class="must-try-title">TRAIN EXPERIENCE HIGHLIGHTS</div>
+                            <div class="must-try-item">🚂 Sightseer Lounge - Floor-to-ceiling windows</div>
+                            <div class="must-try-item">🌊 Pacific Ocean views - Left side seating</div>
+                            <div class="must-try-item">🥪 Café Car - Fresh snacks and beverages</div>
+                            <div class="must-try-item">📱 Free WiFi - Stay connected during journey</div>
+                        </div>
+                        
+                        <div class="activity-highlight">
+                            Pro tip: Sit on the left side of the train for the best ocean views as you cruise past beaches that are inaccessible by car!
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right Side - Pinterest Gallery (70%) -->
+                <div class="gallery-container">
+                    <div class="masonry-gallery" id="coast-starlight-gallery">
+                        <div class="gallery-item" onclick="openLightbox('./santa-barbara-images/Saturday-0950-CoastStarlight/01-ocean-views-train-super-tall.jpg')">
+                            <img src="./santa-barbara-images/Saturday-0950-CoastStarlight/01-ocean-views-train-super-tall.jpg" alt="Ocean Views from Train" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="gallery-placeholder super-tall" style="display:none;">Pacific Ocean Views<br>from Train</div>
+                            <div class="gallery-caption">Stunning Coastline from Sightseer Lounge</div>
+                        </div>
+                        
+                        <div class="gallery-item" onclick="openLightbox('./santa-barbara-images/Saturday-0950-CoastStarlight/02-sightseer-lounge-interior-large.jpg')">
+                            <img src="./santa-barbara-images/Saturday-0950-CoastStarlight/02-sightseer-lounge-interior-large.jpg" alt="Sightseer Lounge" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="gallery-placeholder small" style="display:none;">Sightseer Lounge<br>Interior</div>
+                            <div class="gallery-caption">Floor-to-Ceiling Windows</div>
+                        </div>
+                        
+                        <div class="gallery-item" onclick="openLightbox('./santa-barbara-images/Saturday-0950-CoastStarlight/03-coastal-route-scenery-medium.jpg')">
+                            <img src="./santa-barbara-images/Saturday-0950-CoastStarlight/03-coastal-route-scenery-medium.jpg" alt="Coastal Scenery" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="gallery-placeholder medium" style="display:none;">Scenic Coastal<br>Route</div>
+                            <div class="gallery-caption">Exclusive Railway Views</div>
+                        </div>
+                        
+                        <div class="gallery-item" onclick="openLightbox('./santa-barbara-images/Saturday-0950-CoastStarlight/04-business-class-seating-tall.jpg')">
+                            <img src="./santa-barbara-images/Saturday-0950-CoastStarlight/04-business-class-seating-tall.jpg" alt="Business Class Seating" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="gallery-placeholder tall" style="display:none;">Business Class<br>Seating</div>
+                            <div class="gallery-caption">Comfortable Ocean-View Seats</div>
+                        </div>
+                        
+                        <div class="gallery-item" onclick="openLightbox('./santa-barbara-images/Saturday-0950-CoastStarlight/05-dining-car-cuisine-extra-tall.jpg')">
+                            <img src="./santa-barbara-images/Saturday-0950-CoastStarlight/05-dining-car-cuisine-extra-tall.jpg" alt="Dining Car" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="gallery-placeholder extra-tall" style="display:none;">Dining Car<br>Cuisine</div>
+                            <div class="gallery-caption">Pacific Coast Fresh Meals</div>
+                        </div>
+                        
+                        <div class="gallery-item" onclick="openLightbox('./santa-barbara-images/Saturday-0950-CoastStarlight/06-train-station-arrival-small.jpg')">
+                            <img src="./santa-barbara-images/Saturday-0950-CoastStarlight/06-train-station-arrival-small.jpg" alt="Train Station" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="gallery-placeholder small" style="display:none;">Train Station<br>Arrival</div>
+                            <div class="gallery-caption">Santa Barbara Station</div>
+                        </div>
+                    </div>
+                    
+                    <div class="show-more-container">
+                        <button class="show-more-btn" onclick="toggleGallery('coast-starlight-gallery')">
+                            Show More Photos
+                        </button>
+                        <div class="photo-count">
+                            <span id="coast-starlight-visible-count">6</span> of <span id="coast-starlight-total-count">6</span> photos
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chase Palm Park -->
+        <div class="activity-card">
+            <div class="activity-content">
+                <!-- Left Side - Activity Details (30%) -->
+                <div class="activity-info">
+                    <div>
+                        <div class="activity-time">4:00 PM</div>
+                        <h3 class="activity-title">Chase Palm Park & Boardwalk</h3>
+                        <p class="activity-description">
+                            Stroll along Santa Barbara's stunning 10-acre waterfront park expanded in 1998. The star attraction is the famous Shipwreck Playground modeled after the Winfield Scott paddle-wheeler that sank in 1853.
+                        </p>
+                        
+                        <div class="rating-info">
+                            <span class="rating-stars">★★★★★</span>
+                            <span>4.5/5 • 32 Reviews • "Child Approved!"</span>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="must-try-list">
+                            <div class="must-try-title">PARK HIGHLIGHTS FROM VISITORS</div>
+                            <div class="must-try-item">🚢 Shipwreck Playground - Two structures (ages 2-5 & 5-12)</div>
+                            <div class="must-try-item">🐋 Surfacing Whales & Conch Shell Lighthouse sculptures</div>
+                            <div class="must-try-item">⛲ Fountains, lagoon & creek features</div>
+                            <div class="must-try-item">🎵 Summer Concerts in the Park venue</div>
+                        </div>
+                        
+                        <div class="activity-highlight">
+                            The ship's sinking bow forms a slide! Kids can scamper on bridges and netting in soft beach sand.
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right Side - Pinterest Gallery (70%) -->
+                <div class="gallery-container">
+                    <div class="masonry-gallery" id="chase-palm-gallery">
+                        <div class="gallery-item" onclick="openLightbox('./santa-barbara-images/Saturday-1600-ChasePalmPark/01-shipwreck-playground-super-tall.jpg')">
+                            <div class="gallery-placeholder super-tall">Shipwreck Playground<br>Main Structure</div>
+                            <div class="gallery-caption">Historic Paddle-Wheeler Design</div>
+                        </div>
+                        
+                        <div class="gallery-item" onclick="openLightbox('./santa-barbara-images/Saturday-1600-ChasePalmPark/02-surfacing-whales-small.jpg')">
+                            <div class="gallery-placeholder small">Surfacing Whales<br>Sculpture</div>
+                            <div class="gallery-caption">Interactive Art Installation</div>
+                        </div>
+                        
+                        <div class="gallery-item" onclick="openLightbox('./santa-barbara-images/Saturday-1600-ChasePalmPark/03-conch-lighthouse-medium.jpg')">
+                            <div class="gallery-placeholder medium">Conch Shell<br>Lighthouse</div>
+                            <div class="gallery-caption">Unique Maritime Feature</div>
+                        </div>
+                        
+                        <div class="gallery-item" onclick="openLightbox('./santa-barbara-images/Saturday-1600-ChasePalmPark/04-park-lagoon-tall.jpg')">
+                            <div class="gallery-placeholder tall">Park Lagoon<br>& Creek</div>
+                            <div class="gallery-caption">Peaceful Water Features</div>
+                        </div>
+                        
+                        <div class="gallery-item" onclick="openLightbox('./santa-barbara-images/Saturday-1600-ChasePalmPark/05-kids-playing-extra-tall.jpg')">
+                            <div class="gallery-placeholder extra-tall">Children Playing<br>on Ship</div>
+                            <div class="gallery-caption">Adventure & Imagination</div>
+                        </div>
+                        
+                        <div class="gallery-item" onclick="openLightbox('./santa-barbara-images/Saturday-1600-ChasePalmPark/06-ocean-boardwalk-small.jpg')">
+                            <div class="gallery-placeholder small">Ocean<br>Boardwalk</div>
+                            <div class="gallery-caption">Waterfront Walking Path</div>
+                        </div>
+                    </div>
+                    
+                    <div class="show-more-container">
+                        <button class="show-more-btn" onclick="toggleGallery('chase-palm-gallery')">
+                            Show More Photos
+                        </button>
+                        <div class="photo-count">
+                            <span id="chase-palm-visible-count">6</span> of <span id="chase-palm-total-count">6</span> photos
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sunday Section -->
+    <section id="sunday" class="day-section">
+        <div class="day-header">
+            <h2 class="day-title">SUNDAY</h2>
+        </div>
+
+        <!-- Santa Barbara Zoo -->
+        <div class="activity-card">
+            <div class="activity-content">
+                <!-- Left Side - Activity Details (30%) -->
+                <div class="activity-info">
+                    <div>
+                        <div class="activity-time">9:30 AM</div>
+                        <h3 class="activity-title">Santa Barbara Zoo</h3>
+                        <p class="activity-description">
+                            Experience "the zoo with an ocean view" - 30 acres overlooking the Pacific, home to over 500 animals representing 146 species. The manageable size allows leisurely exploration in 2-3 hours.
+                        </p>
+                        
+                        <div class="rating-info">
+                            <span class="rating-stars">★★★★☆</span>
+                            <span>4.5/5 • Ranked #7 of 128 Santa Barbara Attractions</span>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="must-try-list">
+                            <div class="must-try-title">CAN'T-MISS EXPERIENCES</div>
+                            <div class="must-try-item">🦒 Giraffe Feeding ($8) - "Eye-to-eye with Masai giraffes!"</div>
+                            <div class="must-try-item">🦘 Australian Walkabout - Walk freely among kangaroos</div>
+                            <div class="must-try-item">🐧 Humboldt Penguins - Above & underwater viewing</div>
+                            <div class="must-try-item">🦅 California Condors - Rare in captivity!</div>
+                        </div>
+                        
+                        <div class="activity-highlight">
+                            Pro tip: Check giraffe feeding times at the deck - arrive early! Free sensory backpacks available for sensitive children.
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right Side - Pinterest Gallery (70%) -->
+                <div class="gallery-container">
+                    <div class="masonry-gallery" id="zoo-gallery">
+                        <div class="gallery-item" onclick="openLightbox('./santa-barbara-images/Sunday-0930-SBZoo/01-giraffe-feeding-experience-super-tall.jpg')">
+                            <img src="./santa-barbara-images/Sunday-0930-SBZoo/01-giraffe-feeding-experience-super-tall.jpg" alt="Giraffe Feeding Experience" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="gallery-placeholder super-tall" style="display:none;">Giraffe Feeding<br>Experience</div>
+                            <div class="gallery-caption">Feed Masai Giraffes Up Close</div>
+                        </div>
+                        
+                        <div class="gallery-item" onclick="openLightbox('./santa-barbara-images/Sunday-0930-SBZoo/02-australian-walkabout-kangaroos-large.jpg')">
+                            <img src="./santa-barbara-images/Sunday-0930-SBZoo/02-australian-walkabout-kangaroos-large.jpg" alt="Australian Walkabout" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="gallery-placeholder medium" style="display:none;">Australian<br>Walkabout</div>
+                            <div class="gallery-caption">Walk Among Kangaroos & Wallabies</div>
+                        </div>
+                        
+                        <div class="gallery-item" onclick="openLightbox('./santa-barbara-images/Sunday-0930-SBZoo/03-penguin-house-underwater-medium.jpg')">
+                            <img src="./santa-barbara-images/Sunday-0930-SBZoo/03-penguin-house-underwater-medium.jpg" alt="Penguin House" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="gallery-placeholder medium" style="display:none;">Penguin House</div>
+                            <div class="gallery-caption">Humboldt Penguins Swimming</div>
+                        </div>
+                        
+                        <div class="gallery-item" onclick="openLightbox('./santa-barbara-images/Sunday-0930-SBZoo/04-zoo-train-ocean-view-tall.jpg')">
+                            <img src="./santa-barbara-images/Sunday-0930-SBZoo/04-zoo-train-ocean-view-tall.jpg" alt="Zoo Train Adventure" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="gallery-placeholder extra-tall" style="display:none;">Zoo Train<br>Adventure</div>
+                            <div class="gallery-caption">C.P. Huntington Train Ride</div>
+                        </div>
+                        
+                        <div class="gallery-item" onclick="openLightbox('./santa-barbara-images/Sunday-0930-SBZoo/05-california-condors-flight-extra-tall.jpg')">
+                            <img src="./santa-barbara-images/Sunday-0930-SBZoo/05-california-condors-flight-extra-tall.jpg" alt="California Condors" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="gallery-placeholder extra-tall" style="display:none;">California<br>Condors</div>
+                            <div class="gallery-caption">Rare Birds in Captivity</div>
+                        </div>
+                        
+                        <div class="gallery-item" onclick="openLightbox('./santa-barbara-images/Sunday-0930-SBZoo/06-ocean-views-from-zoo-small.jpg')">
+                            <img src="./santa-barbara-images/Sunday-0930-SBZoo/06-ocean-views-from-zoo-small.jpg" alt="Ocean Views from Zoo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="gallery-placeholder small" style="display:none;">Ocean Views<br>from Zoo</div>
+                            <div class="gallery-caption">Pacific Ocean Backdrop</div>
+                        </div>
+                        
+                        <!-- Hidden photos -->
+                        <div class="gallery-item hidden" onclick="openLightbox('./santa-barbara-images/Sunday-0930-SBZoo/07-sea-lion-pool-splash-medium.jpg')">
+                            <img src="./santa-barbara-images/Sunday-0930-SBZoo/07-sea-lion-pool-splash-medium.jpg" alt="Sea Lion Pool" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="gallery-placeholder medium" style="display:none;">Sea Lion<br>Pool</div>
+                            <div class="gallery-caption">Playful Sea Lions</div>
+                        </div>
+                        
+                        <div class="gallery-item hidden" onclick="openLightbox('./santa-barbara-images/Sunday-0930-SBZoo/08-prairie-dog-village-kids-tall.jpg')">
+                            <img src="./santa-barbara-images/Sunday-0930-SBZoo/08-prairie-dog-village-kids-tall.jpg" alt="Prairie Dog Village" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="gallery-placeholder tall" style="display:none;">Prairie Dogs<br>Village</div>
+                            <div class="gallery-caption">Interactive Prairie Dog Town</div>
+                        </div>
+                        
+                        <div class="gallery-item hidden" onclick="openLightbox('./santa-barbara-images/Sunday-0930-SBZoo/09-big-cat-habitat-lions-super-tall.jpg')">
+                            <img src="./santa-barbara-images/Sunday-0930-SBZoo/09-big-cat-habitat-lions-super-tall.jpg" alt="Big Cat Habitat" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="gallery-placeholder super-tall" style="display:none;">Big Cat<br>Habitat</div>
+                            <div class="gallery-caption">Asian Elephants & Lions</div>
+                        </div>
+                        
+                        <div class="gallery-item hidden" onclick="openLightbox('./santa-barbara-images/Sunday-0930-SBZoo/10-childrens-zoo-petting-small.jpg')">
+                            <img src="./santa-barbara-images/Sunday-0930-SBZoo/10-childrens-zoo-petting-small.jpg" alt="Children's Zoo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="gallery-placeholder small" style="display:none;">Children's<br>Zoo</div>
+                            <div class="gallery-caption">Hands-on Animal Encounters</div>
+                        </div>
+                    </div>
+                    
+                    <div class="show-more-container">
+                        <button class="show-more-btn" onclick="toggleGallery('zoo-gallery')">
+                            Show More Photos
+                        </button>
+                        <div class="photo-count">
+                            <span id="zoo-visible-count">6</span> of <span id="zoo-total-count">10</span> photos
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Monday Section -->
+    <section id="monday" class="day-section">
+        <div class="day-header">
+            <h2 class="day-title">MONDAY</h2>
+        </div>
+
+        <!-- MOXI Museum -->
+        <div class="activity-card">
+            <div class="activity-content">
+                <!-- Left Side - Activity Details (30%) -->
+                <div class="activity-info">
+                    <div>
+                        <div class="activity-time">9:00 AM</div>
+                        <h3 class="activity-title">MOXI Museum</h3>
+                        <p class="activity-description">
+                            Ignite learning at this 17,000-square-foot interactive science wonderland opened in 2017. Located in the Funk Zone, MOXI offers three floors of hands-on STEAM exhibits for curious minds of all ages.
+                        </p>
+                        
+                        <div class="rating-info">
+                            <span class="rating-stars">★★★★★</span>
+                            <span>213 Reviews • "2-3 hours of fun" • USA Today Top 10!</span>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="must-try-list">
+                            <div class="must-try-title">MUST-SEE EXHIBITS</div>
+                            <div class="must-try-item">🎸 Giant Guitar - 24-ft with crawl-through hole!</div>
+                            <div class="must-try-item">🌀 Wind Column Workshop - Test flight creations</div>
+                            <div class="must-try-item">🏎️ Speed Track - Build & race custom cars</div>
+                            <div class="must-try-item">🌅 Sky Garden - Rooftop with water sculpture</div>
+                        </div>
+                        
+                        <div class="activity-highlight">
+                            Pro tip: The rooftop water play sculpture is the kids' favorite - bring a change of clothes!
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right Side - Pinterest Gallery (70%) -->
+                <div class="gallery-container">
+                    <div class="masonry-gallery" id="moxi-gallery">
+                        <div class="gallery-item" onclick="openLightbox('./santa-barbara-images/Monday-0900-MOXI/01-giant-guitar-walkthrough-super-tall.jpg')">
+                            <img src="./santa-barbara-images/Monday-0900-MOXI/01-giant-guitar-walkthrough-super-tall.jpg" alt="Giant Guitar Experience" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="gallery-placeholder super-tall" style="display:none;">24-Foot<br>Giant Guitar</div>
+                            <div class="gallery-caption">Walk Through the Sound Hole!</div>
+                        </div>
+                        
+                        <div class="gallery-item" onclick="openLightbox('./santa-barbara-images/Monday-0900-MOXI/02-sky-garden-rooftop-views-small.jpg')">
+                            <img src="./santa-barbara-images/Monday-0900-MOXI/02-sky-garden-rooftop-views-small.jpg" alt="Sky Garden Rooftop" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="gallery-placeholder small" style="display:none;">Sky Garden<br>Rooftop</div>
+                            <div class="gallery-caption">Ocean Views & Water Play</div>
+                        </div>
+                        
+                        <div class="gallery-item" onclick="openLightbox('./santa-barbara-images/Monday-0900-MOXI/03-speed-track-racing-cars-medium.jpg')">
+                            <img src="./santa-barbara-images/Monday-0900-MOXI/03-speed-track-racing-cars-medium.jpg" alt="Speed Track Racing" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="gallery-placeholder medium" style="display:none;">Speed Track</div>
+                            <div class="gallery-caption">Build & Race Cars</div>
+                        </div>
+                        
+                        <div class="gallery-item" onclick="openLightbox('./santa-barbara-images/Monday-0900-MOXI/04-interactive-exhibits-hands-on-extra-tall.jpg')">
+                            <img src="./santa-barbara-images/Monday-0900-MOXI/04-interactive-exhibits-hands-on-extra-tall.jpg" alt="Interactive Exhibits" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="gallery-placeholder extra-tall" style="display:none;">Interactive<br>Exhibits</div>
+                            <div class="gallery-caption">Hands-on STEAM Fun</div>
+                        </div>
+                        
+                        <div class="gallery-item" onclick="openLightbox('./santa-barbara-images/Monday-0900-MOXI/05-wind-column-flight-test-tall.jpg')">
+                            <img src="./santa-barbara-images/Monday-0900-MOXI/05-wind-column-flight-test-tall.jpg" alt="Wind Column Workshop" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="gallery-placeholder tall" style="display:none;">Wind Column<br>Workshop</div>
+                            <div class="gallery-caption">Test Your Flight Creations</div>
+                        </div>
+                        
+                        <div class="gallery-item" onclick="openLightbox('./santa-barbara-images/Monday-0900-MOXI/06-sound-studio-recording-small.jpg')">
+                            <img src="./santa-barbara-images/Monday-0900-MOXI/06-sound-studio-recording-small.jpg" alt="Sound Studio" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="gallery-placeholder small" style="display:none;">Sound Studio</div>
+                            <div class="gallery-caption">Record Movie Sound Effects</div>
+                        </div>
+                        
+                        <!-- Hidden photos -->
+                        <div class="gallery-item hidden" onclick="openLightbox('./santa-barbara-images/Monday-0900-MOXI/07-3d-printing-lab-creation-medium.jpg')">
+                            <img src="./santa-barbara-images/Monday-0900-MOXI/07-3d-printing-lab-creation-medium.jpg" alt="3D Printing Lab" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="gallery-placeholder medium" style="display:none;">3D Printing<br>Lab</div>
+                            <div class="gallery-caption">Design & Print Your Ideas</div>
+                        </div>
+                        
+                        <div class="gallery-item hidden" onclick="openLightbox('./santa-barbara-images/Monday-0900-MOXI/08-animation-studio-stopmotion-tall.jpg')">
+                            <img src="./santa-barbara-images/Monday-0900-MOXI/08-animation-studio-stopmotion-tall.jpg" alt="Animation Studio" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="gallery-placeholder tall" style="display:none;">Animation<br>Studio</div>
+                            <div class="gallery-caption">Create Stop-Motion Movies</div>
+                        </div>
+                    </div>
+                    
+                    <div class="show-more-container">
+                        <button class="show-more-btn" onclick="toggleGallery('moxi-gallery')">
+                            Show More Photos
+                        </button>
+                        <div class="photo-count">
+                            <span id="moxi-visible-count">6</span> of <span id="moxi-total-count">8</span> photos
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chase Palm Park -->
+    <div class="activity-card">
+        <div class="activity-content">
+            <!-- Left Side - Activity Details (30%) -->
+            <div class="activity-info">
+                <div>
+                    <div class="activity-time">11:30 AM</div>
+                    <h3 class="activity-title">Chase Palm Park</h3>
+                    <p class="activity-description">
+                        Discover the crown jewel of Santa Barbara's beachfront parks! This 6-acre oceanside paradise features the iconic Shipwreck Playground, whale sculptures, and wide sandy beaches perfect for families.
+                    </p>
+                    
+                    <div class="rating-info">
+                        <span class="rating-stars">★★★★☆</span>
+                        <span>4.4/5 • "Amazing playground!" • Free admission</span>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="must-try-list">
+                        <div class="must-try-title">PARK HIGHLIGHTS</div>
+                        <div class="must-try-item">🚢 Shipwreck Playground - Massive pirate ship structure!</div>
+                        <div class="must-try-item">🐋 Whale Sculptures - Climb on life-size whale statues</div>
+                        <div class="must-try-item">🏐 Beach Volleyball - Courts right on the sand</div>
+                        <div class="must-try-item">🎠 Santa Barbara Carousel - Historic restored carousel</div>
+                    </div>
+                    
+                    <div class="activity-highlight">
+                        Pro tip: Free parking on weekends! The playground is massive - kids could spend hours here. Bathrooms and snack bars available.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Right Side - Pinterest Gallery (70%) -->
+            <div class="gallery-container">
+                <div class="masonry-gallery" id="chase-palm-gallery">
+                    <div class="gallery-item" onclick="openLightbox('./santa-barbara-images/Monday-1130-ChasePalmPark/01-shipwreck-playground-kids-super-tall.jpg')">
+                        <img src="./santa-barbara-images/Monday-1130-ChasePalmPark/01-shipwreck-playground-kids-super-tall.jpg" alt="Shipwreck Playground" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="gallery-placeholder super-tall" style="display:none;">Shipwreck<br>Playground</div>
+                        <div class="gallery-caption">Massive Pirate Ship Adventure</div>
+                    </div>
+                    
+                    <div class="gallery-item" onclick="openLightbox('./santa-barbara-images/Monday-1130-ChasePalmPark/02-whale-sculptures-climbing-medium.jpg')">
+                        <img src="./santa-barbara-images/Monday-1130-ChasePalmPark/02-whale-sculptures-climbing-medium.jpg" alt="Whale Sculptures" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="gallery-placeholder medium" style="display:none;">Whale<br>Sculptures</div>
+                        <div class="gallery-caption">Life-Size Whale Climbing</div>
+                    </div>
+                    
+                    <div class="gallery-item" onclick="openLightbox('./santa-barbara-images/Monday-1130-ChasePalmPark/03-beach-volleyball-courts-large.jpg')">
+                        <img src="./santa-barbara-images/Monday-1130-ChasePalmPark/03-beach-volleyball-courts-large.jpg" alt="Beach Volleyball Courts" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="gallery-placeholder large" style="display:none;">Beach Volleyball<br>Courts</div>
+                        <div class="gallery-caption">Courts Right on the Sand</div>
+                    </div>
+                    
+                    <div class="gallery-item" onclick="openLightbox('./santa-barbara-images/Monday-1130-ChasePalmPark/04-ocean-views-palm-trees-tall.jpg')">
+                        <img src="./santa-barbara-images/Monday-1130-ChasePalmPark/04-ocean-views-palm-trees-tall.jpg" alt="Ocean Views" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="gallery-placeholder tall" style="display:none;">Ocean Views<br>Palm Trees</div>
+                        <div class="gallery-caption">Perfect Pacific Backdrop</div>
+                    </div>
+                    
+                    <div class="gallery-item" onclick="openLightbox('./santa-barbara-images/Monday-1130-ChasePalmPark/05-carousel-house-historic-extra-tall.jpg')">
+                        <img src="./santa-barbara-images/Monday-1130-ChasePalmPark/05-carousel-house-historic-extra-tall.jpg" alt="Historic Carousel" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="gallery-placeholder extra-tall" style="display:none;">Historic<br>Carousel</div>
+                        <div class="gallery-caption">Restored 1916 Carousel</div>
+                    </div>
+                    
+                    <div class="gallery-item" onclick="openLightbox('./santa-barbara-images/Monday-1130-ChasePalmPark/06-families-enjoying-beach-small.jpg')">
+                        <img src="./santa-barbara-images/Monday-1130-ChasePalmPark/06-families-enjoying-beach-small.jpg" alt="Families at Beach" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="gallery-placeholder small" style="display:none;">Families<br>Beach Fun</div>
+                        <div class="gallery-caption">Perfect Family Destination</div>
+                    </div>
+                </div>
+                
+                <div class="show-more-container">
+                    <button class="show-more-btn" onclick="toggleGallery('chase-palm-gallery')">
+                        Show More Photos
+                    </button>
+                    <div class="photo-count">
+                        <span id="chase-palm-visible-count">6</span> of <span id="chase-palm-total-count">6</span> photos
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Santa Barbara FisHouse -->
+    <div id="dining" class="activity-card">
+        <div class="activity-content">
+            <!-- Left Side - Activity Details (30%) -->
+            <div class="activity-info">
+                <div>
+                    <div class="activity-time">6:30 PM</div>
+                    <h3 class="activity-title">Santa Barbara FisHouse</h3>
+                    <p class="activity-description">
+                        Indulge in Santa Barbara's premier seafood destination! Located in the historic Funk Zone, FisHouse serves the freshest local catch with stunning harbor views and innovative Pacific Coast cuisine.
+                    </p>
+                    
+                    <div class="rating-info">
+                        <span class="rating-stars">★★★★★</span>
+                        <span>4.6/5 • 950+ Yelp Reviews • "Best seafood in SB!"</span>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="must-try-list">
+                        <div class="must-try-title">SIGNATURE DISHES</div>
+                        <div class="must-try-item">🦞 Lobster Mac & Cheese - "Life-changing comfort food!"</div>
+                        <div class="must-try-item">🐟 Daily Fish Special - Caught fresh by local boats</div>
+                        <div class="must-try-item">🦀 Dungeness Crab Cakes - Award-winning recipe</div>
+                        <div class="must-try-item">🍷 Wine Pairings - Extensive Santa Barbara County selection</div>
+                    </div>
+                    
+                    <div class="activity-highlight">
+                        Pro tip: Reservations essential! Request harbor-view patio seating for sunset dining. Happy hour 4-6pm with discounted appetizers.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Right Side - Pinterest Gallery (70%) -->
+            <div class="gallery-container">
+                <div class="masonry-gallery" id="fishouse-gallery">
+                    <div class="gallery-item" onclick="openLightbox('./santa-barbara-images/Saturday-1830-FisHouse/01-lobster-mac-cheese-signature-super-tall.jpg')">
+                        <img src="./santa-barbara-images/Saturday-1830-FisHouse/01-lobster-mac-cheese-signature-super-tall.jpg" alt="Lobster Mac & Cheese" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="gallery-placeholder super-tall" style="display:none;">Lobster Mac<br>& Cheese</div>
+                        <div class="gallery-caption">Signature Comfort Food</div>
+                    </div>
+                    
+                    <div class="gallery-item" onclick="openLightbox('./santa-barbara-images/Saturday-1830-FisHouse/02-harbor-view-patio-dining-medium.jpg')">
+                        <img src="./santa-barbara-images/Saturday-1830-FisHouse/02-harbor-view-patio-dining-medium.jpg" alt="Harbor View Patio" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="gallery-placeholder medium" style="display:none;">Harbor View<br>Patio</div>
+                        <div class="gallery-caption">Waterfront Dining Experience</div>
+                    </div>
+                    
+                    <div class="gallery-item" onclick="openLightbox('./santa-barbara-images/Saturday-1830-FisHouse/03-fresh-catch-daily-special-large.jpg')">
+                        <img src="./santa-barbara-images/Saturday-1830-FisHouse/03-fresh-catch-daily-special-large.jpg" alt="Fresh Daily Catch" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="gallery-placeholder large" style="display:none;">Fresh Daily<br>Catch</div>
+                        <div class="gallery-caption">Local Boat-to-Table Seafood</div>
+                    </div>
+                    
+                    <div class="gallery-item" onclick="openLightbox('./santa-barbara-images/Saturday-1830-FisHouse/04-crab-cakes-award-winning-tall.jpg')">
+                        <img src="./santa-barbara-images/Saturday-1830-FisHouse/04-crab-cakes-award-winning-tall.jpg" alt="Dungeness Crab Cakes" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="gallery-placeholder tall" style="display:none;">Dungeness<br>Crab Cakes</div>
+                        <div class="gallery-caption">Award-Winning Recipe</div>
+                    </div>
+                    
+                    <div class="gallery-item" onclick="openLightbox('./santa-barbara-images/Saturday-1830-FisHouse/05-wine-selection-local-extra-tall.jpg')">
+                        <img src="./santa-barbara-images/Saturday-1830-FisHouse/05-wine-selection-local-extra-tall.jpg" alt="Wine Selection" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="gallery-placeholder extra-tall" style="display:none;">Santa Barbara<br>Wine Selection</div>
+                        <div class="gallery-caption">Local County Pairings</div>
+                    </div>
+                    
+                    <div class="gallery-item" onclick="openLightbox('./santa-barbara-images/Saturday-1830-FisHouse/06-sunset-dining-atmosphere-small.jpg')">
+                        <img src="./santa-barbara-images/Saturday-1830-FisHouse/06-sunset-dining-atmosphere-small.jpg" alt="Sunset Dining" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="gallery-placeholder small" style="display:none;">Sunset<br>Dining</div>
+                        <div class="gallery-caption">Perfect Evening Ambiance</div>
+                    </div>
+                </div>
+                
+                <div class="show-more-container">
+                    <button class="show-more-btn" onclick="toggleGallery('fishouse-gallery')">
+                        Show More Photos
+                    </button>
+                    <div class="photo-count">
+                        <span id="fishouse-visible-count">6</span> of <span id="fishouse-total-count">6</span> photos
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hotel Californian -->
+    <div id="hotel" class="activity-card">
+        <div class="activity-content">
+            <!-- Left Side - Activity Details (30%) -->
+            <div class="activity-info">
+                <div>
+                    <div class="activity-time">Check-in</div>
+                    <h3 class="activity-title">Hotel Californian</h3>
+                    <p class="activity-description">
+                        Experience Santa Barbara's most luxurious beachfront resort! This Spanish Colonial Revival masterpiece features Moroccan-inspired design, rooftop pools, and unparalleled ocean and mountain views.
+                    </p>
+                    
+                    <div class="rating-info">
+                        <span class="rating-stars">★★★★★</span>
+                        <span>4.8/5 • "Absolute perfection!" • Forbes 5-Star Hotel</span>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="must-try-list">
+                        <div class="must-try-title">HOTEL HIGHLIGHTS</div>
+                        <div class="must-try-item">🏊 Rooftop Pool - Infinity pool with 360° views</div>
+                        <div class="must-try-item">🍸 Tantan Bar - Rooftop cocktails with ocean panoramas</div>
+                        <div class="must-try-item">🛁 Moroccan Suites - Exotic design with premium amenities</div>
+                        <div class="must-try-item">🌊 Beach Access - Private path to East Beach</div>
+                    </div>
+                    
+                    <div class="activity-highlight">
+                        Pro tip: Book a room with ocean view! The rooftop pool area is stunning for sunset cocktails. Complimentary beach chairs and umbrellas.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Right Side - Pinterest Gallery (70%) -->
+            <div class="gallery-container">
+                <div class="masonry-gallery" id="hotel-californian-gallery">
+                    <div class="gallery-item" onclick="openLightbox('./santa-barbara-images/Hotel-Californian/01-rooftop-pool-tantan-bar-super-tall.jpg')">
+                        <img src="./santa-barbara-images/Hotel-Californian/01-rooftop-pool-tantan-bar-super-tall.jpg" alt="Rooftop Pool & Tantan Bar" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="gallery-placeholder super-tall" style="display:none;">Rooftop Pool<br>& Tantan Bar</div>
+                        <div class="gallery-caption">Infinity Pool with Ocean Views</div>
+                    </div>
+                    
+                    <div class="gallery-item" onclick="openLightbox('./santa-barbara-images/Hotel-Californian/02-ocean-mountain-views-360-medium.jpg')">
+                        <img src="./santa-barbara-images/Hotel-Californian/02-ocean-mountain-views-360-medium.jpg" alt="Ocean & Mountain Views" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="gallery-placeholder medium" style="display:none;">360° Views</div>
+                        <div class="gallery-caption">Ocean & Mountains Panorama</div>
+                    </div>
+                    
+                    <div class="gallery-item" onclick="openLightbox('./santa-barbara-images/Hotel-Californian/03-spanish-colonial-architecture-large.jpg')">
+                        <img src="./santa-barbara-images/Hotel-Californian/03-spanish-colonial-architecture-large.jpg" alt="Spanish Colonial Architecture" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="gallery-placeholder large" style="display:none;">Spanish Colonial<br>Architecture</div>
+                        <div class="gallery-caption">Historic Revival Design</div>
+                    </div>
+                    
+                    <div class="gallery-item" onclick="openLightbox('./santa-barbara-images/Hotel-Californian/04-luxury-moroccan-suite-tall.jpg')">
+                        <img src="./santa-barbara-images/Hotel-Californian/04-luxury-moroccan-suite-tall.jpg" alt="Luxury Moroccan Suite" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="gallery-placeholder tall" style="display:none;">Luxury<br>Moroccan Suite</div>
+                        <div class="gallery-caption">Exotic Design & Premium Amenities</div>
+                    </div>
+                    
+                    <div class="gallery-item" onclick="openLightbox('./santa-barbara-images/Hotel-Californian/05-poolside-dining-sunset-extra-tall.jpg')">
+                        <img src="./santa-barbara-images/Hotel-Californian/05-poolside-dining-sunset-extra-tall.jpg" alt="Poolside Dining" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="gallery-placeholder extra-tall" style="display:none;">Poolside<br>Dining</div>
+                        <div class="gallery-caption">Sunset Dining Experience</div>
+                    </div>
+                    
+                    <div class="gallery-item" onclick="openLightbox('./santa-barbara-images/Hotel-Californian/06-lobby-design-interior-small.jpg')">
+                        <img src="./santa-barbara-images/Hotel-Californian/06-lobby-design-interior-small.jpg" alt="Lobby Design" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="gallery-placeholder small" style="display:none;">Stunning<br>Lobby</div>
+                        <div class="gallery-caption">Moroccan-Inspired Interior</div>
+                    </div>
+                    
+                    <!-- Hidden photos -->
+                    <div class="gallery-item hidden" onclick="openLightbox('./santa-barbara-images/Hotel-Californian/07-spa-majorelle-treatment-medium.jpg')">
+                        <img src="./santa-barbara-images/Hotel-Californian/07-spa-majorelle-treatment-medium.jpg" alt="Spa Majorelle" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="gallery-placeholder medium" style="display:none;">Spa<br>Majorelle</div>
+                        <div class="gallery-caption">Luxury Wellness Treatments</div>
+                    </div>
+                    
+                    <div class="gallery-item hidden" onclick="openLightbox('./santa-barbara-images/Hotel-Californian/08-funk-zone-location-tall.jpg')">
+                        <img src="./santa-barbara-images/Hotel-Californian/08-funk-zone-location-tall.jpg" alt="Funk Zone Location" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="gallery-placeholder tall" style="display:none;">Perfect<br>Location</div>
+                        <div class="gallery-caption">Heart of Funk Zone</div>
+                    </div>
+                </div>
+                
+                <div class="show-more-container">
+                    <button class="show-more-btn" onclick="toggleGallery('hotel-californian-gallery')">
+                        Show More Photos
+                    </button>
+                    <div class="photo-count">
+                        <span id="hotel-californian-visible-count">6</span> of <span id="hotel-californian-total-count">8</span> photos
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Interactive Map Section -->
+    <section id="map" class="map-section">
+        <div class="map-container">
+            <h2 class="map-title">YOUR SANTA BARBARA ADVENTURE MAP</h2>
+            <p class="map-subtitle">All locations plotted for easy navigation during your trip</p>
+            
+            <div class="map-embed">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m52!1m12!1m3!1d52876.82553460445!2d-119.75076768358097!3d34.42484314999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m37!3e0!4m5!1s0x80e9144426c9bb19%3A0x4f726d1b8b7e0d72!2sSanta%20Barbara%20Station%2C%20Santa%20Barbara%2C%20CA!3m2!1d34.4186!2d-119.6904!4m5!1s0x80e912fea89f28b7%3A0x18e7b2c8c7e7a5d0!2sSanta%20Barbara%20Zoo%2C%20500%20Ni%C3%B1os%20Dr%2C%20Santa%20Barbara%2C%20CA%2093103!3m2!1d34.4208888!2d-119.6708333!4m5!1s0x80e912c4e6b4b0ab%3A0x7c3a6ec7b8b4e4d0!2sMOXI%2C%20The%20Wolf%20Museum%20of%20Exploration%20%26%20Innovation%2C%20125%20State%20St%2C%20Santa%20Barbara%2C%20CA%2093101!3m2!1d34.410833!2d-119.697222!4m5!1s0x80e912b2e6b4b0ab%3A0x7c3a6ec7b8b4e4d0!2sChase%20Palm%20Park%2C%20323%20E%20Cabrillo%20Blvd%2C%20Santa%20Barbara%2C%20CA%2093101!3m2!1d34.408333!2d-119.688889!4m5!1s0x80e912c4e6b4b0ab%3A0x7c3a6ec7b8b4e4d0!2sSanta%20Barbara%20FisHouse%2C%20101%20Harbor%20Way%2C%20Santa%20Barbara%2C%20CA%2093109!3m2!1d34.409722!2d-119.688333!4m5!1s0x80e912c4e6b4b0ab%3A0x7c3a6ec7b8b4e4d0!2sHotel%20Californian%2C%2036%20State%20St%2C%20Santa%20Barbara%2C%20CA%2093101!3m2!1d34.413889!2d-119.695556!5e0!3m2!1sen!2sus!4v1614633600000!5m2!1sen!2sus" 
+                    width="100%" 
+                    height="450" 
+                    style="border:0; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+            
+            <div class="location-legend">
+                <div class="legend-title">📍 Your Itinerary Locations</div>
+                <div class="legend-items">
+                    <div class="legend-item">
+                        <span class="legend-marker">🚂</span>
+                        <span class="legend-text">Santa Barbara Train Station - Coast Starlight Arrival</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-marker">🦒</span>
+                        <span class="legend-text">Santa Barbara Zoo - Giraffe Feeding & More</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-marker">🎸</span>
+                        <span class="legend-text">MOXI Museum - Interactive Science Fun</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-marker">🚢</span>
+                        <span class="legend-text">Chase Palm Park - Shipwreck Playground</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-marker">🐟</span>
+                        <span class="legend-text">Santa Barbara FisHouse - Harbor Dining</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-marker">🏨</span>
+                        <span class="legend-text">Hotel Californian - Luxury Accommodation</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Weather Section -->
+    <section id="weather" class="weather-section">
+        <div class="weather-container">
+            <h2 class="weather-title">PERFECT WEATHER ALL WEEKEND</h2>
+            <div style="text-align: center; margin-top: 40px;">
+                <div style="background: rgba(255,255,255,0.9); display: inline-block; padding: 30px 50px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);">
+                    <p style="color: #4682B4; font-weight: 500; margin-bottom: 15px; font-size: 1.2rem;">☀️ 68°F - 75°F All Weekend!</p>
+                    <p style="color: #666; font-size: 1rem;">Sunny skies, gentle ocean breezes, and perfect temperatures for all outdoor activities</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <h3 class="footer-title">Ready for Your Santa Barbara Adventure?</h3>
+        <p>Pack your sunscreen, bring your sense of wonder, and prepare for an unforgettable coastal weekend!</p>
+    </footer>
+
+    <script src="frontend/src/components/TimelineBar/TimelineBar.js"></script>
+    <script>
+        // Countdown Timer
+        function updateCountdown() {
+            const tripDate = new Date();
+            const today = new Date();
+            
+            // Find next Saturday
+            const daysUntilSaturday = (6 - today.getDay() + 7) % 7 || 7;
+            tripDate.setDate(today.getDate() + daysUntilSaturday);
+            tripDate.setHours(9, 50, 0, 0);
+
+            const difference = tripDate - today;
+
+            if (difference > 0) {
+                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+                document.getElementById('days').textContent = days;
+                document.getElementById('hours').textContent = hours;
+                document.getElementById('minutes').textContent = minutes;
+                document.getElementById('seconds').textContent = seconds;
+            }
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Lightbox functions
+        function openLightbox(src) {
+            document.getElementById('lightbox').style.display = 'block';
+            document.getElementById('lightbox-img').src = src;
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+        }
+
+        // Gallery toggle function
+        function toggleGallery(galleryId) {
+            const gallery = document.getElementById(galleryId);
+            const hiddenItems = gallery.querySelectorAll('.gallery-item.hidden');
+            const button = gallery.parentElement.querySelector('.show-more-btn');
+            const visibleCountSpan = document.getElementById(galleryId.replace('-gallery', '-visible-count'));
+            const showMoreContainer = gallery.parentElement.querySelector('.show-more-container');
+            
+            if (hiddenItems.length > 0 && hiddenItems[0].classList.contains('hidden')) {
+                // Show more photos
+                hiddenItems.forEach(item => item.classList.remove('hidden'));
+                gallery.classList.add('expanded');
+                button.textContent = 'Show Less Photos';
+                visibleCountSpan.textContent = gallery.querySelectorAll('.gallery-item').length;
+                showMoreContainer.style.position = 'relative';
+                showMoreContainer.style.bottom = 'auto';
+                showMoreContainer.style.left = 'auto';
+                showMoreContainer.style.transform = 'none';
+                showMoreContainer.style.marginTop = '20px';
+            } else {
+                // Show less photos
+                const allItems = gallery.querySelectorAll('.gallery-item');
+                for (let i = 6; i < allItems.length; i++) {
+                    allItems[i].classList.add('hidden');
+                }
+                gallery.classList.remove('expanded');
+                button.textContent = 'Show More Photos';
+                visibleCountSpan.textContent = '6';
+                showMoreContainer.style.position = 'absolute';
+                showMoreContainer.style.bottom = '15px';
+                showMoreContainer.style.left = '50%';
+                showMoreContainer.style.transform = 'translateX(-50%)';
+                showMoreContainer.style.marginTop = '0';
+            }
+        }
+
+        // Close lightbox when clicking outside image
+        document.getElementById('lightbox').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeLightbox();
+            }
+        });
+
+        // Close lightbox with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            }
+        });
+    </script>
+</body>
+</html>

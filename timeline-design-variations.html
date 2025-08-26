@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timeline Bar Design Variations</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        
+        .demo-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .design-section {
+            margin-bottom: 80px;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .design-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        .timeline-wrapper {
+            position: relative;
+            height: 80px;
+            margin-bottom: 20px;
+        }
+        
+        /* Design 1: Minimalist Line */
+        .design1 .timeline-bar {
+            position: relative;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            padding: 0 40px;
+        }
+        
+        .design1 .timeline-track {
+            position: relative;
+            height: 4px;
+            width: 100%;
+            background: #e0e0e0;
+            border-radius: 2px;
+        }
+        
+        .design1 .timeline-segment {
+            position: absolute;
+            height: 100%;
+            transition: all 0.3s ease;
+        }
+        
+        .design1 .segment-saturday {
+            left: 0;
+            width: 33.33%;
+            background: #3498db;
+        }
+        
+        .design1 .segment-sunday {
+            left: 33.33%;
+            width: 33.33%;
+            background: #e74c3c;
+        }
+        
+        .design1 .segment-monday {
+            left: 66.66%;
+            width: 33.34%;
+            background: #2ecc71;
+        }
+        
+        .design1 .day-marker {
+            position: absolute;
+            top: -25px;
+            transform: translateX(-50%);
+            font-size: 12px;
+            font-weight: 600;
+            color: #666;
+        }
+        
+        .design1 .marker-sat { left: 16.66%; }
+        .design1 .marker-sun { left: 50%; }
+        .design1 .marker-mon { left: 83.33%; }
+        
+        .design1 .progress-dot {
+            position: absolute;
+            top: 50%;
+            left: 25%;
+            transform: translate(-50%, -50%);
+            width: 12px;
+            height: 12px;
+            background: white;
+            border: 3px solid #333;
+            border-radius: 50%;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            z-index: 10;
+        }
+        
+        /* Design 2: Gradient Wave */
+        .design2 .timeline-bar {
+            position: relative;
+            height: 60px;
+            overflow: hidden;
+            border-radius: 30px;
+            background: linear-gradient(90deg, 
+                #74b9ff 0%, #0984e3 33.33%, 
+                #ff7675 33.33%, #d63031 66.66%, 
+                #55efc4 66.66%, #00b894 100%);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .design2 .wave-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 60"><path d="M0,30 Q300,10 600,30 T1200,30 L1200,60 L0,60 Z" fill="rgba(255,255,255,0.2)"/></svg>');
+            background-size: cover;
+        }
+        
+        .design2 .day-label {
+            position: absolute;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-weight: 700;
+            font-size: 14px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .design2 .label-sat { left: 16.66%; }
+        .design2 .label-sun { left: 50%; }
+        .design2 .label-mon { left: 83.33%; }
+        
+        .design2 .progress-indicator {
+            position: absolute;
+            top: 50%;
+            left: 40%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+        
+        .design2 .progress-indicator::before {
+            content: '✈️';
+            font-size: 20px;
+        }
+        
+        /* Design 3: Metro Style Blocks */
+        .design3 .timeline-bar {
+            display: flex;
+            height: 50px;
+            gap: 2px;
+            background: #f0f0f0;
+            padding: 2px;
+        }
+        
+        .design3 .day-block {
+            flex: 1;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .design3 .block-saturday {
+            background: #3498db;
+        }
+        
+        .design3 .block-sunday {
+            background: #e74c3c;
+        }
+        
+        .design3 .block-monday {
+            background: #2ecc71;
+        }
+        
+        .design3 .day-block:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .design3 .progress-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 4px;
+            width: 40%;
+            background: #f39c12;
+            transition: width 0.3s ease;
+        }
+        
+        .design3 .time-detail {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 10px;
+            color: #666;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .design3 .day-block:hover .time-detail {
+            opacity: 1;
+        }
+        
+        /* Design 4: Circular Progress */
+        .design4 .timeline-bar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80px;
+            gap: 20px;
+        }
+        
+        .design4 .day-circle {
+            position: relative;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 12px;
+            color: #666;
+            transition: all 0.3s ease;
+        }
+        
+        .design4 .day-circle.active {
+            transform: scale(1.2);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        
+        .design4 .circle-saturday.active {
+            background: #3498db;
+            color: white;
+        }
+        
+        .design4 .circle-sunday {
+            background: #ffebee;
+            color: #e74c3c;
+        }
+        
+        .design4 .circle-monday {
+            background: #e8f5e9;
+            color: #2ecc71;
+        }
+        
+        .design4 .connector {
+            position: absolute;
+            height: 2px;
+            width: 100px;
+            background: #ddd;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .design4 .connector-1 {
+            left: 60px;
+        }
+        
+        .design4 .connector-2 {
+            left: 180px;
+        }
+        
+        .design4 .progress-ring {
+            position: absolute;
+            top: -4px;
+            left: -4px;
+            right: -4px;
+            bottom: -4px;
+            border: 4px solid transparent;
+            border-top-color: #f39c12;
+            border-radius: 50%;
+            animation: rotate 2s linear infinite;
+        }
+        
+        @keyframes rotate {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Design 5: Timeline with Icons */
+        .design5 .timeline-bar {
+            position: relative;
+            height: 80px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 20px;
+        }
+        
+        .design5 .timeline-line {
+            position: absolute;
+            top: 50%;
+            left: 40px;
+            right: 40px;
+            height: 2px;
+            background: #e0e0e0;
+            transform: translateY(-50%);
+        }
+        
+        .design5 .timeline-progress {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 35%;
+            background: linear-gradient(90deg, #3498db, #e74c3c);
+            transition: width 0.3s ease;
+        }
+        
+        .design5 .day-stop {
+            position: absolute;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            background: white;
+            border: 3px solid #e0e0e0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            z-index: 5;
+            transition: all 0.3s ease;
+        }
+        
+        .design5 .day-stop.completed {
+            border-color: #3498db;
+            background: #3498db;
+        }
+        
+        .design5 .stop-saturday { left: 16.66%; }
+        .design5 .stop-sunday { left: 50%; }
+        .design5 .stop-monday { left: 83.33%; }
+        
+        .design5 .day-label {
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 11px;
+            font-weight: 600;
+            color: #666;
+            white-space: nowrap;
+        }
+        
+        .design5 .current-time {
+            position: absolute;
+            top: -25px;
+            left: 35%;
+            transform: translateX(-50%);
+            background: #333;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        
+        .description {
+            margin-top: 40px;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        <h1 style="text-align: center; margin-bottom: 40px; color: #333;">Timeline Bar Design Variations</h1>
+        
+        <!-- Design 1 -->
+        <div class="design-section">
+            <h2 class="design-title">Design 1: Minimalist Line</h2>
+            <div class="timeline-wrapper">
+                <div class="design1">
+                    <div class="timeline-bar">
+                        <div class="timeline-track">
+                            <div class="timeline-segment segment-saturday"></div>
+                            <div class="timeline-segment segment-sunday"></div>
+                            <div class="timeline-segment segment-monday"></div>
+                            <div class="day-marker marker-sat">SAT</div>
+                            <div class="day-marker marker-sun">SUN</div>
+                            <div class="day-marker marker-mon">MON</div>
+                            <div class="progress-dot"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="description">
+                Clean, minimal design with a thin progress line. Days are indicated with subtle text labels above. The progress indicator is a small dot that moves along the line. Perfect for a sophisticated, understated look.
+            </div>
+        </div>
+        
+        <!-- Design 2 -->
+        <div class="design-section">
+            <h2 class="design-title">Design 2: Gradient Wave</h2>
+            <div class="timeline-wrapper">
+                <div class="design2">
+                    <div class="timeline-bar">
+                        <div class="wave-overlay"></div>
+                        <div class="day-label label-sat">SATURDAY</div>
+                        <div class="day-label label-sun">SUNDAY</div>
+                        <div class="day-label label-mon">MONDAY</div>
+                        <div class="progress-indicator"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="description">
+                Vibrant gradient design with smooth color transitions between days. Features a playful airplane emoji as the progress indicator. The wave overlay adds visual interest and depth.
+            </div>
+        </div>
+        
+        <!-- Design 3 -->
+        <div class="design-section">
+            <h2 class="design-title">Design 3: Metro Style Blocks</h2>
+            <div class="timeline-wrapper">
+                <div class="design3">
+                    <div class="timeline-bar">
+                        <div class="day-block block-saturday">
+                            SATURDAY
+                            <div class="time-detail">7:00 AM - 10:00 PM</div>
+                            <div class="progress-bar"></div>
+                        </div>
+                        <div class="day-block block-sunday">
+                            SUNDAY
+                            <div class="time-detail">7:00 AM - 10:00 PM</div>
+                        </div>
+                        <div class="day-block block-monday">
+                            MONDAY
+                            <div class="time-detail">7:00 AM - 10:00 PM</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="description">
+                Modern block-based design inspired by Metro UI. Each day is a distinct clickable block with hover effects. Features an orange progress bar at the bottom of the active day.
+            </div>
+        </div>
+        
+        <!-- Design 4 -->
+        <div class="design-section">
+            <h2 class="design-title">Design 4: Circular Progress</h2>
+            <div class="timeline-wrapper">
+                <div class="design4">
+                    <div class="timeline-bar">
+                        <div class="day-circle circle-saturday active">
+                            SAT
+                            <div class="progress-ring"></div>
+                        </div>
+                        <div class="connector connector-1"></div>
+                        <div class="day-circle circle-sunday">SUN</div>
+                        <div class="connector connector-2"></div>
+                        <div class="day-circle circle-monday">MON</div>
+                    </div>
+                </div>
+            </div>
+            <div class="description">
+                Circular node design with connecting lines. The active day scales up and shows an animated rotating ring. Each day has its own color theme with subtle backgrounds for inactive days.
+            </div>
+        </div>
+        
+        <!-- Design 5 -->
+        <div class="design-section">
+            <h2 class="design-title">Design 5: Timeline with Icons</h2>
+            <div class="timeline-wrapper">
+                <div class="design5">
+                    <div class="timeline-bar">
+                        <div class="timeline-line">
+                            <div class="timeline-progress"></div>
+                        </div>
+                        <div class="day-stop stop-saturday completed">🚂</div>
+                        <div class="day-stop stop-sunday">🦁</div>
+                        <div class="day-stop stop-monday">🔬</div>
+                        <div class="day-label" style="left: 16.66%;">Saturday</div>
+                        <div class="day-label" style="left: 50%;">Sunday</div>
+                        <div class="day-label" style="left: 83.33%;">Monday</div>
+                        <div class="current-time">11:30 AM</div>
+                    </div>
+                </div>
+            </div>
+            <div class="description">
+                Icon-based timeline with activity-specific emojis for each day (train, zoo, museum). Features a gradient progress line and shows the current time above. Completed days are highlighted in blue.
+            </div>
+        </div>
+    </div>
+</body>
+</html>

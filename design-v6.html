@@ -1,0 +1,1479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Santa Barbara Weekend Escape - California Coastal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Kaushan+Script&family=Satisfy&family=Caveat:wght@400;500;600;700&family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --coastal-sand: #F4E4BC;
+            --coastal-driftwood: #8B7355;
+            --coastal-sunset-pink: #FFB6B9;
+            --coastal-sunset-orange: #FF8E53;
+            --coastal-ocean-blue: #4FC3F7;
+            --coastal-deep-blue: #1976D2;
+            --coastal-seafoam: #81C784;
+            --coastal-coral: #FF7043;
+            --coastal-pearl: #FFF8E1;
+            --coastal-kelp: #388E3C;
+            --coastal-wave: #B3E5FC;
+            --coastal-shadow: rgba(139, 115, 85, 0.3);
+            --coastal-glow: rgba(79, 195, 247, 0.4);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Nunito Sans', sans-serif;
+            line-height: 1.6;
+            color: var(--coastal-driftwood);
+            background: linear-gradient(135deg, var(--coastal-pearl) 0%, var(--coastal-sand) 50%, var(--coastal-wave) 100%);
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Organic coastal texture overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(ellipse at 20% 30%, rgba(79, 195, 247, 0.08) 0%, transparent 40%),
+                radial-gradient(ellipse at 80% 70%, rgba(255, 182, 185, 0.06) 0%, transparent 40%),
+                radial-gradient(ellipse at 40% 90%, rgba(129, 199, 132, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* Floating organic elements */
+        body::after {
+            content: '🌊';
+            position: fixed;
+            top: 20%;
+            right: 15%;
+            font-size: 2rem;
+            opacity: 0.1;
+            animation: float 8s ease-in-out infinite;
+            z-index: -1;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Coastal Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            padding: 2rem;
+            text-align: center;
+            background: 
+                radial-gradient(ellipse at 30% 0%, var(--coastal-sunset-orange) 0%, transparent 70%),
+                radial-gradient(ellipse at 70% 100%, var(--coastal-ocean-blue) 0%, transparent 70%),
+                linear-gradient(135deg, var(--coastal-sunset-pink) 0%, var(--coastal-wave) 30%, var(--coastal-ocean-blue) 70%, var(--coastal-deep-blue) 100%);
+            background-size: 200% 200%;
+            animation: waveFlow 12s ease infinite;
+        }
+
+        @keyframes waveFlow {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        /* Organic wave border */
+        .coastal-wave-border {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            right: 2rem;
+            bottom: 2rem;
+            border: 6px solid transparent;
+            border-radius: 50px;
+            background: linear-gradient(45deg, var(--coastal-pearl), var(--coastal-wave)) border-box;
+            -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: subtract;
+            box-shadow: 
+                inset 0 0 30px var(--coastal-glow),
+                0 0 50px var(--coastal-shadow);
+        }
+
+        /* Organic decorative shells */
+        .coastal-shell {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: var(--coastal-pearl);
+            border-radius: 50% 20% 50% 20%;
+            box-shadow: 0 5px 20px var(--coastal-shadow);
+            z-index: 2;
+            animation: shellFloat 6s ease-in-out infinite;
+        }
+
+        .coastal-shell::before {
+            content: '🐚';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1.5rem;
+            opacity: 0.8;
+        }
+
+        .shell-tl { top: 4rem; left: 4rem; animation-delay: 0s; }
+        .shell-tr { top: 4rem; right: 4rem; animation-delay: 2s; }
+        .shell-bl { bottom: 4rem; left: 4rem; animation-delay: 4s; }
+        .shell-br { bottom: 4rem; right: 4rem; animation-delay: 1s; }
+
+        @keyframes shellFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
+        }
+
+        /* Ocean wave animation */
+        .ocean-waves {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 150px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" fill="%23B3E5FC"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" fill="%234FC3F7"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" fill="%2381C784"/></svg>') repeat-x;
+            background-size: 1200px 120px;
+            animation: waveMove 10s ease-in-out infinite;
+            opacity: 0.7;
+            z-index: 1;
+        }
+
+        @keyframes waveMove {
+            0% { background-position: 0 0; }
+            100% { background-position: 1200px 0; }
+        }
+        
+        .hero-content {
+            z-index: 3;
+            max-width: 900px;
+            animation: fadeInUp 2s ease-out;
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+        }
+        
+        .hero h1 {
+            font-family: 'Kaushan Script', cursive;
+            font-size: clamp(4rem, 12vw, 8rem);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+            margin-bottom: 1rem;
+            color: var(--coastal-pearl);
+            text-shadow: 
+                3px 3px 0 var(--coastal-driftwood),
+                6px 6px 15px rgba(0, 0, 0, 0.4),
+                0 0 30px var(--coastal-glow);
+            transform: perspective(800px) rotateX(10deg);
+        }
+        
+        .hero-subtitle {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.8rem;
+            font-weight: 600;
+            color: var(--coastal-sand);
+            margin-bottom: 0.5rem;
+            animation: fadeInUp 2s ease-out 0.3s both;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero-date {
+            font-family: 'Caveat', cursive;
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: var(--coastal-sunset-orange);
+            margin-bottom: 3rem;
+            animation: fadeInUp 2s ease-out 0.6s both;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+            background: rgba(255, 248, 225, 0.3);
+            padding: 0.8rem 2.5rem;
+            border-radius: 50px;
+            border: 3px solid var(--coastal-coral);
+            backdrop-filter: blur(10px);
+        }
+
+        /* Coastal banner with organic shape */
+        .coastal-banner {
+            position: absolute;
+            top: 12%;
+            right: 8%;
+            width: 220px;
+            height: 80px;
+            background: var(--coastal-coral);
+            color: var(--coastal-pearl);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Caveat', cursive;
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-transform: capitalize;
+            transform: rotate(12deg);
+            box-shadow: 0 8px 25px rgba(255, 112, 67, 0.4);
+            z-index: 2;
+            border-radius: 20px 60px 20px 60px;
+            border: 4px solid var(--coastal-sunset-orange);
+        }
+
+        .coastal-banner::before,
+        .coastal-banner::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            width: 0;
+            height: 0;
+            border-style: solid;
+        }
+
+        .coastal-banner::before {
+            left: 20px;
+            border-width: 15px 0 0 25px;
+            border-color: transparent transparent transparent var(--coastal-driftwood);
+        }
+
+        .coastal-banner::after {
+            right: 20px;
+            border-width: 15px 25px 0 0;
+            border-color: transparent var(--coastal-driftwood) transparent transparent;
+        }
+        
+        /* Driftwood-style Countdown */
+        .countdown-section {
+            animation: fadeInUp 2s ease-out 0.9s both;
+        }
+        
+        .countdown-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.4rem;
+            font-weight: 600;
+            text-transform: capitalize;
+            color: var(--coastal-pearl);
+            margin-bottom: 2.5rem;
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+        }
+        
+        .countdown-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            max-width: 650px;
+            margin: 0 auto;
+        }
+        
+        .countdown-item {
+            text-align: center;
+            padding: 2rem 1.5rem;
+            background: var(--coastal-pearl);
+            border-radius: 30px 10px 30px 10px;
+            box-shadow: 
+                0 15px 35px var(--coastal-shadow),
+                inset 0 3px 0 var(--coastal-sand),
+                0 0 20px var(--coastal-glow);
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            border: 5px solid var(--coastal-driftwood);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Driftwood grain texture effect */
+        .countdown-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(139, 115, 85, 0.03) 2px,
+                    rgba(139, 115, 85, 0.03) 4px
+                );
+            pointer-events: none;
+        }
+        
+        .countdown-item:hover {
+            transform: translateY(-10px) scale(1.05) rotate(2deg);
+            box-shadow: 
+                0 25px 50px var(--coastal-shadow),
+                inset 0 3px 0 var(--coastal-sand),
+                0 0 30px var(--coastal-glow);
+        }
+        
+        .countdown-number {
+            font-family: 'Caveat', cursive;
+            font-size: 3.2rem;
+            font-weight: 700;
+            color: var(--coastal-coral);
+            display: block;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 0 var(--coastal-driftwood);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .countdown-label {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.4rem;
+            text-transform: capitalize;
+            letter-spacing: 0.05em;
+            color: var(--coastal-driftwood);
+            font-weight: 600;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Coastal nature icons */
+        .coastal-nature {
+            position: absolute;
+            bottom: 25%;
+            left: 5%;
+            display: flex;
+            gap: 2.5rem;
+            z-index: 2;
+        }
+
+        .nature-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--coastal-seafoam);
+            border-radius: 50% 20% 50% 20%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--coastal-pearl);
+            font-size: 1.8rem;
+            box-shadow: 0 8px 20px rgba(129, 199, 132, 0.4);
+            animation: organicFloat 5s ease-in-out infinite;
+            border: 3px solid var(--coastal-kelp);
+        }
+
+        .nature-icon:nth-child(2) { animation-delay: 0.8s; background: var(--coastal-sunset-pink); }
+        .nature-icon:nth-child(3) { animation-delay: 1.6s; background: var(--coastal-ocean-blue); }
+        .nature-icon:nth-child(4) { animation-delay: 2.4s; background: var(--coastal-coral); }
+
+        @keyframes organicFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-12px) rotate(2deg); }
+            66% { transform: translateY(-8px) rotate(-1deg); }
+        }
+        
+        /* Wave scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            z-index: 3;
+            animation: fadeInUp 2.5s ease-out 1.5s both;
+        }
+        
+        .scroll-text {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--coastal-pearl);
+            text-transform: capitalize;
+            letter-spacing: 0.1em;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .scroll-arrow {
+            width: 50px;
+            height: 50px;
+            background: var(--coastal-wave);
+            border-radius: 50% 20% 50% 20%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: organicBounce 2.5s ease-in-out infinite;
+            border: 4px solid var(--coastal-ocean-blue);
+            box-shadow: 0 5px 15px var(--coastal-glow);
+        }
+
+        .scroll-arrow::after {
+            content: '🌊';
+            font-size: 1.5rem;
+            animation: wave 1s ease-in-out infinite;
+        }
+
+        @keyframes organicBounce {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-20px) scale(1.1); }
+        }
+
+        @keyframes wave {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(10deg); }
+        }
+        
+        /* Main Content with coastal styling */
+        .main-content {
+            padding: 6rem 0;
+            background: var(--coastal-pearl);
+            position: relative;
+        }
+
+        /* Sand texture pattern */
+        .coastal-texture {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(139, 115, 85, 0.03) 1px, transparent 1px),
+                radial-gradient(circle at 80% 70%, rgba(139, 115, 85, 0.02) 1px, transparent 1px);
+            background-size: 40px 40px, 60px 60px;
+            pointer-events: none;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s ease;
+            position: relative;
+        }
+
+        /* Organic wave decoration */
+        .section-header::before {
+            content: '';
+            position: absolute;
+            top: -3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 6px;
+            background: var(--coastal-seafoam);
+            border-radius: 50px;
+            box-shadow: 0 2px 10px rgba(129, 199, 132, 0.3);
+        }
+
+        .section-header::after {
+            content: '🏖️';
+            position: absolute;
+            top: -4rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2.5rem;
+            background: var(--coastal-pearl);
+            padding: 0 1rem;
+        }
+        
+        .section-header.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .section-title {
+            font-family: 'Kaushan Script', cursive;
+            font-size: clamp(3rem, 8vw, 5.5rem);
+            font-weight: 400;
+            color: var(--coastal-coral);
+            margin-bottom: 1.5rem;
+            text-shadow: 3px 3px 0 var(--coastal-driftwood);
+            transform: perspective(400px) rotateX(5deg);
+        }
+        
+        .section-subtitle {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            font-weight: 500;
+            color: var(--coastal-ocean-blue);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Organic Activity Cards */
+        .activities-grid {
+            display: grid;
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+        
+        .activity-card {
+            background: var(--coastal-pearl);
+            border-radius: 40px 20px 40px 20px;
+            overflow: hidden;
+            box-shadow: 
+                0 20px 40px var(--coastal-shadow),
+                inset 0 4px 0 var(--coastal-sand);
+            transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            opacity: 0;
+            transform: translateY(40px);
+            border: 6px solid var(--coastal-driftwood);
+            position: relative;
+        }
+
+        /* Coastal wave top border */
+        .activity-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 12px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V7.23C0,65.52,268.63,112.77,600,112.77S1200,65.52,1200,7.23V0Z" fill="%2381C784"/></svg>') repeat-x;
+            background-size: 1200px 120px;
+        }
+        
+        .activity-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .activity-card:hover {
+            transform: translateY(-15px) scale(1.02) rotate(1deg);
+            box-shadow: 
+                0 30px 60px var(--coastal-shadow),
+                inset 0 4px 0 var(--coastal-sand),
+                0 0 40px var(--coastal-glow);
+        }
+        
+        .activity-header {
+            padding: 3rem 3rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            position: relative;
+        }
+
+        /* Organic divider line */
+        .activity-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 3rem;
+            right: 3rem;
+            height: 3px;
+            background: var(--coastal-seafoam);
+            border-radius: 50px;
+        }
+        
+        .activity-time {
+            background: var(--coastal-sunset-orange);
+            color: var(--coastal-pearl);
+            padding: 1.2rem 2rem;
+            border-radius: 30px 10px 30px 10px;
+            font-family: 'Caveat', cursive;
+            font-weight: 700;
+            font-size: 1.3rem;
+            white-space: nowrap;
+            box-shadow: 0 8px 20px rgba(255, 142, 83, 0.4);
+            border: 3px solid var(--coastal-coral);
+        }
+        
+        .activity-title {
+            font-family: 'Kaushan Script', cursive;
+            font-size: 2.4rem;
+            font-weight: 400;
+            color: var(--coastal-coral);
+            flex: 1;
+            text-shadow: 2px 2px 0 var(--coastal-driftwood);
+        }
+        
+        .activity-content {
+            padding: 0 3rem 3rem;
+        }
+        
+        .activity-description {
+            color: var(--coastal-driftwood);
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+            font-size: 1.15rem;
+            font-weight: 400;
+        }
+        
+        .activity-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+        
+        .detail-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: var(--coastal-ocean-blue);
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.4rem;
+            font-weight: 600;
+            background: rgba(79, 195, 247, 0.15);
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px 10px 25px 10px;
+            border: 2px solid var(--coastal-wave);
+            box-shadow: 0 4px 12px rgba(79, 195, 247, 0.2);
+        }
+        
+        .detail-icon {
+            width: 22px;
+            height: 22px;
+            color: var(--coastal-coral);
+        }
+        
+        .activity-highlight {
+            background: linear-gradient(135deg, var(--coastal-sand) 0%, var(--coastal-sunset-pink) 100%);
+            padding: 2rem;
+            border-radius: 25px 10px 25px 10px;
+            border: 4px solid var(--coastal-coral);
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: var(--coastal-driftwood);
+            margin-bottom: 2.5rem;
+            position: relative;
+            box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .activity-highlight::before {
+            content: '⭐';
+            position: absolute;
+            top: -15px;
+            left: 25px;
+            background: var(--coastal-sunset-pink);
+            color: var(--coastal-driftwood);
+            font-size: 1.8rem;
+            padding: 0 12px;
+            border-radius: 50%;
+            border: 3px solid var(--coastal-coral);
+            box-shadow: 0 4px 12px rgba(255, 182, 185, 0.4);
+        }
+        
+        /* Organic Gallery Grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+            margin-top: 2.5rem;
+        }
+        
+        .gallery-item {
+            aspect-ratio: 1;
+            border-radius: 30px 10px 30px 10px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            border: 5px solid var(--coastal-driftwood);
+            box-shadow: 0 12px 30px var(--coastal-shadow);
+        }
+
+        /* Coastal shimmer effect */
+        .gallery-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, 
+                transparent 0%, 
+                rgba(79, 195, 247, 0.3) 50%, 
+                transparent 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 2;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.08) rotate(3deg);
+            box-shadow: 0 20px 50px var(--coastal-shadow);
+        }
+
+        .gallery-item:hover::before {
+            opacity: 1;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.15);
+        }
+        
+        /* Wave Progress Timeline */
+        .progress-timeline {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: var(--coastal-sand);
+            z-index: 1000;
+            border-bottom: 3px solid var(--coastal-driftwood);
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--coastal-ocean-blue), var(--coastal-sunset-orange));
+            width: 0%;
+            transition: width 0.3s ease;
+            position: relative;
+            border-radius: 0 20px 20px 0;
+        }
+
+        .progress-bar::after {
+            content: '🏄‍♂️';
+            position: absolute;
+            right: -25px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.4rem;
+            animation: surf 2s ease-in-out infinite;
+        }
+
+        @keyframes surf {
+            0%, 100% { transform: translateY(-50%) rotate(0deg); }
+            50% { transform: translateY(-60%) rotate(5deg); }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .coastal-wave-border {
+                top: 1rem;
+                left: 1rem;
+                right: 1rem;
+                bottom: 1rem;
+                border-width: 4px;
+            }
+
+            .shell-tl, .shell-tr { top: 2rem; }
+            .shell-bl, .shell-br { bottom: 2rem; }
+            .shell-tl, .shell-bl { left: 2rem; }
+            .shell-tr, .shell-br { right: 2rem; }
+
+            .coastal-shell {
+                width: 50px;
+                height: 50px;
+            }
+
+            .coastal-shell::before {
+                font-size: 1.2rem;
+            }
+
+            .hero h1 {
+                font-size: clamp(3rem, 10vw, 6rem);
+            }
+
+            .hero-subtitle {
+                font-size: 2.2rem;
+            }
+
+            .hero-date {
+                font-size: 1.8rem;
+            }
+
+            .coastal-banner {
+                width: 170px;
+                height: 60px;
+                font-size: 1.4rem;
+            }
+
+            .countdown-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+                max-width: 450px;
+            }
+            
+            .countdown-item {
+                padding: 1.5rem 1rem;
+            }
+            
+            .countdown-number {
+                font-size: 2.5rem;
+            }
+
+            .coastal-nature {
+                position: static;
+                justify-content: center;
+                margin: 2rem 0;
+                gap: 1.5rem;
+            }
+
+            .nature-icon {
+                width: 55px;
+                height: 55px;
+                font-size: 1.4rem;
+            }
+            
+            .activity-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1.5rem;
+            }
+            
+            .activity-title {
+                font-size: 2rem;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+                gap: 1.5rem;
+            }
+
+            .section-title {
+                font-size: clamp(2.5rem, 8vw, 4rem);
+            }
+
+            .section-subtitle {
+                font-size: 1.6rem;
+            }
+        }
+        
+        /* Animation Keyframes */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(2deg); }
+        }
+
+        /* Additional organic elements */
+        .palm-frond {
+            position: fixed;
+            top: 40%;
+            left: -50px;
+            font-size: 3rem;
+            opacity: 0.1;
+            animation: sway 12s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        @keyframes sway {
+            0%, 100% { transform: rotate(-5deg); }
+            50% { transform: rotate(5deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Organic floating elements -->
+    <div class="palm-frond">🌴</div>
+    
+    <!-- Progress Timeline -->
+    <div class="progress-timeline">
+        <div class="progress-bar" id="progress-bar"></div>
+    </div>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="coastal-wave-border"></div>
+        <div class="coastal-shell shell-tl"></div>
+        <div class="coastal-shell shell-tr"></div>
+        <div class="coastal-shell shell-bl"></div>
+        <div class="coastal-shell shell-br"></div>
+        <div class="ocean-waves"></div>
+        <div class="coastal-banner">Beach Vibes Await!</div>
+        
+        <div class="hero-content">
+            <h1>Santa Barbara</h1>
+            <p class="hero-subtitle">A dreamy coastal escape</p>
+            <p class="hero-date">August 30 - September 1, 2025</p>
+            
+            <div class="countdown-section">
+                <h2 class="countdown-title">Your coastal adventure begins in</h2>
+                <div class="countdown-grid">
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="days">00</span>
+                        <span class="countdown-label">Days</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="hours">00</span>
+                        <span class="countdown-label">Hours</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="minutes">00</span>
+                        <span class="countdown-label">Minutes</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="seconds">00</span>
+                        <span class="countdown-label">Seconds</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="coastal-nature">
+            <div class="nature-icon">🌊</div>
+            <div class="nature-icon">🐚</div>
+            <div class="nature-icon">🌴</div>
+            <div class="nature-icon">🏄‍♂️</div>
+        </div>
+        
+        <div class="scroll-indicator">
+            <span class="scroll-text">Explore the coast</span>
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
+    
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="coastal-texture"></div>
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Your Coastal Journey</h2>
+                <p class="section-subtitle">Three days of sun, surf, and California coastal luxury</p>
+            </div>
+            
+            <div class="activities-grid">
+                <!-- Saturday Activities -->
+                <div class="activity-card" data-day="saturday">
+                    <div class="activity-header">
+                        <div class="activity-time">9:50 AM</div>
+                        <h3 class="activity-title">Coast Starlight Departure</h3>
+                    </div>
+                    <div class="activity-content">
+                        <p class="activity-description">Begin your journey aboard Amtrak's Coast Starlight, one of America's most scenic train routes. Enjoy panoramic views of the Pacific coastline as you travel from Los Angeles to Santa Barbara.</p>
+                        <div class="activity-details">
+                            <div class="detail-item">
+                                <svg class="detail-icon" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
+                                </svg>
+                                2.5 hour coastal journey
+                            </div>
+                            <div class="detail-item">
+                                <svg class="detail-icon" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+                                </svg>
+                                LA Union Station to SB
+                            </div>
+                        </div>
+                        <div class="activity-highlight">
+                            Book seats on the ocean side (right side of train heading north) for the most breathtaking coastal views!
+                        </div>
+                        <div class="gallery-grid">
+                            <div class="gallery-item">
+                                <img src="./santa-barbara-images/Saturday-0950-CoastStarlight/image1.jpg" alt="Coast Starlight train">
+                            </div>
+                            <div class="gallery-item">
+                                <img src="./santa-barbara-images/Saturday-0950-CoastStarlight/image2.jpg" alt="Ocean views from train">
+                            </div>
+                            <div class="gallery-item">
+                                <img src="./santa-barbara-images/Saturday-0950-CoastStarlight/image3.jpg" alt="Train interior">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="activity-card" data-day="saturday">
+                    <div class="activity-header">
+                        <div class="activity-time">12:00 PM</div>
+                        <h3 class="activity-title">Waterfront Lunch</h3>
+                    </div>
+                    <div class="activity-content">
+                        <p class="activity-description">Arrive in Santa Barbara and enjoy a leisurely lunch at one of the waterfront restaurants. Savor fresh seafood while taking in views of the harbor and Channel Islands.</p>
+                        <div class="activity-details">
+                            <div class="detail-item">
+                                <svg class="detail-icon" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"></path>
+                                </svg>
+                                Harbor views
+                            </div>
+                            <div class="detail-item">
+                                <svg class="detail-icon" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                Fresh coastal seafood
+                            </div>
+                        </div>
+                        <div class="activity-highlight">
+                            Many restaurants offer happy hour 3-6 PM. Perfect timing for discounted appetizers and local wine pairings!
+                        </div>
+                        <div class="gallery-grid">
+                            <div class="gallery-item">
+                                <img src="./santa-barbara-images/Saturday-1200-Lunch/image1.jpg" alt="Waterfront restaurant">
+                            </div>
+                            <div class="gallery-item">
+                                <img src="./santa-barbara-images/Saturday-1200-Lunch/image2.jpg" alt="Fresh seafood dish">
+                            </div>
+                            <div class="gallery-item">
+                                <img src="./santa-barbara-images/Saturday-1200-Lunch/image3.jpg" alt="Harbor view">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="activity-card" data-day="saturday">
+                    <div class="activity-header">
+                        <div class="activity-time">4:00 PM</div>
+                        <h3 class="activity-title">Chase Palm Park</h3>
+                    </div>
+                    <div class="activity-content">
+                        <p class="activity-description">Stroll through this beautiful oceanfront park featuring art installations, a vintage carousel, and stunning beach access. Perfect for a relaxing afternoon walk along the coast.</p>
+                        <div class="activity-details">
+                            <div class="detail-item">
+                                <svg class="detail-icon" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M4.083 9h1.946c.089-1.546.383-2.97.837-4.118A6.004 6.004 0 004.083 9zM10 2a8 8 0 100 16 8 8 0 000-16zm0 2c-.076 0-.232.032-.465.262-.238.234-.497.623-.737 1.182-.389.907-.673 2.142-.766 3.556h3.936c-.093-1.414-.377-2.649-.766-3.556-.24-.56-.5-.948-.737-1.182C10.232 4.032 10.076 4 10 4zm3.971 5c-.089-1.546-.383-2.97-.837-4.118A6.004 6.004 0 0115.917 9h-1.946zm-2.003 2H8.032c.093 1.414.377 2.649.766 3.556.24.56.5.948.737 1.182.233.23.389.262.465.262.076 0 .232-.032.465-.262.238-.234.498-.623.737-1.182.389-.907.673-2.142.766-3.556zm1.166 4.118c.454-1.147.748-2.572.837-4.118h1.946a6.004 6.004 0 01-2.783 4.118zm-6.268 0C6.412 13.97 6.118 12.546 6.03 11H4.083a6.004 6.004 0 002.783 4.118z" clip-rule="evenodd"></path>
+                                </svg>
+                                Prime oceanfront location
+                            </div>
+                            <div class="detail-item">
+                                <svg class="detail-icon" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z"></path>
+                                </svg>
+                                Coastal art installations
+                            </div>
+                        </div>
+                        <div class="gallery-grid">
+                            <div class="gallery-item">
+                                <img src="./santa-barbara-images/Saturday-1600-ChasePalmPark/image1.jpg" alt="Chase Palm Park">
+                            </div>
+                            <div class="gallery-item">
+                                <img src="./santa-barbara-images/Saturday-1600-ChasePalmPark/image2.jpg" alt="Art installation">
+                            </div>
+                            <div class="gallery-item">
+                                <img src="./santa-barbara-images/Saturday-1600-ChasePalmPark/image3.jpg" alt="Beachfront walkway">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="activity-card" data-day="saturday">
+                    <div class="activity-header">
+                        <div class="activity-time">7:00 PM</div>
+                        <h3 class="activity-title">FisHouse Dinner</h3>
+                    </div>
+                    <div class="activity-content">
+                        <p class="activity-description">End your first day with dinner at this acclaimed seafood restaurant. Known for their fresh catches and innovative preparations, it's the perfect introduction to Santa Barbara's culinary scene.</p>
+                        <div class="activity-details">
+                            <div class="detail-item">
+                                <svg class="detail-icon" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                </svg>
+                                Acclaimed coastal dining
+                            </div>
+                            <div class="detail-item">
+                                <svg class="detail-icon" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"></path>
+                                </svg>
+                                Fresh local catch daily
+                            </div>
+                        </div>
+                        <div class="activity-highlight">
+                            Reservations recommended, especially for weekend evenings. Don't miss their signature coastal cioppino!
+                        </div>
+                        <div class="gallery-grid">
+                            <div class="gallery-item">
+                                <img src="./santa-barbara-images/Saturday-1900-FisHouse/image1.jpg" alt="FisHouse exterior">
+                            </div>
+                            <div class="gallery-item">
+                                <img src="./santa-barbara-images/Saturday-1900-FisHouse/image2.jpg" alt="Seafood platter">
+                            </div>
+                            <div class="gallery-item">
+                                <img src="./santa-barbara-images/Saturday-1900-FisHouse/image3.jpg" alt="Restaurant interior">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Hotel -->
+                <div class="activity-card" data-day="accommodation">
+                    <div class="activity-header">
+                        <div class="activity-time">Hotel</div>
+                        <h3 class="activity-title">Hotel Californian</h3>
+                    </div>
+                    <div class="activity-content">
+                        <p class="activity-description">Your home base for the weekend at this stunning Spanish Colonial Revival hotel. Located in the heart of the Funk Zone, you'll be steps away from galleries, tasting rooms, and restaurants.</p>
+                        <div class="activity-details">
+                            <div class="detail-item">
+                                <svg class="detail-icon" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+                                </svg>
+                                Historic Funk Zone location
+                            </div>
+                            <div class="detail-item">
+                                <svg class="detail-icon" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                </svg>
+                                Luxury coastal accommodation
+                            </div>
+                        </div>
+                        <div class="activity-highlight">
+                            Historic property with modern coastal amenities. Rooftop bar offers stunning panoramic views of city and ocean!
+                        </div>
+                        <div class="gallery-grid">
+                            <div class="gallery-item">
+                                <img src="./santa-barbara-images/Hotel-Californian/image1.jpg" alt="Hotel Californian exterior">
+                            </div>
+                            <div class="gallery-item">
+                                <img src="./santa-barbara-images/Hotel-Californian/image2.jpg" alt="Hotel lobby">
+                            </div>
+                            <div class="gallery-item">
+                                <img src="./santa-barbara-images/Hotel-Californian/image3.jpg" alt="Hotel room">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sunday Activities -->
+                <div class="activity-card" data-day="sunday">
+                    <div class="activity-header">
+                        <div class="activity-time">9:30 AM</div>
+                        <h3 class="activity-title">Santa Barbara Zoo</h3>
+                    </div>
+                    <div class="activity-content">
+                        <p class="activity-description">Start Sunday with a visit to this beautiful zoo overlooking the Pacific Ocean. Home to over 500 animals, it's perfectly sized for a morning visit with stunning coastal views throughout.</p>
+                        <div class="activity-details">
+                            <div class="detail-item">
+                                <svg class="detail-icon" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M4.083 9h1.946c.089-1.546.383-2.97.837-4.118A6.004 6.004 0 004.083 9zM10 2a8 8 0 100 16 8 8 0 000-16zm0 2c-.076 0-.232.032-.465.262-.238.234-.497.623-.737 1.182-.389.907-.673 2.142-.766 3.556h3.936c-.093-1.414-.377-2.649-.766-3.556-.24-.56-.5-.948-.737-1.182C10.232 4.032 10.076 4 10 4zm3.971 5c-.089-1.546-.383-2.97-.837-4.118A6.004 6.004 0 0115.917 9h-1.946zm-2.003 2H8.032c.093 1.414.377 2.649.766 3.556.24.56.5.948.737 1.182.233.23.389.262.465.262.076 0 .232-.032.465-.262.238-.234.498-.623.737-1.182.389-.907.673-2.142.766-3.556zm1.166 4.118c.454-1.147.748-2.572.837-4.118h1.946a6.004 6.004 0 01-2.783 4.118zm-6.268 0C6.412 13.97 6.118 12.546 6.03 11H4.083a6.004 6.004 0 002.783 4.118z" clip-rule="evenodd"></path>
+                                </svg>
+                                Breathtaking ocean views
+                            </div>
+                            <div class="detail-item">
+                                <svg class="detail-icon" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
+                                </svg>
+                                2-3 hours of coastal wildlife
+                            </div>
+                        </div>
+                        <div class="activity-highlight">
+                            Don't miss the California sea lions and the charming miniature train ride with panoramic ocean vistas!
+                        </div>
+                        <div class="gallery-grid">
+                            <div class="gallery-item">
+                                <img src="./santa-barbara-images/Sunday-0930-SBZoo/image1.jpg" alt="Santa Barbara Zoo entrance">
+                            </div>
+                            <div class="gallery-item">
+                                <img src="./santa-barbara-images/Sunday-0930-SBZoo/image2.jpg" alt="Zoo animals">
+                            </div>
+                            <div class="gallery-item">
+                                <img src="./santa-barbara-images/Sunday-0930-SBZoo/image3.jpg" alt="Ocean view from zoo">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Monday Activities -->
+                <div class="activity-card" data-day="monday">
+                    <div class="activity-header">
+                        <div class="activity-time">9:00 AM</div>
+                        <h3 class="activity-title">MOXI Museum</h3>
+                    </div>
+                    <div class="activity-content">
+                        <p class="activity-description">Explore this innovative science and technology museum with interactive exhibits. MOXI offers hands-on experiences perfect for curious minds of all ages, from robotics to renewable energy displays.</p>
+                        <div class="activity-details">
+                            <div class="detail-item">
+                                <svg class="detail-icon" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z"></path>
+                                </svg>
+                                Interactive coastal science
+                            </div>
+                            <div class="detail-item">
+                                <svg class="detail-icon" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
+                                </svg>
+                                3-4 hours of exploration
+                            </div>
+                        </div>
+                        <div class="activity-highlight">
+                            Check their website for special oceanographic exhibitions and marine science workshops during your visit!
+                        </div>
+                        <div class="gallery-grid">
+                            <div class="gallery-item">
+                                <img src="./santa-barbara-images/Monday-0900-MOXI/image1.jpg" alt="MOXI Museum exterior">
+                            </div>
+                            <div class="gallery-item">
+                                <img src="./santa-barbara-images/Monday-0900-MOXI/image2.jpg" alt="Interactive exhibits">
+                            </div>
+                            <div class="gallery-item">
+                                <img src="./santa-barbara-images/Monday-0900-MOXI/image3.jpg" alt="Science demonstrations">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="activity-card" data-day="monday">
+                    <div class="activity-header">
+                        <div class="activity-time">1:45 PM</div>
+                        <h3 class="activity-title">Coast Starlight Return</h3>
+                    </div>
+                    <div class="activity-content">
+                        <p class="activity-description">Board the southbound Coast Starlight for your scenic return journey to Los Angeles. Enjoy your final coastal views and reflect on an amazing weekend adventure.</p>
+                        <div class="activity-details">
+                            <div class="detail-item">
+                                <svg class="detail-icon" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
+                                </svg>
+                                2.5 hour coastal farewell
+                            </div>
+                            <div class="detail-item">
+                                <svg class="detail-icon" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+                                </svg>
+                                SB to LA Union Station
+                            </div>
+                        </div>
+                        <div class="activity-highlight">
+                            Perfect timing for a final coastal meal on the train and capturing magical sunset photos over the Pacific!
+                        </div>
+                        <div class="gallery-grid">
+                            <div class="gallery-item">
+                                <img src="./santa-barbara-images/Monday-1345-CoastStarlightReturn/image1.jpg" alt="Train departure">
+                            </div>
+                            <div class="gallery-item">
+                                <img src="./santa-barbara-images/Monday-1345-CoastStarlightReturn/image2.jpg" alt="Coastal sunset view">
+                            </div>
+                            <div class="gallery-item">
+                                <img src="./santa-barbara-images/Monday-1345-CoastStarlightReturn/image3.jpg" alt="Train interior">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <script>
+        // Countdown Timer
+        function updateCountdown() {
+            const targetDate = new Date('August 30, 2025 09:50:00').getTime();
+            const now = new Date().getTime();
+            const difference = targetDate - now;
+
+            if (difference > 0) {
+                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+                document.getElementById('days').textContent = days.toString().padStart(2, '0');
+                document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+                document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+                document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+            }
+        }
+
+        // Progress Bar
+        function updateProgressBar() {
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            document.getElementById('progress-bar').style.width = scrollPercent + '%';
+        }
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Smooth animations on scroll
+        function handleScrollAnimations() {
+            const elements = document.querySelectorAll('.section-header, .activity-card');
+            elements.forEach(el => observer.observe(el));
+        }
+
+        // Enhanced coastal effects
+        function initializeCoastalEffects() {
+            const cards = document.querySelectorAll('.activity-card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    card.style.transition = 'all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+                });
+            });
+
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            galleryItems.forEach((item, index) => {
+                item.addEventListener('mouseenter', () => {
+                    item.style.transition = 'all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+                });
+                
+                // Add organic rotation on hover for coastal effect
+                item.addEventListener('mouseenter', () => {
+                    const randomRotation = Math.random() * 8 - 4; // -4 to 4 degrees
+                    item.style.transform = `scale(1.08) rotate(${randomRotation}deg)`;
+                });
+                
+                item.addEventListener('mouseleave', () => {
+                    item.style.transform = 'scale(1) rotate(0deg)';
+                });
+            });
+
+            // Add organic movement to cards
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    const randomTilt = Math.random() * 3 - 1.5; // -1.5 to 1.5 degrees
+                    card.style.transform = `translateY(-15px) scale(1.02) rotate(${randomTilt}deg)`;
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'translateY(0) scale(1) rotate(0deg)';
+                });
+            });
+        }
+
+        // Coastal typewriter effect for main title
+        function coastalTypewriterEffect() {
+            const title = document.querySelector('.hero h1');
+            const text = title.textContent;
+            title.textContent = '';
+            
+            let i = 0;
+            const typeInterval = setInterval(() => {
+                title.textContent += text.charAt(i);
+                i++;
+                if (i > text.length) {
+                    clearInterval(typeInterval);
+                }
+            }, 200);
+        }
+
+        // Add floating coastal elements
+        function addFloatingElements() {
+            const floatingEmojis = ['🌊', '🐚', '🏄‍♂️', '🌴', '☀️'];
+            const container = document.body;
+            
+            floatingEmojis.forEach((emoji, index) => {
+                const element = document.createElement('div');
+                element.textContent = emoji;
+                element.style.position = 'fixed';
+                element.style.fontSize = '2rem';
+                element.style.opacity = '0.08';
+                element.style.pointerEvents = 'none';
+                element.style.zIndex = '-1';
+                element.style.top = Math.random() * 100 + '%';
+                element.style.left = Math.random() * 100 + '%';
+                element.style.animation = `float ${8 + Math.random() * 4}s ease-in-out infinite ${index * 2}s`;
+                
+                container.appendChild(element);
+            });
+        }
+
+        // Initialize all functions
+        document.addEventListener('DOMContentLoaded', () => {
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+            
+            window.addEventListener('scroll', updateProgressBar);
+            updateProgressBar();
+            
+            handleScrollAnimations();
+            initializeCoastalEffects();
+            addFloatingElements();
+            
+            // Delayed typewriter effect for dramatic coastal entrance
+            setTimeout(coastalTypewriterEffect, 1200);
+            
+            // Add stagger animation to countdown items with coastal timing
+            const countdownItems = document.querySelectorAll('.countdown-item');
+            countdownItems.forEach((item, index) => {
+                item.style.animationDelay = `${0.9 + (index * 0.3)}s`;
+            });
+            
+            // Add stagger animation to activity cards
+            const activityCards = document.querySelectorAll('.activity-card');
+            activityCards.forEach((card, index) => {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            setTimeout(() => {
+                                entry.target.classList.add('visible');
+                            }, index * 200);
+                        }
+                    });
+                }, observerOptions);
+                
+                observer.observe(card);
+            });
+
+            // Add coastal nature icons animation
+            const natureIcons = document.querySelectorAll('.nature-icon');
+            natureIcons.forEach((icon, index) => {
+                setTimeout(() => {
+                    icon.style.animation = `organicFloat 5s ease-in-out infinite ${index * 0.8}s`;
+                }, 2500 + index * 300);
+            });
+        });
+
+        // Performance optimization: throttle scroll events
+        let ticking = false;
+        function requestTick() {
+            if (!ticking) {
+                requestAnimationFrame(updateProgressBar);
+                ticking = true;
+            }
+        }
+
+        window.addEventListener('scroll', () => {
+            ticking = false;
+            requestTick();
+        });
+
+        // Add coastal wave shimmer effect to special elements
+        function addCoastalShimmer() {
+            const shimmerElements = document.querySelectorAll('.coastal-banner, .countdown-item');
+            shimmerElements.forEach(el => {
+                el.addEventListener('mouseover', function() {
+                    this.style.background = this.style.background || this.computedStyleMap?.get('background-color') || '';
+                });
+            });
+        }
+
+        // Initialize shimmer effects after DOM is ready
+        setTimeout(addCoastalShimmer, 2500);
+
+        // Add organic coastal scroll effects
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallaxElements = document.querySelectorAll('.ocean-waves');
+            
+            parallaxElements.forEach(element => {
+                const speed = 0.5;
+                element.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+    </script>
+</body>
+</html>

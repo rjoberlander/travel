@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery Layout Options - Choose Your Style</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+        
+        .demo-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #4682B4;
+            margin-bottom: 10px;
+            font-size: 2.5rem;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+            font-size: 1.1rem;
+        }
+        
+        .layout-title {
+            color: #4682B4;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #ff6b6b;
+            padding-bottom: 10px;
+        }
+        
+        .layout-description {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        /* Sample Activity Card for Context */
+        .activity-card {
+            background: #fff;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .activity-header {
+            padding: 20px;
+            background: #f0f8ff;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        
+        .activity-time {
+            color: #ff6b6b;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .activity-title {
+            color: #4682B4;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .activity-description {
+            color: #666;
+            line-height: 1.5;
+        }
+        
+        /* Layout Option 1: Classic Grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+            padding: 20px;
+            background: #fafafa;
+            border-radius: 10px;
+        }
+        
+        .gallery-item-grid {
+            position: relative;
+            aspect-ratio: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            background: #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            color: #666;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .gallery-item-grid:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        .gallery-item-grid img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 8px;
+            font-size: 0.8rem;
+            text-align: center;
+        }
+        
+        /* Layout Option 2: Hero + Thumbnails */
+        .gallery-hero {
+            margin: 20px 0;
+            padding: 20px;
+            background: #fafafa;
+            border-radius: 10px;
+        }
+        
+        .hero-image {
+            width: 100%;
+            height: 300px;
+            background: #d0d0d0;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .hero-image:hover {
+            transform: scale(1.02);
+        }
+        
+        .thumbnail-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+        
+        .thumbnail-item {
+            aspect-ratio: 1;
+            background: #e0e0e0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            color: #666;
+            text-align: center;
+            padding: 10px;
+        }
+        
+        .thumbnail-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        /* Layout Option 3: Masonry/Pinterest Style */
+        .gallery-masonry {
+            column-count: 3;
+            column-gap: 15px;
+            margin: 20px 0;
+            padding: 20px;
+            background: #fafafa;
+            border-radius: 10px;
+        }
+        
+        .masonry-item {
+            break-inside: avoid;
+            margin-bottom: 15px;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .masonry-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        
+        .masonry-item.tall {
+            height: 250px;
+        }
+        
+        .masonry-item.medium {
+            height: 180px;
+        }
+        
+        .masonry-item.short {
+            height: 120px;
+        }
+        
+        .masonry-content {
+            height: 100%;
+            background: #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .masonry-caption {
+            padding: 10px;
+            background: white;
+            font-size: 0.8rem;
+            color: #333;
+            border-top: 1px solid #eee;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+            
+            .thumbnail-row {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .gallery-masonry {
+                column-count: 2;
+            }
+            
+            .hero-image {
+                height: 200px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .thumbnail-row {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .gallery-masonry {
+                column-count: 1;
+            }
+        }
+        
+        .pros-cons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .pros, .cons {
+            padding: 15px;
+            border-radius: 8px;
+        }
+        
+        .pros {
+            background: #e8f5e8;
+            border-left: 4px solid #4caf50;
+        }
+        
+        .cons {
+            background: #fff3e0;
+            border-left: 4px solid #ff9800;
+        }
+        
+        .pros h4, .cons h4 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .pros ul, .cons ul {
+            list-style-position: inside;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .pros ul li, .cons ul li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Gallery Layout Options</h1>
+    <p class="subtitle">Choose the gallery style that best fits your travel itinerary vision</p>
+    
+    <!-- Layout Option 1: Classic Grid -->
+    <div class="demo-container">
+        <h2 class="layout-title">Option 1: Classic Grid Layout</h2>
+        <p class="layout-description">
+            A clean, uniform 3-column grid where all images have equal visual weight. Perfect for showcasing multiple aspects of an activity with balanced emphasis.
+        </p>
+        
+        <div class="activity-card">
+            <div class="activity-header">
+                <div class="activity-time">9:30 AM</div>
+                <h3 class="activity-title">Santa Barbara Zoo</h3>
+                <p class="activity-description">Experience "the zoo with an ocean view" - 30 acres overlooking the Pacific, home to over 500 animals representing 146 species.</p>
+            </div>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item-grid">
+                    <span>Giraffe Feeding<br>Experience</span>
+                    <div class="gallery-caption">Feed Masai Giraffes</div>
+                </div>
+                <div class="gallery-item-grid">
+                    <span>Australian<br>Walkabout</span>
+                    <div class="gallery-caption">Walk with Kangaroos</div>
+                </div>
+                <div class="gallery-item-grid">
+                    <span>Penguin<br>House</span>
+                    <div class="gallery-caption">Humboldt Penguins</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="pros-cons">
+            <div class="pros">
+                <h4>✅ Pros</h4>
+                <ul>
+                    <li>Clean, organized appearance</li>
+                    <li>Works well on all screen sizes</li>
+                    <li>Equal visual weight for all images</li>
+                    <li>Easy to implement and maintain</li>
+                    <li>Fast loading performance</li>
+                </ul>
+            </div>
+            <div class="cons">
+                <h4>⚠️ Considerations</h4>
+                <ul>
+                    <li>Less visual hierarchy</li>
+                    <li>Can appear static/uniform</li>
+                    <li>Limited flexibility for different image ratios</li>
+                    <li>May not highlight hero images</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Layout Option 2: Hero + Thumbnails -->
+    <div class="demo-container">
+        <h2 class="layout-title">Option 2: Hero + Thumbnails Layout</h2>
+        <p class="layout-description">
+            Features one large hero image that grabs attention, followed by smaller thumbnails that provide additional context. Great for activities with one standout photo.
+        </p>
+        
+        <div class="activity-card">
+            <div class="activity-header">
+                <div class="activity-time">7:00 PM - Dinner</div>
+                <h3 class="activity-title">Santa Barbara FisHouse</h3>
+                <p class="activity-description">Dine where local fishermen bring their catch straight from boat to table at this waterfront gem across from East Beach.</p>
+            </div>
+            
+            <div class="gallery-hero">
+                <div class="hero-image">
+                    <span>Fresh Seafood Platter<br>(Main Feature Image)</span>
+                </div>
+                <div class="thumbnail-row">
+                    <div class="thumbnail-item">Ocean View<br>Patio</div>
+                    <div class="thumbnail-item">Fire Pit<br>Seating</div>
+                    <div class="thumbnail-item">Lobster Mac<br>& Cheese</div>
+                    <div class="thumbnail-item">Restaurant<br>Exterior</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="pros-cons">
+            <div class="pros">
+                <h4>✅ Pros</h4>
+                <ul>
+                    <li>Strong visual hierarchy with hero focus</li>
+                    <li>Excellent for activities with standout photos</li>
+                    <li>Encourages user interaction (clicking thumbnails)</li>
+                    <li>Great storytelling potential</li>
+                    <li>Mobile-friendly with large touch targets</li>
+                </ul>
+            </div>
+            <div class="cons">
+                <h4>⚠️ Considerations</h4>
+                <ul>
+                    <li>Requires one strong hero image per activity</li>
+                    <li>Takes more vertical space</li>
+                    <li>May de-emphasize secondary images</li>
+                    <li>More complex interaction patterns</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Layout Option 3: Masonry/Pinterest -->
+    <div class="demo-container">
+        <h2 class="layout-title">Option 3: Masonry (Pinterest-Style) Layout</h2>
+        <p class="layout-description">
+            Dynamic, varied-height layout that creates visual interest through asymmetry. Perfect for creating an organic, magazine-style gallery feel.
+        </p>
+        
+        <div class="activity-card">
+            <div class="activity-header">
+                <div class="activity-time">9:00 AM</div>
+                <h3 class="activity-title">MOXI Museum of Exploration + Innovation</h3>
+                <p class="activity-description">Ignite learning at this 17,000-square-foot interactive science wonderland with hands-on STEAM exhibits for curious minds.</p>
+            </div>
+            
+            <div class="gallery-masonry">
+                <div class="masonry-item tall">
+                    <div class="masonry-content">24-foot<br>Giant Guitar</div>
+                    <div class="masonry-caption">Walk through the sound hole!</div>
+                </div>
+                <div class="masonry-item medium">
+                    <div class="masonry-content">Sky Garden<br>Rooftop</div>
+                    <div class="masonry-caption">Ocean views & water play</div>
+                </div>
+                <div class="masonry-item short">
+                    <div class="masonry-content">Speed Track</div>
+                    <div class="masonry-caption">Build & race cars</div>
+                </div>
+                <div class="masonry-item medium">
+                    <div class="masonry-content">Interactive<br>Exhibits</div>
+                    <div class="masonry-caption">Hands-on STEAM fun</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="pros-cons">
+            <div class="pros">
+                <h4>✅ Pros</h4>
+                <ul>
+                    <li>Visually dynamic and engaging</li>
+                    <li>Feels modern and magazine-like</li>
+                    <li>Great for social media aesthetic</li>
+                    <li>Accommodates different image ratios naturally</li>
+                    <li>Creates visual rhythm and flow</li>
+                </ul>
+            </div>
+            <div class="cons">
+                <h4>⚠️ Considerations</h4>
+                <ul>
+                    <li>More complex CSS implementation</li>
+                    <li>Can be challenging on mobile</li>
+                    <li>May create layout jumps while loading</li>
+                    <li>Requires careful content planning</li>
+                    <li>Less predictable layout behavior</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="demo-container" style="text-align: center; background: #f0f8ff;">
+        <h2 style="color: #4682B4; margin-bottom: 20px;">Which Layout Speaks to You?</h2>
+        <p style="color: #666; font-size: 1.1rem; line-height: 1.6;">
+            Each layout serves different purposes:<br>
+            <strong>Classic Grid</strong> for clean, organized presentation<br>
+            <strong>Hero + Thumbnails</strong> for storytelling with featured images<br>
+            <strong>Masonry</strong> for dynamic, social media-inspired aesthetics
+        </p>
+    </div>
+    
+    <script>
+        // Add some interactivity to demonstrate hover effects
+        document.querySelectorAll('.gallery-item-grid, .hero-image, .thumbnail-item, .masonry-item').forEach(item => {
+            item.addEventListener('click', function() {
+                alert('In the real implementation, this would open a lightbox with the full image!');
+            });
+        });
+    </script>
+</body>
+</html>
