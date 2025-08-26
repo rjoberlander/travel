@@ -1,0 +1,12 @@
+.git
+.github
+*.md
+*.py
+*.sh
+design-v*.html
+santa-barbara-weekend*.html
+test-*.html
+timeline-design-variations.html
+backend/
+frontend/
+github-setup.sh
