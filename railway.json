@@ -4,9 +4,9 @@
     "builder": "dockerfile"
   },
   "deploy": {
-    "startCommand": "nginx -g 'daemon off;'",
-    "healthcheckPath": "/",
-    "healthcheckTimeout": 100,
-    "restartPolicyType": "never"
+    "healthcheckPath": "/health",
+    "healthcheckTimeout": 300,
+    "restartPolicyType": "on-failure",
+    "restartMaxRetries": 3
   }
 }

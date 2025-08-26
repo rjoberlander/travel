@@ -1,10 +1,13 @@
 FROM nginx:alpine
 
+# Remove default nginx config
+RUN rm /etc/nginx/conf.d/default.conf
+
+# Copy our nginx config
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
 # Copy static files to nginx html directory
 COPY site/ /usr/share/nginx/html/
-
-# Copy just the index.html to root for healthcheck
-COPY site/index.html /usr/share/nginx/html/index.html
 
 # Expose port 80
 EXPOSE 80
