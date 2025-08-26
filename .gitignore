@@ -3,3 +3,5 @@ santa-barbara-images/
 *.png
 *.jpeg
 .DS_Store
+.railway/
+site/santa-barbara-images/
