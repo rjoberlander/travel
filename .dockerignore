@@ -12,6 +12,9 @@ frontend/
 github-setup.sh
 .railway/
 railway.toml
+railway.json
 compress-images.sh
 index.html
 santa-barbara-images/
+Dockerfile
+.dockerignore
